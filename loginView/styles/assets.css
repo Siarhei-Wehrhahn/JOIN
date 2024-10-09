@@ -1,0 +1,61 @@
+.blueBtn {
+    background-color: #2A3647;
+    border-radius: 6px;
+    color: white;
+    padding: 6px;
+    text-align: center;
+    padding-inline: 16px;
+    cursor: pointer;
+}
+
+.blacktext {
+    color: #000000;
+    cursor: pointer;
+}
+
+h1 {
+    font-size: 50px;
+    position: relative;
+    display: inline-block;
+}
+
+h1::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -10px;
+    height: 4px;
+    width: 80%;
+    background-color: #29ABE2;
+    margin: 0 auto;
+}
+
+.headerLogo {
+    height: 150px;
+}
+
+.outlinedText {
+    border: 1px solid black;
+    border-radius: 6px;
+    padding: 5px;
+    padding-inline: 16px;
+    cursor: pointer;
+}
+
+footer p {
+    opacity: 0.45;
+}
+
+label span {
+    opacity: 0.4;
+}
+
+.backArrow {
+    height: 25px;
+    rotate: 180deg;
+    position: relative;
+    top: 30px;
+    left: -200px;
+    cursor: pointer;
+}

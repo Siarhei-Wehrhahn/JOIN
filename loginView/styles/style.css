@@ -1,0 +1,94 @@
+body {
+    background-color: #F6F7F8;
+    min-height: 100vh;
+    margin: 0;
+}
+
+main {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginButtons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 24px;
+    padding: 8px;
+}
+
+.loginWindow {
+    width: 500px;
+    background-color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 25px;
+    box-shadow: 2px 2px 2px rgba(black, black, black, 0.4);
+}
+
+.signUp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 16px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    flex-direction: row;
+    padding: 40px;
+}
+
+.inputFieldsLogin {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
+    gap: 16px;
+}
+
+label {
+    width: 250px;
+    padding: 16px;
+}
+
+label input {
+    cursor: pointer;
+}
+
+.emailInputStyle {
+    width: 250px;
+    height: 25px;
+    padding: 4px;
+    border-radius: 8px;
+    opacity: 0.3;
+    border-width: 1px;
+}
+
+footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: row;
+    gap: 24px;
+    position: absolute;
+    bottom: 0;
+}
+
+.linkPrivacyPolicy {
+    text-decoration: none;
+    color: #29ABE2;
+}
+
+.d_none {
+    display: none;
+}
