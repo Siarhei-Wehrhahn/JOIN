@@ -1,3 +1,5 @@
-const register = () => {
-    const email = document
+    
+
+const createUser = (id, name, email, password) => {
+    
 }
