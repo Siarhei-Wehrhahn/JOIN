@@ -4,7 +4,7 @@ header{
   justify-content: space-between;
   position:absolute;
   right:0;
-  width:85%;
+  width:84%;
   height:100px;
   box-shadow: 0 6px 6px rgba(0, 0, 0, 0.2);
 }
@@ -12,8 +12,13 @@ h4{
   margin-left:120px;
   font-size:20px;
 }
+.header-div{
+  display:flex;
+  align-items: center;
+  gap:16px;
+}
 .question-icon{
-  width:32px;
+  width:40px;
 }
 .account{
   width:60px;
@@ -24,4 +29,9 @@ h4{
   display:flex;
   align-items:center;
   justify-content: center;
+}
+.account p{
+  color:rgb(41, 171, 226);
+  font-size:24px;
+  font-weight:600;
 }
