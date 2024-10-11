@@ -12,6 +12,9 @@ h4{
   margin-left:120px;
   font-size:20px;
 }
+.mobile-logo {
+  display:none;
+}
 .header-div{
   display:flex;
   align-items: center;
@@ -29,6 +32,7 @@ h4{
   display:flex;
   align-items:center;
   justify-content: center;
+  cursor: pointer;
 }
 .account p{
   color:rgb(41, 171, 226);

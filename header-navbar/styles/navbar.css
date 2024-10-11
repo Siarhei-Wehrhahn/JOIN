@@ -8,7 +8,6 @@ nav{
   align-items:center; 
   background-color:rgb(42, 54, 71);
 }
-
 .logo {
   width:140px;
   margin-top:60px;
@@ -36,10 +35,16 @@ nav{
   flex-direction: row;
   align-items: center;
   justify-content:start;
-  margin-left:50%;
+  margin-left:50%;      
+  /* we have to change the margin to something else,
+   otherwise the position of the button is incorrect */
   width:100%;
+  cursor: pointer;
   gap:8px;
 }
+.summery-button:active, .add-tast-button:active, .board-button:active, .contacts-button:active {
+  background-color:#091931;
+} 
 .nav-icon{
   width:32px;
   height:32px;
@@ -48,8 +53,6 @@ p{
   font-size:20px;
   color:white;
 }
-
-
 .nav-links {
   display:flex;
   flex-direction:column;
@@ -65,8 +68,6 @@ p{
   text-decoration: none;
   font-size:20px;
 }
-
-
 .privacy-policy:hover{
 color:rgb(41, 171, 226);
 font-weight: bold;
