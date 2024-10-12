@@ -1,3 +1,11 @@
+@font-face {
+    font-family: 'Lato';
+    src: url('./fonts/Lato/Lato-Regular.ttf') format('ttf'),
+         url('./fonts/Lato/Lato-Regular.ttf') format('ttf');
+    font-weight: 400;
+    font-style: normal;
+}
+
 .blueBtn {
     background-color: #2A3647;
     border-radius: 6px;
