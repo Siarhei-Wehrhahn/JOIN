@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="./styles/assets.css">
     <link rel="stylesheet" href="./styles/style.css">
     <script src="scripts/script.js"></script>
-    <script type="module" src="scripts/firebase.js"></script>
 </head>
 
 <body onload="onloadFunc()">
@@ -37,7 +36,7 @@
                 <input type="checkbox" name="myCheckbox" value="rememberMe"> Remember me
             </label>
             <div class="loginButtons">
-                <p class="blueBtn">Log in</p>
+                <p class="blueBtn" onclick="signIn()">Log in</p>
                 <p class="outlinedText">Guest Log in</p>
             </div>
         </div>
@@ -58,7 +57,7 @@
                 </span><a class="linkPrivacyPolicy" href="#">Privacy policy</a>
             </label>
             <div class="loginButtons">
-                <p class="blueBtn" id="createUserBtn">Sign up</p>
+                <p class="blueBtn" onclick="signUpNewUser()" id="createUserBtn">Sign up</p>
             </div>
         </div>
     </main>
@@ -67,6 +66,7 @@
         <p>Privacy Policy</p>
         <p>Legal Notice</p>
     </footer>
+    <script type="module" src="scripts/firebase.js"></script>
     <script type="module" src="./scripts/firebase-firestore.js"></script>
     <script src="./scripts/firebase-realtime.js"></script>    
 </body>
