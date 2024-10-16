@@ -1,0 +1,64 @@
+#contactsContent {
+    height: 78vh;
+    width: 85%;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    padding: 10px;
+}
+.contactView {
+    display:flex;
+}
+.contact {
+    height: 80px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.contact:hover {
+    background-color: #2A3647;
+    color: white;
+}
+
+.contactPhotoDiv {
+    height: 100%;
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.contactWithEmail {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.contactWithEmail p{
+    width: 90%;
+    text-align: start;
+    margin: 3px;
+}
+
+.emailAdress {
+    color: rgb(71, 71, 255);
+}
+
+.contactInitials {
+    height: 40px;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: orange;
+    color: white;
+    border-radius: 50%;
+}

@@ -1,10 +1,14 @@
+.rightSide {
+  width: 84%;
+}
 header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
   height: 100px;
-  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  background-color:white;
 }
 
 h4 {
@@ -42,9 +46,4 @@ h4 {
   color: rgb(41, 171, 226);
   font-size: 24px;
   font-weight: 600;
-}
-
-.rightSide {
-  width: 80%;
-  height: 100vh;
 }

@@ -1,23 +1,17 @@
 .contacts {
     width: 30%;
-    height: 100vh;
     background-color: white;
-    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    box-shadow:0px 4px 6px rgba(0, 0, 0, 0.3);
     display: flex;
     justify-content: start;
     align-items: center;
     flex-direction: column;
-}
-
-#renderContacts {
-    background-color: red;
-    height: 80vh;
-    width: 28vw;
+   
 }
 
 .contactsInfo {
     width: 70%;
-    height: 100vh;
+   
 }
 
 .contactsHeader {
@@ -28,4 +22,8 @@
     margin-top: 40px;
     margin-left: 80px;
     gap: 30px;
+    font-size:48px;
+}
+.contactsSideText {
+    font-size:32px;
 }

@@ -1,5 +1,5 @@
 .addContactBtn {
-    width: 350px;
+    width: 85%;
     height: 50px;
     display: flex;
     justify-content: center;
@@ -20,7 +20,7 @@
 }
 
 .blueLine {
-    width: 2px;
+    width: 3px;
     height: 60px;
     background-color: #29ABE2;
 }
