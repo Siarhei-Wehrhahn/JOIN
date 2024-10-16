@@ -51,5 +51,4 @@ const signIn = async () => {
   const emailInputLogin = document.getElementById("emailInputLogin").value;
   const passwordInputLogin = document.getElementById("passwordInputLogin").value;
   const usersData = loadData("/users");
-  console.log(usersData);
 };
