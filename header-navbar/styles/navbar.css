@@ -1,8 +1,7 @@
 .leftSide {
   width: 16%;
   height: 100vh;
-  position:fixed;
-  left:0;
+ 
 }
 
 nav {
@@ -31,8 +30,8 @@ nav {
   align-items: center;
 }
 
-.logo {
-  width: 120px;
+.join-logo {
+  width:140px;
   margin-top: 60px;
 }
 
@@ -44,7 +43,7 @@ nav {
   flex-direction: row;
   align-items: center;
   justify-content: start;
-  margin-left: 50%;
+  padding-left: 50%;
   /* we have to change the margin to something else,
    otherwise the position of the button is incorrect */
   width: 100%;

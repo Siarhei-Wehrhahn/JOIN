@@ -16,19 +16,24 @@
 </head>
 
 <body onload="renderContacts()">
+  <section class="contactView">
     <div class="contacts">
-        <button class="addContactBtn" onclick="toggleOverlay()">Add new contact<img src="/assets/icons/person_add.svg"
-                alt="add_person_icon"></button>
-        <div id="contactsContent"></div>
-    </div>
-    <div class="contactsInfo">
-        <div class="contactsHeader">
-            <h1 class="contactsHeaderText">Contacts</h1>
-            <div class="blueLine"></div>
-            <span class="contactsSideText">Better with a team</span>
-        </div>
-        <div id="contactInfoExtendet"></div>
-    </div>
+      <button class="addContactBtn" onclick="toggleOverlay()">Add new contact<img src="/assets/icons/person_add.svg"
+              alt="add_person_icon"></button>
+      <div id="contactsContent"></div>
+  </div>
+  <div class="contactsInfo">
+      <div class="contactsHeader">
+          <h1 class="contactsHeaderText">Contacts</h1>
+          <div class="blueLine"></div>
+          <span class="contactsSideText">Better with a team</span>
+      </div>
+      <div id="contactInfoExtendet"></div>
+  </div>
+
+  </section>
+    
+
     <div class="overlay d_none" id="overlayId">
         <div class="logoDiv">
           <div class="logo">

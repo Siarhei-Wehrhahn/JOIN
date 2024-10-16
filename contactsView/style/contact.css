@@ -1,12 +1,14 @@
 #contactsContent {
-    height: 85vh;
+    height: 78vh;
     width: 85%;
     display: flex;
     justify-content: center;
     align-items: start;
     padding: 10px;
 }
-
+.contactView {
+    display:flex;
+}
 .contact {
     height: 80px;
     width: 100%;
