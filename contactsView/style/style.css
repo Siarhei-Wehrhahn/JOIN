@@ -9,6 +9,12 @@
     flex-direction: column;
 }
 
+#renderContacts {
+    background-color: red;
+    height: 80vh;
+    width: 28vw;
+}
+
 .contactsInfo {
     width: 70%;
     height: 100vh;
