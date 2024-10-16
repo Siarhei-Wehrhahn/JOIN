@@ -4,22 +4,24 @@
 //TODO: function zu ende schreiben 
 const renderContacts = async () => {
     try {
-        const databaseJson = await loadData('/contacts')
+        const databaseJson = await loadData('/contacts');
         console.log(databaseJson);
-        const content = document.getElementById('contactsContent')
-        content.innerHTML = ""
-        for (let index = 0; index < databaseJson.length; index++) {
-            const element = databaseJson[index];
-            content.innerHTML += getContact(element)
+        const content = document.getElementById('contactsContent');
+        content.innerHTML = "";
+        const contacts = Object.values(databaseJson);
+        for (let index = 0; index < contacts.length; index++) {
+            const element = contacts[index];
+            if (element.name && element.email && element.phone) {
+                content.innerHTML += getContact(element);
+            }
         }
-    } catch(error) {
-        console.error('Faild to load data', error);
+    } catch (error) {
+        console.error('Failed to load data', error);
     }
-}
+};
 
 const getContact = (person) => {
-    const initials = contact.name.split(' ').map(n => n[0]);
-
+    const initials = person.name.split(' ').map(n => n[0]).join(''); 
     return /*html*/`
         <div class="contact">
             <div class="contactPhotoDiv">
@@ -29,5 +31,5 @@ const getContact = (person) => {
                 <p class="personName">${person.name}</p>
                 <p class="emailAdress">${person.email}</p>
             </div>
-        </div>`
-}
+        </div>`;
+};

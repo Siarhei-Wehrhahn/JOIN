@@ -24,3 +24,11 @@
     height: 60px;
     background-color: #29ABE2;
 }
+
+.contactsHeaderText {
+    font-size: 50px;
+}
+
+.contactsSideText {
+    font-size: 30px;
+}
