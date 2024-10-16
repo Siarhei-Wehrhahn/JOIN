@@ -1,0 +1,71 @@
+body {
+  display: flex;
+  flex-direction: row;
+}
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 16%;
+  margin-top: 100px;
+  width: 68%;
+}
+
+.arrow-icon {
+  width:40px;
+  position:fixed;
+  top:260px;
+  right:100px;
+}
+
+h1 {
+  font-size:72px;
+  margin:140px 0px 40px 0px;
+  font-weight:800;
+}
+h2 {
+  font-size:32px;
+  font-weight:800;
+  margin:10px 0px 20px 0px;
+}
+h3 {
+  font-size:28px;
+  font-weight:800;
+  margin:0px 0px 20px 0px;
+}
+.h4 {
+  font-size:24px;
+  font-weight:800;
+  margin:0;
+}
+main p {
+  color:black;
+  font-size:20px;
+  font-weight:500;
+  margin:0px 0px 20px 0px;
+  
+}
+
+.how-to-use-div {
+  display:flex;
+}
+.number {
+  font-size:32px;
+  font-weight:800;
+  margin-right:40px;
+}
+.enjoy-h3 {
+  margin:40px 0 40px 0;
+}
+.blue {
+  color: rgb(41, 171, 226);
+}
+a {
+  text-decoration: none;
+}
