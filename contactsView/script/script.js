@@ -10,7 +10,7 @@ const renderContacts = async () => {
         content.innerHTML = ""
         for (let index = 0; index < databaseJson.length; index++) {
             const element = databaseJson[index];
-            content.innerHTML += getContact(element)
+            content.innerHTML += getContact(element);
         }
     } catch(error) {
         console.error('Faild to load data', error);
@@ -18,7 +18,7 @@ const renderContacts = async () => {
 }
 
 const getContact = (person) => {
-    const initials = contact.name.split(' ').map(n => n[0]);
+    const initials = person.name.split(' ').map(n => n[0]);
 
     return /*html*/`
         <div class="contact">
