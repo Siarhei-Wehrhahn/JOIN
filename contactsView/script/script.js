@@ -4,13 +4,14 @@
 //TODO: function zu ende schreiben 
 const renderContacts = async () => {
     try {
-        const databaseJson = await loadData('/Contacts')
+        const databaseJson = await loadData('/contacts')
         console.log(databaseJson);
         const content = document.getElementById('contactsContent')
         content.innerHTML = ""
-        databaseJson[0].forEach(contact => {
-            content.innerHTML += getContact(contact)
-        });
+        for (let index = 0; index < databaseJson.length; index++) {
+            const element = databaseJson[index];
+            content.innerHTML += getContact(element)
+        }
     } catch(error) {
         console.error('Faild to load data', error);
     }
