@@ -66,7 +66,7 @@ const getContact = (person, index) => {
     const color = colors[index % colors.length];
     
     return /*html*/`
-        <div class="contact">
+        <div class="contact" onclick="renderContactExtendet(${person})">
             <div class="contactPhotoDiv">
                 <div class="contactInitials" style="background-color: ${color};">${initials}</div>
             </div>
@@ -77,16 +77,45 @@ const getContact = (person, index) => {
         </div>`;
 };
 
-const renderContactExtendet = (person) => {
+const renderContactExtendet = (person, initials, color) => {
     const content = document.getElementById('contactInfoExtendet')
     content.innerHTML = ""
-    content += getContactExtended(person);
+    content += getContactExtended(person, initials, color);
 }
 
-const getContactExtended = () => {
+const getContactExtended = (person) => {
     return /*html*/`
+    <div class="contactExtendDiv">
+        <div class="contactName">
+            <div class="contactPhotoDiv">
+                <div class="contactInitials" style="background-color: ${color};">${initials}</div>
+            </div>
+            <div class="contactName">
+            <p class="personName">${person.name}</p>
+            </div>
+            <div class="singleContactButtons">
+                <div class="singleContactEdit">
+                    <img src="../assets/icons/edit.svg" alt="edit pic">
+                    <p>Edit</p>
+                </div>
+                <div class="singleContactDelete">
+                    <img src="../assets/icons/delete.svg" alt="trashcan">
+                    <p>Delete</p>
+                </div>
+            </div>
+        </div>
+        <div class="contactInfo">
+
+        </div>
+        <div class="contactMailAndPhone">
+            <p>Email</p>
+            <p class="emailAdress">${person.email}</p>
+            <p>Phone</p>
+            <p class="phoneNumber">${person.phone}</p>
+        </div>
+    </div>
     `
-}
+};
 
 
 function toggleOverlay() {
@@ -107,8 +136,40 @@ function toggleOverlay() {
             overlay.classList.remove('slide-out');
         }, 1000);
     }
-}
+};
 
 window.onload = () => {
     loadContactsView();
 };
+
+function toggleEditOverlay(){ //activates the Edit Overlay
+    const overlay = document.getElementById('overlayEditContact');
+    const rightSide = document.getElementById('rightSideId');
+    const leftSide = document.getElementById('leftSideId');
+
+    if (overlay.classList.contains('d_none')) {
+        overlay.classList.remove('d_none');
+        overlay.classList.remove('slide-out');
+        overlay.classList.add('slide-in');
+    } else {
+        overlay.classList.remove('slide-in');
+        overlay.classList.add('slide-out');
+
+        setTimeout(() => {
+            overlay.classList.add('d_none');
+            overlay.classList.remove('slide-out');
+        }, 1000);
+    }
+};
+
+// async function singleContactEdit(){ //opens Edit Overlay 
+
+// };
+
+// function singleContactSave(){ //saves the Contact
+
+// };
+
+// async function singleContactDelete(){ //deletes teh Contact
+
+// }

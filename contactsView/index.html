@@ -106,5 +106,69 @@
         </div>
       </div>
     </div>
+    
+    <!-- rendere data from firebase single Contact in -->
+    <!-- save data in firebase -->
+    <!-- delete contact from firebase -->
+     <!-- implement onclick="toggleEditOverlay()" to the edit button of extendet view -->
+
+    <div class="overlay d_none" id="overlayEditContact">
+      <div class="logoDiv">
+        <div class="logo">
+          <img src="/assets/icons/Capa 2.svg" alt="" />
+        </div>
+
+        <div class="margin_bottom">
+          <p class="overlayBigText blueUnderline">Edit contact</p>
+        </div>
+      </div>
+
+      <div class="addContactDiv">
+        <div class="photoSelectionDiv">
+          <img
+            id="profileEditPic"
+            src="/assets/icons/person.svg"
+            alt="profilePic"
+          />
+        </div>
+
+        <div class="inputFieldDiv">
+          <div class="closeButton">
+            <img
+              src="/assets/icons/Close.svg"
+              class="pointer"
+              onclick="toggleEditOverlay()"
+              alt="close_button"
+            />
+          </div>
+          <input
+            class="inputFields"
+            id="inputName"
+            type="text"
+            placeholder="Name"
+          />
+          <input
+            class="inputFields"
+            id="inputEmail"
+            type="text"
+            placeholder="Email"
+          />
+          <input
+            class="inputFields"
+            id="inputPhone"
+            type="text"
+            placeholder="Phone"
+          />
+          <div class="buttons">
+            <p class="cancelBtn" onclick="singleContactDelete()">
+              Delete<img src="/assets/icons/Close.svg" alt="cancelIcon" />
+            </p>
+            <button class="createBtn" onclick="singleContactSave()">
+              Save<img src="/assets/icons/check.svg" alt="" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
