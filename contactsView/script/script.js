@@ -33,3 +33,5 @@ const getContact = (person) => {
             </div>
         </div>`;
 };
+
+window.onload = renderContacts
