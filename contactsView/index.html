@@ -97,8 +97,12 @@
             placeholder="Phone"
           />
           <div class="buttons">
+            <p class="cancelBtnMobile" onclick="toggleOverlay()">
+              <img src="/assets/icons/Close.svg" alt="cancelIcon" />
+            </p>
+
             <p class="cancelBtn" onclick="toggleOverlay()">
-              Cancel<img src="/assets/icons/Close.svg" alt="cancelIcon" />
+              Cancel<img class="cancleImg" src="/assets/icons/Close.svg" alt="cancelIcon" />
             </p>
             <button class="createBtn" onclick="createContact()">
               Create contacts<img src="/assets/icons/check.svg" alt="" />
