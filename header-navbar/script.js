@@ -1,12 +1,27 @@
+const colors = [
+    '#FF5733', // Rot-Orange
+    '#33FF57', // Grün
+    '#3357FF', // Blau
+    '#FF33A6', // Pink
+    '#FFBD33', // Gelb
+    '#33FFF5', // Türkis
+    '#A633FF', // Lila
+    '#FF3333', // Rot
+    '#33FF33', // Hellgrün
+    '#3333FF'  // Dunkelblau
+];
+
 const createContact = () => {
     const name = document.getElementById('inputName').value;
     const email = document.getElementById('inputEmail').value;
     const phone = document.getElementById('inputPhone').value;
-    const contact = { name: name, email: email, phone: phone }
+    const contact = { name: name, email: email, phone: phone };
     document.getElementById('inputName').value = "";
     document.getElementById('inputEmail').value = "";
     document.getElementById('inputPhone').value = "";
-    postData('/contacts', contact)
+    postData('/contacts', contact);
+    renderContacts();
+    toggleOverlay();
 }
 
 function loadContactsView() {
@@ -14,9 +29,65 @@ function loadContactsView() {
         .then(response => response.text())
         .then(data => {
             document.getElementById('contentArea').innerHTML = data;
+            renderContacts();
         })
         .catch(error => console.error('Error loading content:', error));
 }
+
+const renderContacts = async () => {
+    try {
+        const databaseJson = await loadData('/contacts'); 
+        const content = document.getElementById('contactsContent');
+        content.innerHTML = "";
+
+        const contacts = Object.values(databaseJson)
+            .filter(contact => contact.name && contact.email && contact.phone)
+            .sort((a, b) => a.name.localeCompare(b.name));
+
+        let currentLetter = '';
+        contacts.forEach((contact, index) => {
+            const firstLetter = contact.name.charAt(0).toUpperCase();
+
+            if (firstLetter !== currentLetter) {
+                currentLetter = firstLetter;
+                content.innerHTML += `<h2 style="margin-left: 33px" class="contactCategory">${currentLetter}</h2><hr>`;
+            }
+
+            content.innerHTML += getContact(contact, index);
+        });
+    } catch (error) {
+        console.error('Failed to load contacts', error);
+    }
+};
+
+const getContact = (person, index) => {
+    const nameParts = person.name.split(' ').slice(0, 2);
+    const initials = nameParts.map(n => n[0]).join('');
+    const color = colors[index % colors.length];
+    
+    return /*html*/`
+        <div class="contact">
+            <div class="contactPhotoDiv">
+                <div class="contactInitials" style="background-color: ${color};">${initials}</div>
+            </div>
+            <div class="contactWithEmail">
+                <p class="personName">${person.name}</p>
+                <p class="emailAdress">${person.email}</p>
+            </div>
+        </div>`;
+};
+
+const renderContactExtendet = (person) => {
+    const content = document.getElementById('contactInfoExtendet')
+    content.innerHTML = ""
+    content += getContactExtended(person);
+}
+
+const getContactExtended = () => {
+    return /*html*/`
+    `
+}
+
 
 function toggleOverlay() {
     const overlay = document.getElementById('overlayId');
@@ -38,4 +109,6 @@ function toggleOverlay() {
     }
 }
 
-window.onload = loadContactsView;
+window.onload = () => {
+    loadContactsView();
+};
