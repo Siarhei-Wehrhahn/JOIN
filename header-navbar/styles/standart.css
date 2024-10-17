@@ -14,3 +14,7 @@ body{
   height: 88%;
   display: flex;
 }
+
+hr {
+  border: 0.5px solid rgba(42, 54, 71, 0.1);
+}
