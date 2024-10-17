@@ -1,12 +1,17 @@
-nav{
-  height:100vh;
-  width:16%;
+.leftSide {
+  width: 16%;
+  height: 100vh;
   position:fixed;
   left:0;
-  display:flex;
-  flex-direction:column;
-  align-items:center; 
-  background-color:rgb(42, 54, 71);
+}
+
+nav {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(42, 54, 71);
 }
 .logo {
   width:140px;
