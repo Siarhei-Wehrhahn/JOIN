@@ -23,8 +23,14 @@
             alt="add_person_icon"
           />
         </button>
-          <img src="/assets/icons/person_add.svg" alt="add_person_icon" />
+
+        <button class="addContactBtnMobile" onclick="toggleOverlay()">
+          <img
+            src="/assets/icons/person_add.svg"
+            alt="add_person_icon"
+          />
         </button>
+          
         <div id="contactsContent"></div>
       </div>
       <div class="contactsInfo">
@@ -45,7 +51,7 @@
         <div id="contactInfoExtendet"></div>
       </div>
     </section>
-
+ 
     <div class="overlay d_none" id="overlayId">
       <div class="logoDiv">
         <div class="logo">
@@ -55,8 +61,9 @@
         <div class="margin_bottom">
           <p class="overlayBigText">Add contact</p>
           <span class="blueUnderline">Tasks </span
-          ><span>are better with a team!</span>
+          ><span class="smallText">are better with a team!</span>
         </div>
+
       </div>
 
       <div class="addContactDiv">
@@ -76,7 +83,15 @@
               onclick="toggleOverlay()"
               alt="close_button"
             />
+
+            <img
+            src="/assets/icons/close-mobile.svg"
+            class="pointerMobile"
+            onclick="toggleOverlay()"
+            alt="close_button"
+          />
           </div>
+
           <input
             class="inputFields"
             id="inputName"
@@ -96,10 +111,6 @@
             placeholder="Phone"
           />
           <div class="buttons">
-            <p class="cancelBtnMobile" onclick="toggleOverlay()">
-              <img src="/assets/icons/Close.svg" alt="cancelIcon" />
-            </p>
-
             <p class="cancelBtn" onclick="toggleOverlay()">
               Cancel<img class="cancleImg" src="/assets/icons/Close.svg" alt="cancelIcon" />
             </p>
