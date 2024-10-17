@@ -1,14 +1,17 @@
 #contactsContent {
-   height:80vh;
-    width: 85%;
-    display: flex;
-    justify-content: center;
-    align-items: start;
+    height: 80vh;               /* Höhe auf 80% der Viewport-Höhe setzen */
+    width: 85%;                 /* Breite auf 85% des Containers */
     padding-bottom: 10px;
+    overflow-y: auto;           /* Vertikales Scrollen erlauben */
+    overflow-x: hidden;         /* Verhindert horizontales Scrollen */
+    display: block;             /* Flexbox entfernen, um Scrollen zu ermöglichen */
 }
+
 .contactView {
-    display:flex;
+    display: flex;
+    width: 100%;
 }
+
 .contact {
     height: 80px;
     width: 100%;
@@ -23,6 +26,14 @@
 .contact:hover {
     background-color: #2A3647;
     color: white;
+}
+
+.contact:hover .personName {
+    color: white;
+}
+
+.contact:hover .contactInitials {
+    box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.8);
 }
 
 .contactPhotoDiv {
@@ -42,10 +53,13 @@
     flex-direction: column;
 }
 
-.contactWithEmail p{
+.contactWithEmail p {
     width: 90%;
     text-align: start;
     margin: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .emailAdress {
@@ -61,14 +75,17 @@
     background-color: orange;
     color: white;
     border-radius: 50%;
+    box-shadow: none;
+    transition: box-shadow 0.3s ease;
 }
 
 .contactsInfoMobile {
-display:none;
+    display: none;
+}
 
-#contactsContent {
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    flex-direction: column;
+.personName {
+    color: #2A3647;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
