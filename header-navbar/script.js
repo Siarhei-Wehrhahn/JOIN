@@ -66,11 +66,7 @@ const getContact = (person, index) => {
     const color = colors[index % colors.length];
     
     return /*html*/`
-<<<<<<< HEAD
-        <div class="contact">
-=======
         <div class="contact" onclick="renderContactExtendet(${person})">
->>>>>>> fcbe62da0c874f2b7106385d0a59e15949eff12c
             <div class="contactPhotoDiv">
                 <div class="contactInitials" style="background-color: ${color};">${initials}</div>
             </div>
