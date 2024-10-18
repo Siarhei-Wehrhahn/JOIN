@@ -95,11 +95,11 @@ const getContactExtended = (person) => {
             </div>
             <div class="singleContactButtons">
                 <div class="singleContactEdit">
-                    <img src="../assets/icons/edit.svg" alt="edit pic">
+                    <img src="../assets/icon/edit.svg" alt="edit pic">
                     <p>Edit</p>
                 </div>
                 <div class="singleContactDelete">
-                    <img src="../assets/icons/delete.svg" alt="trashcan">
+                    <img src="../assets/icon/delete.svg" alt="trashcan">
                     <p>Delete</p>
                 </div>
             </div>

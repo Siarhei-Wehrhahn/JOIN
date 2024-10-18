@@ -1,10 +1,10 @@
 #contactsContent {
-    height: 80vh;               /* Höhe auf 80% der Viewport-Höhe setzen */
-    width: 85%;                 /* Breite auf 85% des Containers */
+    height: 80vh;        
+    width: 85%;               
     padding-bottom: 10px;
-    overflow-y: auto;           /* Vertikales Scrollen erlauben */
-    overflow-x: hidden;         /* Verhindert horizontales Scrollen */
-    display: block;             /* Flexbox entfernen, um Scrollen zu ermöglichen */
+    overflow-y: auto;           
+    overflow-x: hidden;       
+    display: block;           
 }
 
 .contactView {
@@ -89,3 +89,12 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+/* Gesamte Scrollbar */
+::-webkit-scrollbar {
+    width: 8px; 
+}
+::-webkit-scrollbar-thumb {
+    background: #aaaaaa; 
+    border-radius: 10px;
+}
+

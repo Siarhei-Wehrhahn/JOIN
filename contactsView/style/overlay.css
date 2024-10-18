@@ -1,3 +1,8 @@
+.overlaySec {
+    height:100vh;
+    width:100vw;
+    background-color:grey;
+}
 .overlay {
     height: 60vh;
     width: 80vw;
@@ -14,6 +19,7 @@
     z-index: 10;
     background-color: white;
     transition: transform 1.0s ease-in-out;
+
 }
 
 .overlayBody {
@@ -152,19 +158,19 @@ background-color: red;
 }
 
 #inputName {
-    background: url('/assets/icons/person.svg') no-repeat right center;
+    background: url('/assets/icon/person.svg') no-repeat right center;
     background-size: 20px;
     background-position: 95%;
 }
 
 #inputEmail {
-    background: url('/assets/icons/mail.svg') no-repeat right center;
+    background: url('/assets/icon/mail.svg') no-repeat right center;
     background-size: 20px;
     background-position: 95%;
 }
 
 #inputPhone {
-    background: url('/assets/icons/call.svg') no-repeat right center;
+    background: url('/assets/icon/call.svg') no-repeat right center;
     background-size: 20px;
     background-position: 95%;
 }
@@ -218,6 +224,7 @@ background-color: red;
     border-radius: 10px;
     color: white;
     font-size: 19px;
+    white-space: nowrap;
 }
 
 .createBtn:hover {

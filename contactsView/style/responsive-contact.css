@@ -20,28 +20,50 @@
   .contactsSideText {
     font-size: 22px;
   }
+  .overlayBigText {
+    font-size: 44px;
+  }
+  .blueUnderline {
+    font-size: 16px;
+  }
+  .blueUnderline::after {
+    width: 70px;
+  }
+  .smallText {
+    font-size: 16px;
+  }
 }
+@media (max-width: 1000px) {
+  .overlayBigText {
+    font-size: 36px;
+  }
+  .blueUnderline {
+    font-size: 12px;
+  }
+  .blueUnderline::after {
+    width: 50px;
+  }
+  .smallText {
+    font-size: 12px;
+  }
+}
+@media (max-width: 790px) {
+  .overlayBigText {
+    font-size: 32px;
+  }
+}
+
 
 /* Mobile Design */
 @media (max-width: 768px) {
   .overlay {
-    height: 80vh;
+    height: 76vh;
     width: 90vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 25px;
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
-    z-index: 10;
-    background-color: white;
-    transition: transform 1s ease-in-out;
-    
+    border: solid 0.1px hsla(0, 0%, 0%, 0.3)
   }
+  
   .logoDiv {
     height: 100%;
     width: 100%;
@@ -67,6 +89,9 @@
     font-size: 76px;
     font-weight: 700;
     margin: 0;
+  }
+  .smallText {
+    font-size: 28px;
   }
   .blueUnderline {
     font-size: 28px;
@@ -210,4 +235,45 @@
 }
 
 @media (max-width: 540px) {
+.overlayBigText {
+  font-size: 52px;
 }
+.blueUnderline {
+  font-size: 24px;
+}
+.blueUnderline::after {
+  width: 100px;
+}
+.smallText {
+  font-size: 24px;
+}
+}
+@media (max-width: 420px) {
+  .overlayBigText {
+    font-size: 48px;
+  }
+  .blueUnderline {
+    font-size: 20px;
+  }
+  .blueUnderline::after {
+    width: 90px;
+  }
+  .smallText {
+    font-size: 20px;
+  }
+  }
+  @media (max-width: 350px) {
+    .overlayBigText {
+      font-size: 44px;
+    }
+    .blueUnderline {
+      font-size: 16px;
+    }
+    .blueUnderline::after {
+      width: 70px;
+    }
+    .smallText {
+      font-size: 16px;
+    }
+    }
+

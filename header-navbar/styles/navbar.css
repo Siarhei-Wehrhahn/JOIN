@@ -1,10 +1,6 @@
 .leftSide {
   width: 16%;
-<<<<<<< HEAD
   height: 100vh;
-=======
-  height: 100%;
->>>>>>> d803d06335105570836bee8a81a8f0f0d4fa976c
 }
 
 nav {
@@ -47,11 +43,10 @@ nav {
   align-items: center;
   justify-content: start;
   padding-left: 50%;
-  /* we have to change the margin to something else,
-   otherwise the position of the button is incorrect */
   width: 100%;
   cursor: pointer;
   gap: 8px;
+  height:68px;
 }
 
 .summery-button:hover,
@@ -83,6 +78,8 @@ p {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  height:60px;
+  width:120px;
 }
 
 .privacy-policy {
@@ -100,10 +97,12 @@ p {
 .privacy-policy:hover {
   color: rgb(41, 171, 226);
   font-weight: bold;
+  font-size: 16px;
 }
 
 .legal-notice:hover {
   color: rgb(41, 171, 226);
   font-weight: bold;
+  font-size: 16px;
 }
 
