@@ -172,4 +172,6 @@ function toggleEditOverlay(){ //activates the Edit Overlay
 
 // async function singleContactDelete(){ //deletes teh Contact
 
-// }
+window.onload = () => {
+    loadContactsView();
+};
