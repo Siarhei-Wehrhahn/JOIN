@@ -1,6 +1,10 @@
 .leftSide {
   width: 16%;
+<<<<<<< HEAD
   height: 100vh;
+=======
+  height: 100%;
+>>>>>>> d803d06335105570836bee8a81a8f0f0d4fa976c
 }
 
 nav {
@@ -50,6 +54,13 @@ nav {
   gap: 8px;
 }
 
+.summery-button:hover,
+.add-tast-button:hover,
+.board-button:hover,
+.contacts-button:hover {
+  background-color: #0919317a;
+}
+
 .summery-button:active,
 .add-tast-button:active,
 .board-button:active,
@@ -63,7 +74,8 @@ nav {
 }
 
 p {
-  font-size: 20px;
+  font-size: 16px;
+  font-weight: 300;
   color: white;
 }
 
@@ -76,13 +88,13 @@ p {
 .privacy-policy {
   color: rgb(113, 120, 129);
   text-decoration: none;
-  font-size: 20px;
+  font-size: 16px;
 }
 
 .legal-notice {
   color: rgb(113, 120, 129);
   text-decoration: none;
-  font-size: 20px;
+  font-size: 16px;
 }
 
 .privacy-policy:hover {
