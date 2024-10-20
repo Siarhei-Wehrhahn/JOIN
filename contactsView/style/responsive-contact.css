@@ -42,7 +42,7 @@
   justify-content: start;
   align-items: center;
   flex-direction: column;
- height:calc(100vh - 100px);
+  height:calc(100vh - 100px);
 }
 .overlay {
   height: 60vh;

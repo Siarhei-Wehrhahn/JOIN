@@ -1,174 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact</title>
-    <link rel="icon" type="image/png" href="../assets/icon/Capa 1.png" />
-    <script src="../loginView/scripts/firebase-realtime.js"></script>
-    <script src="script/script.js"></script>
-    <link rel="stylesheet" href="style/overlay.css" />
-    <link rel="stylesheet" href="style/assets.css" />
-    <link rel="stylesheet" href="style/standart.css" />
-    <link rel="stylesheet" href="style/style.css" />
-    <link rel="stylesheet" href="style/contact.css" />
-  </head>
 
-  <body onload="renderContacts()">
-    <section class="contactView">
-      <div class="contacts">
-        <button class="addContactBtn" onclick="toggleOverlay()">
-          Add new contact<img
-            src="/assets/icon/person_add.svg"
-            alt="add_person_icon"
-          />
-        </button>
-          <img src="/assets/icon/person_add.svg" alt="add_person_icon" />
-        </button>
-        <div id="contactsContent"></div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact</title>
+  <link rel="icon" type="image/png" href="../assets/icon/Capa 1.png" />
+  <script src="../loginView/scripts/firebase-realtime.js"></script>
+  <script src="script/script.js"></script>
+  <link rel="stylesheet" href="style/overlay.css" />
+  <link rel="stylesheet" href="style/assets.css" />
+  <link rel="stylesheet" href="style/standart.css" />
+  <link rel="stylesheet" href="style/style.css" />
+  <link rel="stylesheet" href="style/contact.css" />
+</head>
+
+<body onload="renderContacts()">
+  <section class="contactView">
+    <div class="contacts">
+      <button class="addContactBtn" onclick="toggleOverlay()">
+        Add new contact<img src="/assets/icon/person_add.svg" alt="add_person_icon" />
+      </button>
+      <img src="/assets/icon/person_add.svg" alt="add_person_icon" />
+      </button>
+      <div id="contactsContent"></div>
+    </div>
+    <div class="contactsInfo">
+      <div class="contactsHeader">
+        <h1 class="contactsHeaderText">Contacts</h1>
+        <div class="blueLine"></div>
+        <span class="contactsSideText">Better with a team</span>
       </div>
-      <div class="contactsInfo">
-        <div class="contactsHeader">
-          <h1 class="contactsHeaderText">Contacts</h1>
-          <div class="blueLine"></div>
-          <span class="contactsSideText">Better with a team</span>
-        </div>
-        <div id="contactInfoExtendet"></div>
+      <div id="contactInfoExtendet"></div>
+    </div>
+
+    <div class="contactsInfoMobile">
+      <div class="contactsHeader">
+        <h1 class="contactsHeaderText">Contacts</h1>
+        <div class="blueLine"></div>
+        <span class="contactsSideText">Better with a team</span>
       </div>
+      <div id="contactInfoExtendetMobile"></div>
+    </div>
+  </section>
 
-      <div class="contactsInfoMobile">
-        <div class="contactsHeader">
-          <h1 class="contactsHeaderText">Contacts</h1>
-          <div class="blueLine"></div>
-          <span class="contactsSideText">Better with a team</span>
-        </div>
-        <div id="contactInfoExtendetMobile"></div>
-      </div>
-    </section>
-
-    <div class="overlay d_none" id="overlayId">
-      <div class="logoDiv">
-        <div class="logo">
-          <img src="/assets/icon/Capa 2.svg" alt="" />
-        </div>
-
-        <div class="margin_bottom">
-          <p class="overlayBigText">Add contact</p>
-          <span class="blueUnderline">Tasks </span
-          ><span>are better with a team!</span>
-        </div>
+  <div class="overlay d_none" id="overlayId">
+    <div class="logoDiv">
+      <div class="logo">
+        <img src="/assets/icon/Capa 2.svg" alt="" />
       </div>
 
-      <div class="addContactDiv">
-        <div class="photoSelectionDiv">
-          <img
-            id="profilePic"
-            src="/assets/icon/person.svg"
-            alt="profilePic"
-          />
-        </div>
+      <div class="margin_bottom">
+        <p class="overlayBigText">Add contact</p>
+        <span class="blueUnderline">Tasks </span><span>are better with a team!</span>
+      </div>
+    </div>
 
-        <div class="inputFieldDiv">
-          <div class="closeButton">
-            <img
-              src="/assets/icon/Close.svg"
-              class="pointer"
-              onclick="toggleOverlay()"
-              alt="close_button"
-            />
-          </div>
-          <input
-            class="inputFields"
-            id="inputName"
-            type="text"
-            placeholder="Name"
-          />
-          <input
-            class="inputFields"
-            id="inputEmail"
-            type="text"
-            placeholder="Email"
-          />
-          <input
-            class="inputFields"
-            id="inputPhone"
-            type="text"
-            placeholder="Phone"
-          />
-          <div class="buttons">
-            <p class="cancelBtn" onclick="toggleOverlay()">
-              Cancel<img src="/assets/icon/Close.svg" alt="cancelIcon" />
-            </p>
-            <button class="createBtn" onclick="createContact()">
-              Create contacts<img src="/assets/icon/check.svg" alt="" />
-            </button>
-          </div>
+    <div class="addContactDiv">
+      <div class="photoSelectionDiv">
+        <img id="profilePic" src="/assets/icon/person.svg" alt="profilePic" />
+      </div>
+
+
+      <div class="inputFieldDiv">
+        <div class="closeButton">
+          <img src="/assets/icon/Close.svg" class="pointer" onclick="toggleOverlay()" alt="close_button" />
+        </div>
+        <input class="inputFields" id="inputName" type="text" placeholder="Name" />
+        <input class="inputFields" id="inputEmail" type="text" placeholder="Email" />
+        <input class="inputFields" type="text" id="inputPhone" oninput="validatePhoneInput(this)"
+          placeholder="Telefonnummer">
+        <div class="buttons">
+          <p class="cancelBtn" onclick="toggleOverlay()">
+            Cancel<img src="/assets/icon/Close.svg" alt="cancelIcon" />
+          </p>
+          <button class="createBtn" onclick="createContact()">
+            Create contacts<img src="/assets/icon/check.svg" alt="" />
+          </button>
         </div>
       </div>
     </div>
-    
-    <!-- rendere data from firebase single Contact in -->
-    <!-- save data in firebase -->
-    <!-- delete contact from firebase -->
-     <!-- implement onclick="toggleEditOverlay()" to the edit button of extendet view -->
+  </div>
 
-    <div class="overlay d_none" id="overlayEditContact">
-      <div class="logoDiv">
-        <div class="logo">
-          <img src="/assets/icon/Capa 2.svg" alt="" />
-        </div>
+  <!-- rendere data from firebase single Contact in -->
+  <!-- save data in firebase -->
+  <!-- delete contact from firebase -->
+  <!-- implement onclick="toggleEditOverlay()" to the edit button of extendet view -->
 
-        <div class="margin_bottom">
-          <p class="overlayBigText blueUnderline">Edit contact</p>
-        </div>
+  <div class="overlay d_none" id="overlayEditContact">
+    <div class="logoDiv">
+      <div class="logo">
+        <img src="/assets/icon/Capa 2.svg" alt="" />
       </div>
 
-      <div class="addContactDiv">
-        <div class="photoSelectionDiv">
-          <img
-            id="profileEditPic"
-            src="/assets/icon/person.svg"
-            alt="profilePic"
-          />
-        </div>
+      <div class="margin_bottom">
+        <p class="overlayBigText blueUnderline">Edit contact</p>
+      </div>
+    </div>
 
-        <div class="inputFieldDiv">
-          <div class="closeButton">
-            <img
-              src="/assets/icon/Close.svg"
-              class="pointer"
-              onclick="toggleEditOverlay()"
-              alt="close_button"
-            />
-          </div>
-          <input
-            class="inputFields"
-            id="inputName"
-            type="text"
-            placeholder="Name"
-          />
-          <input
-            class="inputFields"
-            id="inputEmail"
-            type="text"
-            placeholder="Email"
-          />
-          <input
-            class="inputFields"
-            id="inputPhone"
-            type="text"
-            placeholder="Phone"
-          />
-          <div class="buttons">
-            <p class="cancelBtn" onclick="singleContactDelete()">
-              Delete<img src="/assets/icon/Close.svg" alt="cancelIcon" />
-            </p>
-            <button class="createBtn" onclick="singleContactSave()">
-              Save<img src="/assets/icon/check.svg" alt="" />
-            </button>
-          </div>
+    <div class="addContactDiv">
+      <div class="photoSelectionDiv">
+        <img id="profileEditPic" src="/assets/icon/person.svg" alt="profilePic" />
+      </div>
+
+      <div class="inputFieldDiv">
+        <div class="closeButton">
+          <img src="/assets/icon/Close.svg" class="pointer" onclick="toggleEditOverlay()" alt="close_button" />
+        </div>
+        <input class="inputFields" id="inputName" type="text" placeholder="Name" />
+        <input class="inputFields" id="inputEmail" type="text" placeholder="Email" />
+        <input class="inputFields" id="inputPhone" type="text" placeholder="Phone" />
+        <div class="buttons">
+          <p class="cancelBtn" onclick="singleContactDelete()">
+            Delete<img src="/assets/icon/Close.svg" alt="cancelIcon" />
+          </p>
+          <button class="createBtn" onclick="singleContactSave()">
+            Save<img src="/assets/icon/check.svg" alt="" />
+          </button>
         </div>
       </div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>

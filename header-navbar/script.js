@@ -11,10 +11,31 @@ const colors = [
     '#3333FF'  // Dunkelblau
 ];
 
+const validateEmail = (email) => {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailPattern.test(email);
+}
+
+function validatePhoneInput(input) {
+    input.value = input.value.replace(/\D/g, '');
+}
+
 const createContact = () => {
     const name = document.getElementById('inputName').value;
-    const email = document.getElementById('inputEmail').value;
+    let email = document.getElementById('inputEmail').value;
     const phone = document.getElementById('inputPhone').value;
+
+    if (!validateEmail(email)) {
+        document.getElementById('inputEmail').value = "";
+        alert('Bitte eine gültige E-Mail-Adresse eingeben.');
+        return;
+    }
+
+    if (!/^\d+$/.test(phone)) {
+        alert('Die Telefonnummer darf nur Zahlen enthalten.');
+        return;
+    }
+
     const contact = { name: name, email: email, phone: phone };
     document.getElementById('inputName').value = "";
     document.getElementById('inputEmail').value = "";
@@ -22,7 +43,7 @@ const createContact = () => {
     postData('/contacts', contact);
     renderContacts();
     toggleOverlay();
-}
+};
 
 function loadContactsView() {
     fetch('../contactsView/index.html')
@@ -36,7 +57,7 @@ function loadContactsView() {
 
 const renderContacts = async () => {
     try {
-        const databaseJson = await loadData('/contacts'); 
+        const databaseJson = await loadData('/contacts');
         const content = document.getElementById('contactsContent');
         content.innerHTML = "";
 
@@ -64,7 +85,7 @@ const getContact = (person, index) => {
     const nameParts = person.name.split(' ').slice(0, 2);
     const initials = nameParts.map(n => n[0]).join('');
     const color = colors[index % colors.length];
-    
+
     return /*html*/`
         <div class="contact" onclick='renderContactExtendet(${index})'>
             <div class="contactPhotoDiv">
@@ -75,13 +96,13 @@ const getContact = (person, index) => {
                 <p class="emailAdress">${person.email}</p>
             </div>
         </div>`;
-}; 
+};
 
 const renderContactExtendet = async (index) => {
     const databaseJson = await loadData('/contacts');
     const contacts = Object.values(databaseJson)
-            .filter(contact => contact.name && contact.email && contact.phone)
-            .sort((a, b) => a.name.localeCompare(b.name));
+        .filter(contact => contact.name && contact.email && contact.phone)
+        .sort((a, b) => a.name.localeCompare(b.name));
     const person = contacts[index];
     const color = colors[index % colors.length];
     const initials = person.name.split(' ').slice(0, 2).map(n => n[0]).join('');
@@ -89,42 +110,48 @@ const renderContactExtendet = async (index) => {
     content.innerHTML = "";
     content.innerHTML += getContactExtended(person, initials, color);
 }
-
+//TODO: Delete Contact noch schreiben 
+const deleteContact = async (person) => {
+    const response = await loadData('contacts')
+}
 
 const getContactExtended = (person, initials, color) => {
     return /*html*/`
     <div class="contactExtendDiv">
         <div class="contactName">
-            <div class="contactPhotoDiv">
-                <div class="contactInitials" style="background-color: ${color};">${initials}</div>
+            <div class="contactPhotoExtendedDiv">
+                <div class="contactInitialsExtended" style="background-color: ${color};">${initials}</div>
             </div>
-            <div class="contactName">
-            <p class="personName">${person.name}</p>
-            </div>
+            <div class="rightSectionContact">
+                <div class="contactName">
+                    <p class="personNameExtended">${person.name}</p>
+                </div>
             <div class="singleContactButtons">
-                <div class="singleContactEdit">
+                <div class="singleContactEdit" onclick="toggleEditOverlay()">
                     <img src="../assets/icon/edit.svg" alt="edit pic">
                     <p>Edit</p>
                 </div>
-                <div class="singleContactDelete">
+                <div class="singleContactEdit" onclick="deleteUser('/users/${person.id}')">
                     <img src="../assets/icon/delete.svg" alt="trashcan">
                     <p>Delete</p>
+                </div>
                 </div>
             </div>
         </div>
         <div class="contactInfo">
 
         </div>
+        <div class="contactInformation">
+        <h3 class="contactInfoHeader">Contact Information</h3>
         <div class="contactMailAndPhone">
-            <p>Email</p>
+            <h3>Email</h3>
             <p class="emailAdress">${person.email}</p>
-            <p>Phone</p>
+            <h3>Phone</h3>
             <p class="phoneNumber">${person.phone}</p>
         </div>
-    </div>
-    `
+        </div>
+    </div>`
 };
-
 
 function toggleOverlay() {
     const overlay = document.getElementById('overlayId');
@@ -150,7 +177,7 @@ window.onload = () => {
     loadContactsView();
 };
 
-function toggleEditOverlay(){ 
+function toggleEditOverlay() {
     const overlay = document.getElementById('overlayEditContact');
     const rightSide = document.getElementById('rightSideId');
     const leftSide = document.getElementById('leftSideId');
