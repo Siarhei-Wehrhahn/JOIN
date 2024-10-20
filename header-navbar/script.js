@@ -66,7 +66,7 @@ const getContact = (person, index) => {
     const color = colors[index % colors.length];
     
     return /*html*/`
-        <div class="contact" onclick="renderContactExtendet(${person})">
+        <div class="contact" onclick='renderContactExtendet(${index})'>
             <div class="contactPhotoDiv">
                 <div class="contactInitials" style="background-color: ${color};">${initials}</div>
             </div>
@@ -75,15 +75,23 @@ const getContact = (person, index) => {
                 <p class="emailAdress">${person.email}</p>
             </div>
         </div>`;
-};
+}; 
 
-const renderContactExtendet = (person, initials, color) => {
-    const content = document.getElementById('contactInfoExtendet')
-    content.innerHTML = ""
-    content += getContactExtended(person, initials, color);
+const renderContactExtendet = async (index) => {
+    const databaseJson = await loadData('/contacts');
+    const contacts = Object.values(databaseJson)
+            .filter(contact => contact.name && contact.email && contact.phone)
+            .sort((a, b) => a.name.localeCompare(b.name));
+    const person = contacts[index];
+    const color = colors[index % colors.length];
+    const initials = person.name.split(' ').slice(0, 2).map(n => n[0]).join('');
+    const content = document.getElementById('contactInfoExtendet');
+    content.innerHTML = "";
+    content.innerHTML += getContactExtended(person, initials, color);
 }
 
-const getContactExtended = (person) => {
+
+const getContactExtended = (person, initials, color) => {
     return /*html*/`
     <div class="contactExtendDiv">
         <div class="contactName">
@@ -95,11 +103,11 @@ const getContactExtended = (person) => {
             </div>
             <div class="singleContactButtons">
                 <div class="singleContactEdit">
-                    <img src="../assets/icons/edit.svg" alt="edit pic">
+                    <img src="../assets/icon/edit.svg" alt="edit pic">
                     <p>Edit</p>
                 </div>
                 <div class="singleContactDelete">
-                    <img src="../assets/icons/delete.svg" alt="trashcan">
+                    <img src="../assets/icon/delete.svg" alt="trashcan">
                     <p>Delete</p>
                 </div>
             </div>
@@ -142,7 +150,7 @@ window.onload = () => {
     loadContactsView();
 };
 
-function toggleEditOverlay(){ //activates the Edit Overlay
+function toggleEditOverlay(){ 
     const overlay = document.getElementById('overlayEditContact');
     const rightSide = document.getElementById('rightSideId');
     const leftSide = document.getElementById('leftSideId');
