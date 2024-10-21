@@ -143,8 +143,7 @@ background-color: red;
 }
 
 .closeButton {
-    cursor: pointer;
-    width: 100%;
+    width: 90%;
     text-align: end;
     margin-bottom: 20px;
 }

@@ -1,6 +1,5 @@
 .contacts {
     width: 30%;
-    height: 100%;
     background-color: white;
     box-shadow:0px 4px 6px rgba(0, 0, 0, 0.3);
     display: flex;
@@ -27,4 +26,28 @@
 }
 .contactsSideText {
     font-size:32px;
+}
+
+#contactInfoExtendet {
+    width: 100%;
+    height: 79.7%;
+}
+
+.phoneNumber {
+    color: black;
+}
+
+.contactInfoHeader {
+    font-weight: 200;
+    margin-block: 50px;
+    font-size: 20px;
+}
+
+h3 {
+    font-weight: 600;
+}
+
+.contactInformation {
+    width: 92%;
+    margin-left: 8%;
 }

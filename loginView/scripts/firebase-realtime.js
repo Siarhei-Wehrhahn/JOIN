@@ -18,7 +18,7 @@ const postData = async (path = "", data = {}) => {
     },
     body: JSON.stringify(data),
   });
-  return (responseToJson = await response.json());
+  return await response.json();
 };
 
 const deleteData = async (path = "") => {
