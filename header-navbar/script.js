@@ -66,7 +66,7 @@ const getContact = (person, index) => {
     const color = colors[index % colors.length];
     
     return /*html*/`
-        <div class="contact" onclick="renderContactExtendet(${person})">
+        <div class="contact" onclick="renderContactExtendet(${person, initials, color })">
             <div class="contactPhotoDiv">
                 <div class="contactInitials" style="background-color: ${color};">${initials}</div>
             </div>
@@ -83,7 +83,7 @@ const renderContactExtendet = (person, initials, color) => {
     content += getContactExtended(person, initials, color);
 }
 
-const getContactExtended = (person) => {
+const getContactExtended = (person, initials, color) => {
     return /*html*/`
     <div class="contactExtendDiv">
         <div class="contactName">
@@ -94,7 +94,7 @@ const getContactExtended = (person) => {
             <p class="personName">${person.name}</p>
             </div>
             <div class="singleContactButtons">
-                <div class="singleContactEdit">
+                <div class="singleContactEdit" onclick="toggleEditOverlay()">
                     <img src="../assets/icons/edit.svg" alt="edit pic">
                     <p>Edit</p>
                 </div>
@@ -170,8 +170,6 @@ function toggleEditOverlay(){ //activates the Edit Overlay
 
 // };
 
-// async function singleContactDelete(){ //deletes teh Contact
+//  async function singleContactDelete(){ //deletes the Contact
 
-window.onload = () => {
-    loadContactsView();
-};
+// }
