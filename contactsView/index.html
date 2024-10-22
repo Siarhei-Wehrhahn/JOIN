@@ -31,7 +31,7 @@
         <div class="blueLine"></div>
         <span class="contactsSideText">Better with a team</span>
       </div>
-      <div id="contactInfoExtendet"></div>
+      <div id="contactInfoExtendet" class="d_none"></div>
     </div>
 
     <div class="contactsInfoMobile">
@@ -81,12 +81,6 @@
       </div>
     </div>
   </div>
-
-  <!-- rendere data from firebase single Contact in -->
-  <!-- save data in firebase -->
-  <!-- delete contact from firebase -->
-  <!-- implement onclick="toggleEditOverlay()" to the edit button of extendet view -->
-
   <div class="overlay d_none" id="overlayEditContact">
     <div class="logoDiv">
       <div class="logo">
@@ -94,7 +88,7 @@
       </div>
 
       <div class="margin_bottom">
-        <p class="overlayBigText blueUnderline">Edit contact</p>
+        <p class="overlayBigTextExtended">Edit contact</p>
       </div>
     </div>
 
@@ -107,14 +101,14 @@
         <div class="closeButton">
           <img src="/assets/icon/Close.svg" class="pointer" onclick="toggleEditOverlay()" alt="close_button" />
         </div>
-        <input class="inputFields" id="inputName" type="text" placeholder="Name" />
-        <input class="inputFields" id="inputEmail" type="text" placeholder="Email" />
-        <input class="inputFields" id="inputPhone" type="text" placeholder="Phone" />
+        <input class="inputFields" id="inputNameEdit" type="text" placeholder="Name" />
+        <input class="inputFields" id="inputEmailEdit" type="text" placeholder="Email" />
+        <input class="inputFields" id="inputPhoneEdit" type="text" placeholder="Phone" oninput="validatePhoneInput(this)"  />
         <div class="buttons">
           <p class="cancelBtn" onclick="singleContactDelete()">
             Delete<img src="/assets/icon/Close.svg" alt="cancelIcon" />
           </p>
-          <button class="createBtn" onclick="singleContactSave()">
+          <button class="createBtn" onclick="updateContactInFirebase()">
             Save<img src="/assets/icon/check.svg" alt="" />
           </button>
         </div>

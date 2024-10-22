@@ -204,3 +204,35 @@
 .activateOverlay {
     cursor: pointer;
 }
+
+.overlayBigTextExtended {
+    font-size: 50px;
+    font-weight: 500;
+    margin-top: 30px;
+}
+
+#profileEditPic {
+    height: 100px;
+    width: 100px;
+    font-size: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: orange;
+    color: white;
+    border-radius: 50%;
+    transition: box-shadow 0.3s ease;
+    border: 3px solid white;
+    box-shadow: 0px 0px 6px 0.1px rgba(0, 0, 0, 0.3);
+}
+
+.overlayBigTextExtended::after {
+    content: '';
+    position: absolute;
+    bottom: 260px;
+    left: 41px;
+    height: 3px;
+    width: 70px;
+    background-color: #29ABE2;
+    transform: translateX(10px);
+}
