@@ -1,14 +1,17 @@
 #contactsContent {
-    height: 78vh;
+    height: 80vh;
     width: 85%;
-    display: flex;
-    justify-content: center;
-    align-items: start;
-    padding: 10px;
+    padding-bottom: 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: block;
 }
+
 .contactView {
-    display:flex;
+    display: flex;
+    width: 100%;
 }
+
 .contact {
     height: 80px;
     width: 100%;
@@ -23,6 +26,14 @@
 .contact:hover {
     background-color: #2A3647;
     color: white;
+}
+
+.contact:hover .personName {
+    color: white;
+}
+
+.contact:hover .contactInitials {
+    box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.8);
 }
 
 .contactPhotoDiv {
@@ -42,10 +53,13 @@
     flex-direction: column;
 }
 
-.contactWithEmail p{
+.contactWithEmail p {
     width: 90%;
     text-align: start;
     margin: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .emailAdress {
@@ -61,4 +75,72 @@
     background-color: orange;
     color: white;
     border-radius: 50%;
+    box-shadow: none;
+    transition: box-shadow 0.3s ease;
+}
+
+.contactsInfoMobile {
+    display: none;
+}
+
+.personName {
+    color: black;
+}
+
+.contactName{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: row;
+}
+
+.singleContactButtons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 16px;
+    margin: 0;
+}
+
+.personNameExtended {
+    font-size: 40px;
+    margin: 0;
+    text-align: start;
+    color: black;
+}
+
+.contactPhotoExtendedDiv {
+    width: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.singleContactEdit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    height: 50px;
+    gap: 8px;
+    cursor: pointer;
+}
+.singleContactEdit p {
+    color: black;
+}
+
+.contactInitialsExtended {
+    height: 125px;
+    width: 125px;
+    font-size: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: orange;
+    color: white;
+    border-radius: 50%;
+    transition: box-shadow 0.3s ease;
+    border: 3px solid white;
+    box-shadow: 0px 0px 6px 0.1px rgba(0, 0, 0, 0.3);
 }

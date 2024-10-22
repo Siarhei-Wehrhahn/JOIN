@@ -6,12 +6,12 @@
     justify-content: start;
     align-items: center;
     flex-direction: column;
-   
+   height:calc(100vh - 100px);
 }
 
 .contactsInfo {
     width: 70%;
-   
+    height: 100%;
 }
 
 .contactsHeader {
@@ -26,4 +26,28 @@
 }
 .contactsSideText {
     font-size:32px;
+}
+
+#contactInfoExtendet {
+    width: 100%;
+    height: 79.7%;
+}
+
+.phoneNumber {
+    color: black;
+}
+
+.contactInfoHeader {
+    font-weight: 200;
+    margin-block: 50px;
+    font-size: 20px;
+}
+
+h3 {
+    font-weight: 600;
+}
+
+.contactInformation {
+    width: 92%;
+    margin-left: 8%;
 }
