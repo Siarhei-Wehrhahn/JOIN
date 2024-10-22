@@ -1,3 +1,5 @@
+let contactsArray = []
+
 const colors = [
     '#FF5733', // Rot-Orange
     '#33FF57', // Grün
@@ -65,6 +67,18 @@ const renderContacts = async () => {
             .filter(contact => contact.name && contact.email && contact.phone)
             .sort((a, b) => a.name.localeCompare(b.name));
 
+        if(databaseJson) {
+            Object.keys(databaseJson).forEach(key => {
+                contactsArray.push( {
+                    id: key,
+                    name: databaseJson[key].name,
+                    phone: databaseJson[key].phone
+                })
+            })
+            console.log(contactsArray);
+            console.log(contacts);
+        }
+
         let currentLetter = '';
         contacts.forEach((contact, index) => {
             const firstLetter = contact.name.charAt(0).toUpperCase();
@@ -87,7 +101,7 @@ const getContact = (person, index) => {
     const color = colors[index % colors.length];
 
     return /*html*/`
-        <div class="contact" onclick='renderContactExtendet(${index})'>
+        <div class="contact" onclick='toggleContactExtended(${index})'>
             <div class="contactPhotoDiv">
                 <div class="contactInitials" style="background-color: ${color};">${initials}</div>
             </div>
@@ -97,6 +111,16 @@ const getContact = (person, index) => {
             </div>
         </div>`;
 };
+
+const toggleContactExtended = (index) => {
+    const contactExtendedDiv = document.getElementById('contactInfoExtendet');
+    contactExtendedDiv.classList.toggle('d_none')
+    if(!contactExtendedDiv.classList.contains('d_none')) {
+        renderContactExtendet(index)
+    } else {
+        contactExtendedDiv.innerHTML = ""
+    }
+}
 
 const renderContactExtendet = async (index) => {
     const databaseJson = await loadData('/contacts');
@@ -109,10 +133,6 @@ const renderContactExtendet = async (index) => {
     const content = document.getElementById('contactInfoExtendet');
     content.innerHTML = "";
     content.innerHTML += getContactExtended(person, initials, color);
-}
-//TODO: Delete Contact noch schreiben 
-const deleteContact = async (person) => {
-    const response = await loadData('contacts')
 }
 
 const getContactExtended = (person, initials, color) => {
@@ -127,19 +147,11 @@ const getContactExtended = (person, initials, color) => {
                     <p class="personNameExtended">${person.name}</p>
                 </div>
             <div class="singleContactButtons">
-<<<<<<< HEAD
-                <div class="singleContactEdit">
-                    <img src="../assets/icon/edit.svg" alt="edit pic">
-                    <p>Edit</p>
-                </div>
-                <div class="singleContactDelete">
-=======
                 <div class="singleContactEdit" onclick="toggleEditOverlay()">
                     <img src="../assets/icon/edit.svg" alt="edit pic">
                     <p>Edit</p>
                 </div>
-                <div class="singleContactEdit" onclick="deleteUser('/users/${person.id}')">
->>>>>>> 1635063d6ccac2f9ba8f0b7c5484f7949a65c94c
+                <div class="singleContactEdit" onclick="deleteContact('${person.name}')">
                     <img src="../assets/icon/delete.svg" alt="trashcan">
                     <p>Delete</p>
                 </div>
@@ -160,6 +172,22 @@ const getContactExtended = (person, initials, color) => {
         </div>
     </div>`
 };
+
+const deleteContact = async (person) => {
+    const selectedPerson = contactsArray.find(contact => contact.name === person);
+
+    if (selectedPerson) {
+        await deleteData(`/contacts/${selectedPerson.id}`);
+        contactsArray = contactsArray.filter(contact => contact.name !== person);
+        renderContacts();
+    }
+};
+
+//const editContact = (person) => {
+//    document.querySelector('#inputNameEdit').value = person.name;
+//    document.querySelector('#inutEmailEdit').value = person.email;
+//    document.querySelector('#inputPhoneEdit').value = person.phone
+//}
 
 function toggleOverlay() {
     const overlay = document.getElementById('overlayId');
@@ -206,10 +234,6 @@ function toggleEditOverlay() {
 };
 
 // async function singleContactEdit(){ //opens Edit Overlay 
-
-// };
-
-// function singleContactSave(){ //saves the Contact
 
 // };
 

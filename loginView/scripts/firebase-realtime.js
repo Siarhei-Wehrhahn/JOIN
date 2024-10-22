@@ -1,3 +1,5 @@
+let users = []
+
 const onloadFunc = () => {
   loadData();
 };
@@ -32,7 +34,11 @@ const loadUser = async () => {
     const usersData = loadData("/users");
     if(usersData) {
         Object.keys(usersData).forEach( key => {
-            console.log(usersData[key]['name'])
+            users.push( {
+              id: key,
+              name: usersData[key]['name'],
+              phone: usersData[key]['phone']
+            })
         })
     } else {
         console.log("Userdata load failed!");
