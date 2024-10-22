@@ -144,3 +144,12 @@
     border: 3px solid white;
     box-shadow: 0px 0px 6px 0.1px rgba(0, 0, 0, 0.3);
 }
+/* Gesamte Scrollbar */
+::-webkit-scrollbar {
+    width: 8px; 
+}
+::-webkit-scrollbar-thumb {
+    background: #aaaaaa; 
+    border-radius: 10px;
+}
+

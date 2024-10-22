@@ -46,6 +46,14 @@ nav {
   width: 100%;
   cursor: pointer;
   gap: 8px;
+  height:68px;
+}
+
+.summery-button:hover,
+.add-tast-button:hover,
+.board-button:hover,
+.contacts-button:hover {
+  background-color: #0919317a;
 }
 
 .summery-button:hover,
@@ -77,6 +85,8 @@ p {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  height:60px;
+  width:120px;
 }
 
 .privacy-policy {
@@ -94,10 +104,12 @@ p {
 .privacy-policy:hover {
   color: rgb(41, 171, 226);
   font-weight: bold;
+  font-size: 16px;
 }
 
 .legal-notice:hover {
   color: rgb(41, 171, 226);
   font-weight: bold;
+  font-size: 16px;
 }
 
