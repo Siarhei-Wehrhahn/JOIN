@@ -1,0 +1,84 @@
+main {
+  height:100vh;
+
+}
+.upper-sec {
+  height:20%;
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+
+}
+.upper-sec-right {
+  display:flex;
+  gap:8px;
+}
+h1 {
+  font-size:48px;
+}
+input {
+  width:320px;
+  height:48px;
+  border:solid 0.5px rgb(141, 141, 141);
+  border-radius:10px;
+}
+.add-task {
+  width:200px;
+  height:48px;
+  background-color: rgb(9, 25, 49);
+  color:white;
+  border:solid 0.5px rgb(141, 141, 141);
+  border-radius:10px;
+  font-size:20px;
+  font-weight:600;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+.add-task {
+  fill:white;
+}
+
+
+.lower-sec {
+  height:80%;
+  width:100%;
+  display:flex;
+  justify-content: center;
+  
+}
+.columns {
+  width:25%;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+}
+.upper-column {
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
+  width:100%;
+}
+.upper-column p {
+  font-size:22px;
+  font-weight:700;
+  color:rgb(66, 82, 110)
+}
+.lower-column {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content:start;
+  height:100vh;
+}
+.no-task {
+  height:48px;
+  width:100%;background-color:rgb(231, 231, 231);
+  border: dashed 1px rgb(163, 163, 163);
+  border-radius:10px;
+  color:rgb(163, 163, 163);
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -5,10 +5,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles/standart.css" />
     <link rel="stylesheet" href="/assets/fonts/fonts.css" />
+    <link rel="stylesheet" href="/boardView/styles/board.css"/>
     <script src="scripts/script.js"></script>
 
     <title>Board</title>
   </head>
   <body>
+    <main>
+      <section class="upper-sec">
+        <h1>Board</h1>
+        <div class="upper-sec-right">
+          <input id="input" type="text" />
+        <button id="add-task" class="add-task">
+          Add task <img class="add-task-cross-icon" src="/assets/icon/cross.svg" alt=""></button>
+        </div>
+      </section>
+
+      <section class="lower-sec">
+        <div class="columns" id="columns">
+          <div class="upper-column">
+            <p>To do</p>
+            <img src="/assets/icon/add-button.svg" alt="" />
+          </div>
+          <div class="lower-column">
+            <div class="no-task">No tasks To do</div>
+            <div class="content" id="content"></div>
+          </div>
+        </div>
+
+        <div class="columns" id="columns">
+          <div class="upper-column">
+            <p>In progress</p>
+            <img src="/assets/icon/add-button.svg" alt="" />
+          </div>
+          <div class="lower-column">
+            <div class="no-task">No tasks To do</div>
+            <div class="content" id="content"></div>
+          </div>
+        </div>
+
+        <div class="columns" id="columns">
+          <div class="upper-column">
+            <p>Await feedback</p>
+            <img src="/assets/icon/add-button.svg" alt="" />
+          </div>
+          <div class="lower-column">
+            <div class="no-task">No tasks To do</div>
+            <div class="content" id="content"></div>
+          </div>
+        </div>
+
+        <div class="columns" id="columns">
+          <div class="upper-column">
+            <p>Done</p>
+            <img src="/assets/icon/add-button.svg" alt="" />
+          </div>
+          <div class="lower-column">
+            <div class="no-task">No tasks To do</div>
+            <div class="content" id="content"></div>
+          </div>
+          
+        </div>
+        
+      </section>
   </body>
 </html>
