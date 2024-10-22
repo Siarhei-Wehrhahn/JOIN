@@ -57,6 +57,16 @@ function loadContactsView() {
         .catch(error => console.error('Error loading content:', error));
 }
 
+function loadBoardView() {
+    fetch('../boardView/index.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('contentArea').innerHTML = data;
+            renderContacts();
+        })
+        .catch(error => console.error('Error loading content:', error));
+}
+
 const renderContacts = async () => {
     try {
         const databaseJson = await loadData('/contacts');
@@ -231,14 +241,4 @@ function toggleEditOverlay() {
             overlay.classList.remove('slide-out');
         }, 1000);
     }
-};
-
-// async function singleContactEdit(){ //opens Edit Overlay 
-
-// };
-
-// async function singleContactDelete(){ //deletes teh Contact
-
-window.onload = () => {
-    loadContactsView();
 };
