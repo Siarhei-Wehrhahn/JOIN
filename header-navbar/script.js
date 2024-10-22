@@ -148,7 +148,7 @@ const getContactExtended = (person, initials, color) => {
                 </div>
             <div class="singleContactButtons">
                 <div class="singleContactEdit" onclick="toggleEditOverlay()">
-                    <img src="../assets/icon/edit.svg" alt="edit pic">
+                    <img onclick="renderOverlay()" src="../assets/icon/edit.svg" alt="edit pic">
                     <p>Edit</p>
                 </div>
                 <div class="singleContactEdit" onclick="deleteContact('${person.name}')">
@@ -217,6 +217,7 @@ function toggleEditOverlay() {
     const overlay = document.getElementById('overlayEditContact');
     const rightSide = document.getElementById('rightSideId');
     const leftSide = document.getElementById('leftSideId');
+    renderEditOverlay();
 
     if (overlay.classList.contains('d_none')) {
         overlay.classList.remove('d_none');
