@@ -23,6 +23,16 @@ const postData = async (path = "", data = {}) => {
   return await response.json();
 };
 
+const editContact = async (id, data = {}) => {
+  await fetch(base_url + `/contacts/${id}` + ".json", {
+    method: "PUT",
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data)
+  })
+}
+
 const deleteData = async (path = "") => {
     let response = await fetch(base_url + path + ".json", {
         method: "DELETE"
@@ -37,6 +47,7 @@ const loadUser = async () => {
             users.push( {
               id: key,
               name: usersData[key]['name'],
+              email: usersData[key]['email'],
               phone: usersData[key]['phone']
             })
         })

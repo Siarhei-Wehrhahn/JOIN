@@ -1,4 +1,4 @@
-body{
+body {
   margin:0;
   font-family: 'Inter', sans-serif;
   font-weight: 270;
@@ -7,6 +7,7 @@ body{
   align-items: center;
   flex-direction: row;
   height:100vh;
+  overflow-x: hidden;
 }
 
 #contentArea {
@@ -17,4 +18,9 @@ body{
 
 hr {
   border: 0.5px solid rgba(42, 54, 71, 0.1);
+}
+
+.blackBg {
+  filter: brightness(50%);
+  z-index: 20;
 }
