@@ -232,13 +232,3 @@ function toggleEditOverlay() {
         }, 1000);
     }
 };
-
-// async function singleContactEdit(){ //opens Edit Overlay 
-
-// };
-
-// async function singleContactDelete(){ //deletes teh Contact
-
-window.onload = () => {
-    loadContactsView();
-};
