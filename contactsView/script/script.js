@@ -18,7 +18,7 @@ const renderContacts = async () => {
 }
 
 const getContact = (person) => {
-    const initials = contact.name.split(' ').map(n => n[0]);
+    const initials = person.name.split(' ').map(n => n[0]);
 
     return /*html*/`
         <div class="contact">
