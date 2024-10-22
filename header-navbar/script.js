@@ -127,19 +127,11 @@ const getContactExtended = (person, initials, color) => {
                     <p class="personNameExtended">${person.name}</p>
                 </div>
             <div class="singleContactButtons">
-<<<<<<< HEAD
-                <div class="singleContactEdit">
-                    <img src="../assets/icon/edit.svg" alt="edit pic">
-                    <p>Edit</p>
-                </div>
-                <div class="singleContactDelete">
-=======
                 <div class="singleContactEdit" onclick="toggleEditOverlay()">
                     <img src="../assets/icon/edit.svg" alt="edit pic">
                     <p>Edit</p>
                 </div>
                 <div class="singleContactEdit" onclick="deleteUser('/users/${person.id}')">
->>>>>>> 1635063d6ccac2f9ba8f0b7c5484f7949a65c94c
                     <img src="../assets/icon/delete.svg" alt="trashcan">
                     <p>Delete</p>
                 </div>
