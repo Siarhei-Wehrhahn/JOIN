@@ -147,7 +147,7 @@ const getContactExtended = (person, initials, color) => {
                     <p class="personNameExtended">${person.name}</p>
                 </div>
             <div class="singleContactButtons">
-                <div class="singleContactEdit" onclick="toggleEditOverlay()">
+                <div class="singleContactEdit" onclick="toggleEditOverlay('${person.name}')">
                     <img onclick="renderOverlay()" src="../assets/icon/edit.svg" alt="edit pic">
                     <p>Edit</p>
                 </div>
