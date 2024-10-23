@@ -82,6 +82,7 @@ const renderContacts = async () => {
                 contactsArray.push( {
                     id: key,
                     name: databaseJson[key].name,
+                    email: databaseJson[key].email,
                     phone: databaseJson[key].phone
                 })
             })
@@ -157,8 +158,8 @@ const getContactExtended = (person, initials, color) => {
                     <p class="personNameExtended">${person.name}</p>
                 </div>
             <div class="singleContactButtons">
-                <div class="singleContactEdit" onclick="toggleEditOverlay()">
-                    <img src="../assets/icon/edit.svg" alt="edit pic">
+                <div class="singleContactEdit" onclick="toggleEditOverlay('${person.name}')">
+                    <img onclick="renderOverlay()" src="../assets/icon/edit.svg" alt="edit pic">
                     <p>Edit</p>
                 </div>
                 <div class="singleContactEdit" onclick="deleteContact('${person.name}')">
@@ -193,15 +194,9 @@ const deleteContact = async (person) => {
     }
 };
 
-//const editContact = (person) => {
-//    document.querySelector('#inputNameEdit').value = person.name;
-//    document.querySelector('#inutEmailEdit').value = person.email;
-//    document.querySelector('#inputPhoneEdit').value = person.phone
-//}
-
 function toggleOverlay() {
     const overlay = document.getElementById('overlayId');
-    const rightSide = document.getElementById('rightSideId');
+    const rightSide = document.getElementById('headerId');
     const leftSide = document.getElementById('leftSideId');
 
     if (overlay.classList.contains('d_none')) {
@@ -223,7 +218,7 @@ window.onload = () => {
     loadContactsView();
 };
 
-function toggleEditOverlay() {
+function toggleEditOverlay(name) {
     const overlay = document.getElementById('overlayEditContact');
     const rightSide = document.getElementById('rightSideId');
     const leftSide = document.getElementById('leftSideId');
@@ -232,6 +227,7 @@ function toggleEditOverlay() {
         overlay.classList.remove('d_none');
         overlay.classList.remove('slide-out');
         overlay.classList.add('slide-in');
+        renderEditOverlay(name);
     } else {
         overlay.classList.remove('slide-in');
         overlay.classList.add('slide-out');

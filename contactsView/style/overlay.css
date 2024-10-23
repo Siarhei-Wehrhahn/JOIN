@@ -16,10 +16,10 @@
     transform: translate(-50%, -50%);
     border-radius: 25px;
     box-shadow: 10px 5px 10px 0px rgba(0, 0, 0, 0.3);
-    z-index: 10;
+    z-index: 100;
     background-color: white;
     transition: transform 1.0s ease-in-out;
-
+    filter: none!important;
 }
 
 .overlayBody {
