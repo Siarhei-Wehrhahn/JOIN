@@ -56,13 +56,6 @@ nav {
   background-color: #0919317a;
 }
 
-.summery-button:hover,
-.add-tast-button:hover,
-.board-button:hover,
-.contacts-button:hover {
-  background-color: #0919317a;
-}
-
 .summery-button:active,
 .add-tast-button:active,
 .board-button:active,
