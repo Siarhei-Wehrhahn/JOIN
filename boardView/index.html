@@ -15,17 +15,29 @@
       <section class="upper-sec">
         <h1>Board</h1>
         <div class="upper-sec-right">
-          <input id="input" type="text" />
+          <div class="search-div">
+            <input id="input" type="text" placeholder="Find task"/>
+            <button type="submit">
+              <img src="/assets/icon/search-icon.svg" alt="">
+            </button>
+          </div>
+          
         <button id="add-task" class="add-task">
-          Add task <img class="add-task-cross-icon" src="/assets/icon/cross.svg" alt=""></button>
+          <p>Add task</p> 
+          <img class="add-task-cross-icon" src="/assets/icon/cross.svg" alt="">
+        </button>
         </div>
-      </section>
+      </section> 
 
       <section class="lower-sec">
         <div class="columns" id="columns">
           <div class="upper-column">
             <p>To do</p>
-            <img src="/assets/icon/add-button.svg" alt="" />
+            <svg class="column-add-button" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="1" y="1" width="22" height="22" rx="7" stroke="#2A3647" stroke-width="2"/>
+              <path d="M12 8V16" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+              <path d="M16 12.0754L8 12.0754" stroke="#2A3647" stroke-width="2" stroke-linecap="round" />
+              </svg>
           </div>
           <div class="lower-column">
             <div class="no-task">No tasks To do</div>
@@ -36,7 +48,7 @@
         <div class="columns" id="columns">
           <div class="upper-column">
             <p>In progress</p>
-            <img src="/assets/icon/add-button.svg" alt="" />
+            <img class="column-add-button" src="/assets/icon/add-button.svg" alt="" />
           </div>
           <div class="lower-column">
             <div class="no-task">No tasks To do</div>
@@ -47,7 +59,7 @@
         <div class="columns" id="columns">
           <div class="upper-column">
             <p>Await feedback</p>
-            <img src="/assets/icon/add-button.svg" alt="" />
+            <img class="column-add-button" src="/assets/icon/add-button.svg" alt="" />
           </div>
           <div class="lower-column">
             <div class="no-task">No tasks To do</div>
@@ -58,7 +70,7 @@
         <div class="columns" id="columns">
           <div class="upper-column">
             <p>Done</p>
-            <img src="/assets/icon/add-button.svg" alt="" />
+            <img class="column-add-button" src="/assets/icon/add-button.svg" alt="" />
           </div>
           <div class="lower-column">
             <div class="no-task">No tasks To do</div>
