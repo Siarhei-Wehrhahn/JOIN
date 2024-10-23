@@ -1,111 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles/standart.css" />
-    <link rel="stylesheet" href="/assets/fonts/fonts.css" />
-    <link rel="stylesheet" href="/boardView/styles/board.css"/>
-    <link rel="stylesheet" href="/boardView/styles/overlayAddTask.css"/>
-    <script src="scripts/script.js"></script>
 
-    <title>Board</title>
-  </head>
-  <body>
-    <main>
-      <section class="upper-sec">
-        <h1>Board</h1>
-        <div class="upper-sec-right">
-          <div class="search-div">
-            <input id="input" type="text" placeholder="Find task"/>
-            <button type="submit">
-              <img src="/assets/icon/search-icon.svg" alt="">
-            </button>
-          </div>
-          
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles/standart.css" />
+  <link rel="stylesheet" href="/assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="/boardView/styles/board.css" />
+  <link rel="stylesheet" href="/boardView/styles/overlayAddTask.css" />
+  <script src="scripts/script.js"></script>
+
+  <title>Board</title>
+</head>
+
+<body>
+  <main>
+    <section class="upper-sec">
+      <h1>Board</h1>
+      <div class="upper-sec-right">
+        <div class="search-div">
+          <input id="input" type="text" placeholder="Find task" />
+          <button type="submit">
+            <img src="/assets/icon/search-icon.svg" alt="">
+          </button>
+        </div>
+
         <button id="add-task" class="add-task">
-          <p>Add task</p> 
+          <p>Add task</p>
           <img class="add-task-cross-icon" src="/assets/icon/cross.svg" alt="">
         </button>
-        </div>
-      </section> 
+      </div>
+    </section>
 
-      <section class="lower-sec">
-        <div class="columns" id="columns">
-          <div class="upper-column">
-            <p>To do</p>
-            <svg class="column-add-button" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="1" y="1" width="22" height="22" rx="7" stroke="#2A3647" stroke-width="2"/>
-              <path d="M12 8V16" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
-              <path d="M16 12.0754L8 12.0754" stroke="#2A3647" stroke-width="2" stroke-linecap="round" />
-              </svg>
-          </div>
-          <div class="lower-column">
-            <div class="no-task">No tasks To do</div>
-            <div class="content" id="content"></div>
-          </div>
+    <section class="lower-sec">
+      <div class="columns" id="columns">
+        <div class="upper-column">
+          <p>To do</p>
+          <svg class="column-add-button" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <rect x="1" y="1" width="22" height="22" rx="7" stroke="#2A3647" stroke-width="2" />
+            <path d="M12 8V16" stroke="#2A3647" stroke-width="2" stroke-linecap="round" />
+            <path d="M16 12.0754L8 12.0754" stroke="#2A3647" stroke-width="2" stroke-linecap="round" />
+          </svg>
+        </div>
+        <div class="lower-column">
+          <div class="no-task">No tasks To do</div>
+          <div class="content" id="content"></div>
+        </div>
+      </div>
+
+      <div class="columns" id="columns">
+        <div class="upper-column">
+          <p>In progress</p>
+          <img class="column-add-button" src="/assets/icon/add-button.svg" alt="" />
+        </div>
+        <div class="lower-column">
+          <div class="no-task">No tasks To do</div>
+          <div class="content" id="content"></div>
+        </div>
+      </div>
+
+      <div class="columns" id="columns">
+        <div class="upper-column">
+          <p>Await feedback</p>
+          <img class="column-add-button" src="/assets/icon/add-button.svg" alt="" />
+        </div>
+        <div class="lower-column">
+          <div class="no-task">No tasks To do</div>
+          <div class="content" id="content"></div>
+        </div>
+      </div>
+
+      <div class="columns" id="columns">
+        <div class="upper-column">
+          <p>Done</p>
+          <img class="column-add-button" src="/assets/icon/add-button.svg" alt="" />
+        </div>
+        <div class="lower-column">
+          <div class="no-task">No tasks To do</div>
+          <div class="content" id="content"></div>
         </div>
 
-        <div class="columns" id="columns">
-          <div class="upper-column">
-            <p>In progress</p>
-            <img class="column-add-button" src="/assets/icon/add-button.svg" alt="" />
-          </div>
-          <div class="lower-column">
-            <div class="no-task">No tasks To do</div>
-            <div class="content" id="content"></div>
-          </div>
-        </div>
+      </div>
 
-        <div class="columns" id="columns">
-          <div class="upper-column">
-            <p>Await feedback</p>
-            <img class="column-add-button" src="/assets/icon/add-button.svg" alt="" />
+    </section>
+    <div class="overlay" id="overlayId">
+      <div class="header">
+        <H1>Add Task</H1>
+        <img src="../assets/icon/Close.svg" alt="closeButton">
+      </div>
+      <div class="addTask">
+        <div class="task">
+          <p>Title</p>
+          <input type="text" placeholder="Enter a title">
+          <p>Description</p>
+          <div class="container">
+            <input class="description" type="text" placeholder="Enter a Description">
+            <img src="../assets/icon/recurso.svg" alt="">
           </div>
-          <div class="lower-column">
-            <div class="no-task">No tasks To do</div>
-            <div class="content" id="content"></div>
-          </div>
-        </div>
-
-        <div class="columns" id="columns">
-          <div class="upper-column">
-            <p>Done</p>
-            <img class="column-add-button" src="/assets/icon/add-button.svg" alt="" />
-          </div>
-          <div class="lower-column">
-            <div class="no-task">No tasks To do</div>
-            <div class="content" id="content"></div>
-          </div>
-          
-        </div>
-        
-      </section>
-      <div class="overlay" id="overlayId">
-        <div class="header">
-          <H1>Add Task</H1>
-          <img src="../assets/icon/Close.svg" alt="closeButton">
-        </div>
-        <div class="addTask">
-          <div class="task">
-
-          </div>
-          <div class="theLine"></div>
-          <div class="dateCategory">
-            <p>Title</p>
-            <input type="text" placeholder="Enter a title">
-            <p>Description</p>
-            <input type="text" placeholder="Enter a Description">
-            <p>Assigned to</p>
-            <input type="text" placeholder="Select contacts to assign">
-            <img class="dropDownArrow" src="../assets/icon/arrow_drop_down.svg" alt="arrowDown">
-            <div class="container">
-              <div class="contact">
-                
-              </div>
+          <p>Assigned to</p>
+          <input class="contactSelection" type="text" placeholder="Select contacts to assign">
+          <img class="dropDownArrow" src="../assets/icon/arrow_drop_down.svg" alt="arrowDown">
+          <div class="container">
+            <div class="contact">
+              <p id="initialsOverlay">AE</p>
+              <p id="contactName">Frank Ocean</p>
+              <form>
+                <input type="checkbox" id="exampleCheckbox" name="exampleCheckbox">
+              </form>
             </div>
           </div>
         </div>
+        <div class="theLine"></div>
+        <div class="dateCategory">
+          <p>Due date</p>
+          <div class="input-with-icon">
+            <input type="text" placeholder="dd/mm/yyyy">
+            <img src="../assets/icon/eventCalendar.svg" alt="calendarIcon" class="calendar-icon">
+          </div>
+        </div>
       </div>
-  </body>
+    </div>
+</body>
+
 </html>

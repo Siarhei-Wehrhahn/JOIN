@@ -6,6 +6,21 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    color: black;
+}
+
+.overlay p {
+    width: 300px;
+    color: black;
+    text-align: start;
+}
+
+.description {
+    height: 200px;
+}
+
+.overlay input {
+    width: 600px;
 }
 
 .header {
@@ -16,16 +31,17 @@
 }
 
 .addTask {
+    width: 90%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     flex-direction: row;
 }
 
 .dropDownArrow {
     position: relative;
-    right: 7%;
-    top: 70.6%;
+    right: -40%;
+    top: -22px;
     transform: translateY(-50%);
     pointer-events: none;
     transition: transform 0.3s ease;
@@ -34,4 +50,72 @@
 .turnArrow {
     transform: rotate(180deg);
     transition: transform 0.3s ease;
+}
+
+.task {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.theLine {
+    width: 1px;
+    height: 400px;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.input-with-icon {
+    position: relative;
+
+}
+
+.dateCategory {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.input-with-icon .calendar-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.description {
+    width: 600px;
+    height: 180px;
+    resize: both;
+    padding: 10px;
+    font-size: 16px;
+    border: 0.5px solid rgb(141, 141, 141);
+    border-radius: 10px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.description::placeholder {
+    position: absolute;
+    top: 20px;
+    left: 16px;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: rgba(128, 128, 128, 0.5);
+    padding: 0;
+    margin: 0;
+}
+
+.container img {
+    position: absolute;
+    top: 63.6%;
+    left: 45.3%;
+}
+
+.contactSelection::placeholder {
+    color: black;
 }
