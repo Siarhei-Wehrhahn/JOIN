@@ -16,8 +16,8 @@ const editedContactSave = (persoId) => {
   toggleEditOverlay();
 }
 
-const getEditOverlay = (person) => {
-  return /*html*/`
+function getEditOverlay(person) {
+  return /*html*/ `
         <div class="logoDiv">
     <div class="logo">
       <img src="/assets/icon/Capa 2.svg" alt="" />
@@ -49,5 +49,5 @@ const getEditOverlay = (person) => {
       </div>
     </div>
   </div>
-`
+`;
 }

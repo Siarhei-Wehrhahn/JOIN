@@ -1,18 +1,33 @@
 .overlay {
-    width: 80vw;
-    height: 90vh;
-    border-radius: 25px;
+    height: 75vh;
+    width: 85vw;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    color: black;
+    position: fixed; /* fixiert das Overlay, sodass es über dem Rest der Seite liegt */
+    top: 50%;
+    left: 100vw; /* Start außerhalb des sichtbaren Bereichs (rechts) */
+    transform: translate(-50%, -50%);
+    border-radius: 25px;
+    box-shadow: 10px 5px 10px 0px rgba(0, 0, 0, 0.3);
+    z-index: 100;
+    background-color: white;
+    transition: transform 1.0s ease-in-out, left 1s ease-in-out;
+    opacity: 0; /* Startwert für unsichtbar */
+    visibility: hidden;
 }
 
-.overlay p {
-    width: 300px;
-    color: black;
-    text-align: start;
+.overlay.show {
+    left: 50%; /* Zielposition: mittig auf dem Bildschirm */
+    opacity: 1; /* Overlay wird sichtbar */
+    visibility: visible;
+}
+
+.overlay.hide {
+    left: 100vw; /* Overlay wird nach rechts hinausgeschoben */
+    opacity: 0;
+    visibility: hidden;
 }
 
 .description {
@@ -20,18 +35,22 @@
 }
 
 .overlay input {
-    width: 600px;
+    width: 80%;
 }
 
 .header {
     width: 90%;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: start;
+}
+
+.header img {
+    cursor: pointer;
 }
 
 .addTask {
-    width: 90%;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -40,7 +59,7 @@
 
 .dropDownArrow {
     position: relative;
-    right: -40%;
+    right: -38%;
     top: -22px;
     transform: translateY(-50%);
     pointer-events: none;
@@ -67,7 +86,10 @@
 }
 
 .input-with-icon {
-    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 
 }
 
@@ -81,14 +103,14 @@
 
 .input-with-icon .calendar-icon {
     position: absolute;
-    right: 10px;
-    top: 50%;
+    right: 5%;
+    top: 57.6%;
     transform: translateY(-50%);
     pointer-events: none;
 }
 
 .description {
-    width: 600px;
+    width: 80%;
     height: 180px;
     resize: both;
     padding: 10px;
@@ -100,9 +122,9 @@
 }
 
 .description::placeholder {
-    position: absolute;
-    top: 20px;
-    left: 16px;
+    position: relative;
+    top: -57px;
+    left: 2px;
     transform: translateY(-50%);
     font-size: 20px;
     color: rgba(128, 128, 128, 0.5);
@@ -110,12 +132,72 @@
     margin: 0;
 }
 
-.container img {
+.containerDescription {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.contact {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+}
+
+.containerDescription img {
     position: absolute;
-    top: 63.6%;
-    left: 45.3%;
+    top: 65.5%;
+    right: 55.9%;
 }
 
 .contactSelection::placeholder {
     color: black;
+}
+
+#initialsOverlay {
+    width: 40px;
+    text-align: center;
+}
+
+form {
+    width: 30px;
+}
+
+#exampleCheckbox {
+    width: 20px;
+    font-weight: bold;
+}
+
+#contactName {
+    width: 75%;
+    text-align: start;
+}
+
+.headerText {
+    width: 78%;
+    text-align: start;
+    color: black;
+}
+
+.overlayButtons {
+    width: 90%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 24px;
+}
+
+.d_none {
+    display: none;
 }
