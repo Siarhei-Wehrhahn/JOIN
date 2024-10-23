@@ -215,7 +215,7 @@ function toggleOverlay() {
 };
 
 window.onload = () => {
-    loadContactsView();
+    loadBoardView();
 };
 
 function toggleEditOverlay(name) {

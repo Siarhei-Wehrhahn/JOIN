@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="styles/standart.css" />
     <link rel="stylesheet" href="/assets/fonts/fonts.css" />
     <link rel="stylesheet" href="/boardView/styles/board.css"/>
+    <link rel="stylesheet" href="/boardView/styles/overlayAddTask.css"/>
     <script src="scripts/script.js"></script>
 
     <title>Board</title>
@@ -80,8 +81,32 @@
         </div>
         
       </section>
+      <div class="overlay" id="overlayId">
+        <div class="header">
+          <H1>Add Task</H1>
+          <img src="../assets/icon/Close.svg" alt="closeButton">
+        </div>
+        <div class="addTask">
+          <div class="task">
 
-      
+          </div>
+          <div class="theLine"></div>
+          <div class="dateCategory">
+            <p>Title</p>
+            <input type="text" placeholder="Enter a title">
+            <p>Description</p>
+            <input type="text" placeholder="Enter a Description">
+            <p>Assigned to</p>
+            <div class="container">
+              <select id="contact">
+                <option value="" disabled selected>Select contacts to assign</option>
+                <option value="männlich">Männlich</option>
+                <option value="weiblich">Weiblich</option>
+                <option value="divers">Divers</option>
+              </select>
+            </div>
+          </div>
+        </div>
       </div>
   </body>
 </html>
