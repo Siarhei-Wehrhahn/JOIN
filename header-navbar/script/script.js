@@ -62,7 +62,6 @@ function loadBoardView() {
         .then(response => response.text())
         .then(data => {
             document.getElementById('contentArea').innerHTML = data;
-            renderContacts();
         })
         .catch(error => console.error('Error loading content:', error));
 }
@@ -227,7 +226,7 @@ function toggleEditOverlay(name) {
         overlay.classList.remove('d_none');
         overlay.classList.remove('slide-out');
         overlay.classList.add('slide-in');
-        renderEditOverlay(name);
+        renderEditContactOverlay(name);
     } else {
         overlay.classList.remove('slide-in');
         overlay.classList.add('slide-out');
