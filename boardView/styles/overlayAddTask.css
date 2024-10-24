@@ -1,20 +1,33 @@
 .overlay {
-  width: 78vw;
-  height: 90vh;
-  border-radius: 25px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  color: black;
+    height: 75vh;
+    width: 85vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: fixed; /* fixiert das Overlay, sodass es über dem Rest der Seite liegt */
+    top: 50%;
+    left: 100vw; /* Start außerhalb des sichtbaren Bereichs (rechts) */
+    transform: translate(-50%, -50%);
+    border-radius: 25px;
+    box-shadow: 10px 5px 10px 0px rgba(0, 0, 0, 0.3);
+    z-index: 100;
+    background-color: white;
+    transition: transform 1.0s ease-in-out, left 1s ease-in-out;
+    opacity: 0; /* Startwert für unsichtbar */
+    visibility: hidden;
 }
 
-.overlay p {
-  width: 300px;
-  color: black;
-  display: inline;
-  font-size: 20px;
-  font-weight: 400;
+.overlay.show {
+    left: 50%; /* Zielposition: mittig auf dem Bildschirm */
+    opacity: 1; /* Overlay wird sichtbar */
+    visibility: visible;
+}
+
+.overlay.hide {
+    left: 100vw; /* Overlay wird nach rechts hinausgeschoben */
+    opacity: 0;
+    visibility: hidden;
 }
 
 .description {
@@ -22,31 +35,35 @@
 }
 
 .overlay input {
-  width: 460px;
+    width: 80%;
 }
 
 .header {
-  width: 90%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+}
+
+.header img {
+    cursor: pointer;
 }
 
 .addTask {
-  width: 90%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: row;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
 }
 
 .dropDownArrow {
-  position: relative;
-  right: -40%;
-  top: -22px;
-  transform: translateY(-50%);
-  pointer-events: none;
-  transition: transform 0.3s ease;
+    position: relative;
+    right: -38%;
+    top: -22px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    transition: transform 0.3s ease;
 }
 
 .turnArrow {

@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="/assets/fonts/fonts.css" />
   <link rel="stylesheet" href="/boardView/styles/board.css" />
   <link rel="stylesheet" href="/boardView/styles/overlayAddTask.css" />
+  <script src="../loginView/scripts/firebase-realtime.js"></script>
   <script src="scripts/script.js"></script>
 
   <title>Board</title>
@@ -25,7 +26,7 @@
           </button>
         </div>
 
-        <button id="add-task" class="add-task">
+        <button id="add-task" class="add-task" onclick="toggleAddTaskOverlay()">
           <p>Add task</p>
           <img class="add-task-cross-icon" src="/assets/icon/cross.svg" alt="">
         </button>
@@ -84,32 +85,24 @@
       </div>
 
     </section>
-    <div class="overlay" id="overlayId">
+    <div class="overlay" id="overlayAddTask">
       <div class="header">
-        <H1>Add Task</H1>
-        <img src="../assets/icon/Close.svg" alt="closeButton">
+        <h1>Add Task</h1>
+        <img src="../assets/icon/Close.svg" alt="closeButton" onclick="toggleAddTaskOverlay()">
       </div>
       <div class="addTask">
         <div class="task">
-          <p>Title</p>
+          <p class="headerText">Title</p>
           <input type="text" placeholder="Enter a title">
-          <p>Description</p>
-          <div class="container">
+          <p class="headerText">Description</p>
+          <div class="containerDescription">
             <input class="description" type="text" placeholder="Enter a Description">
             <img src="../assets/icon/recurso.svg" alt="">
           </div>
-          <p>Assigned to</p>
-          <input class="contactSelection" type="text" placeholder="Select contacts to assign">
+          <p class="headerText">Assigned to</p>
+          <input onclick="toggleAddTaskOverlay()" class="contactSelection" type="text" placeholder="Select contacts to assign">
           <img class="dropDownArrow" src="../assets/icon/arrow_drop_down.svg" alt="arrowDown">
-          <div class="container">
-            <div class="contact">
-              <p id="initialsOverlay">AE</p>
-              <p id="contactName">Frank Ocean</p>
-              <form>
-                <input type="checkbox" id="exampleCheckbox" name="exampleCheckbox">
-              </form>
-            </div>
-          </div>
+          <div class="container" id="contactRender"></div>
         </div>
         <div class="theLine"></div>
 
@@ -194,6 +187,14 @@
 
         </section>
 
+      </div>
+      <div class="overlayButtons">
+        <p class="cancelBtn" onclick="toggleOverlay()">
+          Cancel<img src="/assets/icon/Close.svg" alt="cancelIcon" />
+        </p>
+        <button class="createBtn" onclick="createContact()">
+          Create contacts<img src="/assets/icon/check.svg" alt="" />
+        </button>
       </div>
     </div>
 </body>
