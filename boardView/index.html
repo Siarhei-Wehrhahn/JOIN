@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="/boardView/styles/board.css" />
   <link rel="stylesheet" href="/boardView/styles/overlayAddTask.css" />
   <script src="../loginView/scripts/firebase-realtime.js"></script>
-  <script src="script/script.js" defer></script>
 
   <title>Board</title>
 </head>
@@ -117,7 +116,7 @@
           <div class="prio-buttons">
             <p class="headerText">Prio</p>
             <div class="buttons-div">
-              <div class="prioButton" id="urgent-button">
+              <div class="prioButton" id="urgent-button" onclick="selectPriority('urgent')">
                 <p id="urgentText">Urgent</p>
                 <svg width="18" id="urgentIcon" height="12" viewBox="0 0 18 12" fill="#FF3D00" xmlns="http://www.w3.org/2000/svg">
                   <g clip-path="url(#clip0_1_13941)">
@@ -127,7 +126,7 @@
                 </svg>
 
               </div>
-              <div class="prioButton orangeButton" id="medium-button">
+              <div class="prioButton orangeButton" id="medium-button" onclick="selectPriority('medium')">
                 <p class="whiteText" id="mediumText">Medium</p>
                 <svg width="18" class="whiteIcon" id="mediumIcon" height="8" viewBox="0 0 18 8" fill="#FFA800"
                   xmlns="http://www.w3.org/2000/svg">
@@ -138,7 +137,7 @@
                 </svg>
               </div>
 
-              <div class="prioButton" id="low-button">
+              <div class="prioButton" id="low-button" onclick="selectPriority('low')">
                 <p id="lowText">Low</p>
                 <svg width="18" id="lowIcon" height="12" viewBox="0 0 18 12" fill="#7AE229" xmlns="http://www.w3.org/2000/svg">
                   <g clip-path="url(#clip0_1_13935)">
