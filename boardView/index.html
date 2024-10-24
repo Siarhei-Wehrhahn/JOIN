@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="/boardView/styles/board.css" />
   <link rel="stylesheet" href="/boardView/styles/overlayAddTask.css" />
   <script src="../loginView/scripts/firebase-realtime.js"></script>
-  <script src="scripts/script.js"></script>
+  <script src="./script/script.js"></script>
 
   <title>Board</title>
 </head>
@@ -100,8 +100,8 @@
             <img src="../assets/icon/recurso.svg" alt="">
           </div>
           <p class="headerText">Assigned to</p>
-          <input onclick="toggleAddTaskOverlay()" class="contactSelection" type="text" placeholder="Select contacts to assign">
-          <img class="dropDownArrow" src="../assets/icon/arrow_drop_down.svg" alt="arrowDown">
+          <input onclick="renderAddTaskOverlay()" class="contactSelection" type="text" placeholder="Select contacts to assign">
+          <img onclick="renderAddTaskOverlay()" class="dropDownArrow" src="../assets/icon/arrow_drop_down.svg" alt="arrowDown">
           <div class="container" id="contactRender"></div>
         </div>
         <div class="theLine"></div>

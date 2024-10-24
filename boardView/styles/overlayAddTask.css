@@ -5,28 +5,32 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    position: fixed; /* fixiert das Overlay, sodass es über dem Rest der Seite liegt */
+    position: fixed;
     top: 50%;
-    left: 100vw; /* Start außerhalb des sichtbaren Bereichs (rechts) */
+    left: 100vw; /* Startposition rechts außerhalb des Bildschirms */
     transform: translate(-50%, -50%);
     border-radius: 25px;
     box-shadow: 10px 5px 10px 0px rgba(0, 0, 0, 0.3);
     z-index: 100;
     background-color: white;
-    transition: transform 1.0s ease-in-out, left 1s ease-in-out;
-    opacity: 0; /* Startwert für unsichtbar */
+    transition: left 1.0s ease-in-out, opacity 0.5s ease-in-out;
+    opacity: 0;
     visibility: hidden;
 }
 
 .overlay.show {
-    left: 50%; /* Zielposition: mittig auf dem Bildschirm */
-    opacity: 1; /* Overlay wird sichtbar */
+    left: 50%; /* Hereingleiten und im Zentrum bleiben */
+    opacity: 1;
     visibility: visible;
 }
 
 .overlay.hide {
-    left: 100vw; /* Overlay wird nach rechts hinausgeschoben */
+    left: 100vw; /* Rausgleiten nach rechts */
     opacity: 0;
+}
+
+/* Verzögerung, bevor visibility auf hidden gesetzt wird */
+.overlay.hide.hidden {
     visibility: hidden;
 }
 

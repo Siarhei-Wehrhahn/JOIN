@@ -1,11 +1,9 @@
 function toggleAddTaskOverlay() {
   const overlay = document.getElementById('overlayAddTask');
-  // Wenn das Overlay gerade sichtbar ist (Klasse "show"), entferne es
   if (overlay.classList.contains('show')) {
       overlay.classList.remove('show');
       overlay.classList.add('hide');
   } 
-  // Wenn das Overlay gerade versteckt ist (Klasse "hide"), zeige es an
   else {
       overlay.classList.remove('hide');
       overlay.classList.add('show');
