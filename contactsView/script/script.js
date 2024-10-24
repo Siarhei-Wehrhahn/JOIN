@@ -1,4 +1,4 @@
-function renderEditOverlay(name) {
+function renderEditContactOverlay(name) {
   let overlayEditContact = document.getElementById('overlayEditContact');
   const selectedPerson = contactsArray.find(contact => contact.name === name);
   overlayEditContact.innerHTML = getEditOverlay(selectedPerson);
@@ -7,7 +7,7 @@ function renderEditOverlay(name) {
   document.getElementById('inputPhoneEdit').value = selectedPerson.phone;
 }
 
-const editedContactSave = (persoId) => {
+function editedContactSaveToStoredData(persoId) {
   const name = document.getElementById('inputNameEdit').value;
   const email = document.getElementById('inputEmailEdit').value;
   const phone = document.getElementById('inputPhoneEdit').value;
@@ -43,7 +43,7 @@ function getEditOverlay(person) {
         <p class="cancelBtn" onclick="deleteContact('${person.name}')">
           Delete<img src="/assets/icon/Close.svg" alt="cancelIcon" />
         </p>
-        <button class="createBtn" onclick="editedContactSave('${person.id}')">
+        <button class="createBtn" onclick="editedContactSaveToStoredData('${person.id}')">
           Save<img src="/assets/icon/check.svg" alt="" />
         </button>
       </div>
