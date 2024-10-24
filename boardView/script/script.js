@@ -47,3 +47,18 @@ const getOverlayAddTask = (user, initials) => {
             </div>
       `
 }
+
+
+document.getElementById('searchInput').addEventListener('input', function() {
+  let filter = this.value.toLowerCase();
+  let taskNotes = document.querySelectorAll('.taskNote');
+
+  taskNotes.forEach(taskNote => { // Ändere 'taskNotes' zu 'taskNote'
+      let title = taskNote.getAttribute('data-title').toLowerCase();
+      if (title.includes(filter)) {
+          taskNote.style.display = '';
+      } else {
+          taskNote.style.display = 'none'; 
+      }
+  });
+});
