@@ -1,8 +1,8 @@
 .overlay {
-  height: 75vh;
+  height: 85vh;
   width: 85vw;
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   flex-direction: column;
   position: absolute;
@@ -38,10 +38,6 @@
   }
 }
 
-.description {
-  height: 200px;
-}
-
 .overlay input {
   width: 80%;
 }
@@ -49,17 +45,20 @@
 .header {
   width: 90%;
   height: 100px;
+  margin-top: 20px;
   display: flex;
   justify-content: space-between;
   align-items: start;
 }
 
 .header img {
+  margin-top: 20px;
   cursor: pointer;
 }
 
 .addTask {
   width: 100%;
+  height: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -69,9 +68,15 @@
 .dropDownArrow {
   position: relative;
   right: -38%;
-  top: -22px;
+  top: -23px;
   transform: translateY(-50%);
-  pointer-events: none;
+  transition: transform 0.3s ease;
+}
+
+.dropDownArrow:hover {
+  background-color: gray;
+  border-radius: 50%;
+  padding: 10px;
   transition: transform 0.3s ease;
 }
 
@@ -82,16 +87,18 @@
 
 .task {
   width: 50%;
+  height: 90%;
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   flex-direction: column;
 }
 
 .theLine {
   width: 1px;
-  height: 400px;
+  height: 500px;
   background-color: rgba(0, 0, 0, 0.3);
+  margin-bottom: 10%;
 }
 
 .input-with-icon {
@@ -112,15 +119,14 @@
 
 .input-with-icon .calendar-icon {
   position: absolute;
-  right: 6%;
-  top: 28.5%;
+  right: 5%;
+  top: 27.4%;
   transform: translateY(-50%);
   pointer-events: none;
 }
 
 .description {
-  width: 80%;
-  height: 180px;
+  height: 200px;
   resize: both;
   padding: 10px;
   font-size: 16px;
@@ -149,15 +155,21 @@
 }
 
 .container {
-  width: 80%;
+  max-height: 270px;
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   flex-direction: column;
+  width: 80.4%;
+  margin-top: -6px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .contact {
   width: 100%;
+  height: 50px;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -166,17 +178,22 @@
 
 .containerDescription img {
   position: absolute;
-  top: 62.5%;
-  right: 55.7%;
+  top: 57%;
+  right: 55.5%;
 }
 
 .contactSelection::placeholder {
-  color: black;
+  color: rgba(0, 0, 0, 0.7);
 }
 
-#initialsOverlay {
-  width: 40px;
+#initialsOverlay { 
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 form {
@@ -184,13 +201,16 @@ form {
 }
 
 #exampleCheckbox {
-  width: 20px;
+  width: 15px;
   font-weight: bold;
 }
 
 #contactName {
   width: 75%;
   text-align: start;
+  color: black;
+  font-size: 20px;
+  font-weight: 300;
 }
 
 .headerText {
@@ -204,6 +224,7 @@ form {
   display: flex;
   justify-content: end;
   align-items: center;
+  margin-top: 10%;
   gap: 24px;
 }
 
@@ -218,12 +239,21 @@ form {
 .buttons-div {
   display: flex;
   justify-content: space-between;
-  width: 460px;
+  width: 490px;
   margin-bottom: 40px;
+  gap: 16px;
+}
+
+.buttons-div div:hover {
+  box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.3);
+}
+
+.prio-buttons {
+  width: 80%;
 }
 
 .prioButton {
-  width: 140px;
+  width: 200px;
   height: 56px;
   background-color: white;
   border: solid 0.5px rgba(0, 0, 0, 0.1);
@@ -271,7 +301,7 @@ form {
 }
 
 #categorySelect {
-  width: 460px;
+  width: 80%;
   height: 48px;
   border-radius: 10px;
   font-size: 20px;
@@ -281,17 +311,100 @@ form {
 
 .subtasks {
   width: 100%;
-  margin-bottom: 40px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 8px;
 }
 
 .right-side {
   width: 50%;
+  height: 90%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+}
+
+.addSubtasksButton {
+  position: absolute;
+  top: 66.7%;
+  right: 5.5%;
+}
+
+.rotateToDeleteBtn {
+  transform: rotate(45deg);
+  cursor: pointer;
+}
+
+.smallLine {
+  width: 1px;
+  height: 20px;
+  background-color: black;
+}
+
+.deleteOrSaveBtn {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  flex-direction: row;
+  gap: 10px;
+  position: absolute;
+  top: 66.7%;
+  right: 5.5%;
+}
+
+.subtasksContent {
+  width: 80%;
+}
+
+.subtaskSingle {
+  width: 100%;
+  height: 35px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  border-radius: 10px;
+}
+
+.subtaskSingle:hover {
+  background-color: darkgray;
+}
+
+.subtaskSingle:hover .editDeleteButtons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  margin-right: 20px;
+  gap: 8px;
+}
+
+.subtaskSingle p {
+  color: black;
+  margin-left: 20px;
+}
+
+.editDeleteButtons {
+  display: none;
+}
+
+.editDeleteButtons:hover {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  margin-right: 20px;
+  gap: 8px;
+}
+
+#subtaskInputId {
+  z-index: 1;
+  background-color: transparent;
+}
+
+#deleteOrSave {
+  z-index: 2;
 }
