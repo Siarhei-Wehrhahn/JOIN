@@ -1,3 +1,6 @@
+taskArray = [];
+
+
 function allowDrop(ev) {
   ev.preventDefault();
 }
@@ -115,16 +118,89 @@ const getOverlayAddTask = (user, initials, color) => {
 }
 
 
-document.getElementById('searchInput').addEventListener('input', function() {
-  let filter = this.value.toLowerCase();
-  let taskNotes = document.querySelectorAll('.taskNote');
 
-  taskNotes.forEach(taskNote => { // Ändere 'taskNotes' zu 'taskNote'
-      let title = taskNote.getAttribute('data-title').toLowerCase();
-      if (title.includes(filter)) {
-          taskNote.style.display = '';
+
+  document.getElementById('input').addEventListener('input', function() {
+    let lowCase = this.value.toLowerCase();
+    // let taskNotes = taskArray.taskNotes;
+    let hasResults = false; 
+
+          taskArray.taskNotes.forEach(taskNote => {
+          let title = taskNote.getAttribute('data-title').toLowerCase();
+          let description = taskNote.getAttribute('description').toLowerCase();
+
+          if (title.includes(lowCase) || description.includes(lowCase)) {
+              taskNote.style.display = ''; 
+              hasResults = true; 
+          } else {
+              taskNote.style.display = 'none'; 
+          }
+      });
+
+      
+      if (hasResults) {
+          noResultsMessage.style.opacity = '0'; 
       } else {
-          taskNote.style.display = 'none'; 
+          noResultsMessage.style.opacity = '1'; 
       }
   });
-});
+
+
+
+
+const renderNotes = async () => {
+  try {
+      const databaseJson = await loadData('/tasks');
+      const content = document.getElementById('tasksContent');
+      content.innerHTML = "";
+
+      const contacts = Object.values(databaseJson)
+      .filter(task => task.type && task.title && task.description && task.subtask && task.users && task.prio );
+          // .sort()
+
+          
+          if (databaseJson) {
+            Object.keys(databaseJson).forEach(key => {
+              taskArray.push( {
+                id: key,
+                type:databaseJson[key].type,
+                task:databaseJson[key].task,
+                description:databaseJson[key].description,
+                subtask:databaseJson[key].subtask,
+                users:databaseJson[key].users,
+                prio:databaseJson[key].prio
+              })
+            })
+          }
+        } catch(error) {
+          console.error('failed to load tasks renderNotes', error)
+        };
+      } 
+
+
+      function updateProgress() {
+        const taskList = document.getElementById('subtask-div');
+        const totalTasks = subtasks.length; 
+        if (totalTasks === 0) {
+           
+            document.getElementById("subtask-div").style.display = 'none';
+            return;
+        }
+
+        const completedTasks = 0;
+        subtasks.forEach(task => {
+          const checkbox = document.getElementById(task.id);
+          if (checkbox.checked) completedTasks++;
+        });
+        const progressPercentage = (completedTasks / totalTasks) * 100;
+
+      
+        const progress = document.getElementById("progress");
+        progress.style.width = progressPercentage + '%'; 
+       
+        taskCountDisplay.innerText = `${completedTasks}/${totalTasks} Subtasks`;
+    }
+      }
+
+      
+

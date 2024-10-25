@@ -117,3 +117,20 @@ input::placeholder {
   justify-content: center;
   align-items: center;
 }
+.search-div .tooltip {
+  position: absolute;
+  background-color: rgb(122, 115, 115);
+  color: white;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 9px;
+  padding-right: 9px;
+  bottom: -24px;
+  border-radius: 2px;
+  font-size: 13px;
+  opacity: 0;
+  transition: opacity 0.30s;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
