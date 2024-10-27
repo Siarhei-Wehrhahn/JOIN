@@ -101,14 +101,6 @@
   margin-bottom: 10%;
 }
 
-.input-with-icon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-
-}
-
 .dateCategory {
   width: 100%;
   display: flex;
@@ -117,10 +109,10 @@
   flex-direction: column;
 }
 
-.input-with-icon .calendar-icon {
-  position: absolute;
-  right: 5%;
-  top: 27.4%;
+.calendar-icon {
+  position: relative;
+  right: -36%;
+  top: -20.4%;
   transform: translateY(-50%);
   pointer-events: none;
 }
@@ -145,13 +137,6 @@
   color: rgba(128, 128, 128, 0.5);
   padding: 0;
   margin: 0;
-}
-
-.containerDescription {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .container {
@@ -180,10 +165,10 @@
   background-color: rgba(100, 100, 100, 0.1);
 }
 
-.containerDescription img {
-  position: absolute;
-  top: 57%;
-  right: 55.5%;
+.containerDescriptionImg {
+  position: relative;
+  top: -4%;
+  right: -37.5%;
 }
 
 .contactSelection::placeholder {
@@ -242,7 +227,7 @@ form {
 .buttons-div {
   display: flex;
   justify-content: space-between;
-  width: 490px;
+  width: 100%;
   margin-bottom: 40px;
   gap: 16px;
 }
@@ -303,15 +288,6 @@ form {
   align-items: center;
 }
 
-#categorySelect {
-  width: 80%;
-  height: 48px;
-  border-radius: 10px;
-  font-size: 20px;
-  font-weight: 400;
-}
-
-
 .subtasks {
   width: 100%;
   display: flex;
@@ -331,9 +307,9 @@ form {
 }
 
 .addSubtasksButton {
-  position: absolute;
-  top: 66.7%;
-  right: 5.5%;
+  position: relative;
+  top: -28%;
+  right: -37%;
 }
 
 .rotateToDeleteBtn {
@@ -447,4 +423,25 @@ form {
 #editInput:focus {
   border-radius: 0;
   border-bottom-color: blue;
+}
+
+.category {
+  position: relative;
+}
+
+#categorySelect {
+  width: 80%;
+  height: 48px;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: 400;
+  padding: 10px;
+  font-size: 16px;
+  appearance: none;
+}
+
+.dropDowmArrowCategory {
+  position: absolute;
+  top: 73%;
+  right: 13%;
 }

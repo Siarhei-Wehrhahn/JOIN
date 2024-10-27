@@ -1,5 +1,6 @@
 let subtaskArray = [];
 let contactArrayAddTask = [];
+let selectedPriority = null;
 
 function allowDrop(ev) {
   ev.preventDefault();
@@ -14,8 +15,6 @@ function drop(ev) {
   var data = ev.dataTransfer.getData("text");
   ev.target.appendChild(document.getElementById(data));
 }
-
-let selectedPriority = null;
 
 function selectPriority(priority) {
   const urgentButton = document.getElementById('urgent-button');
@@ -114,13 +113,13 @@ const addContactToArray = async (index) => {
     .filter(contact => contact.name && contact.email && contact.phone)
     .sort((a, b) => a.name.localeCompare(b.name));
   const contact = contacts[index];
-  if(!contactArrayAddTask.contains(contact)) {
+  let contactIndex = contactArrayAddTask.findIndex(c => c.email === contact.email);
+
+  if (contactIndex == -1 || contactArrayAddTask[contactIndex].email != contact.email) {
     contactArrayAddTask.push(contact);
   } else {
-    let contactIndex = contactArrayAddTask.findIndex(contact => contact == contact)
-    contactArrayAddTask.splice(contactIndex, 1)
+    contactArrayAddTask.splice(contactIndex, 1);
   }
-  console.log(contactArrayAddTask);
 }
 
 function toggleAddTaskOverlay() {
@@ -229,5 +228,19 @@ const getEditSubtask = (index) => {
 const addTaskToFirebase = () => {
   const title = document.getElementById('titleInputId').value;
   const description = document.getElementById('descriptionInputId').value;
-
+  const assignedTo = contactArrayAddTask;
+  const dueDate = document.getElementById('dateInput').value;
+  const prioButton = selectedPriority;
+   
 }
+
+const toggleArrow = () => {
+  document.getElementById('dropDowmArrowCategoryId').classList.toggle('turnArrow');
+}
+
+document.addEventListener('click', (event) => {
+  const arrow = document.getElementById('dropDowmArrowCategoryId');
+  if (!arrow.contains(event.target)) {
+    arrow.classList.remove('turnArrow');
+  }
+});
