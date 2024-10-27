@@ -80,8 +80,8 @@ const toggleContactSelection = () => {
 }
 
 const renderAddTaskOverlay = async () => {
-  const loadUsers = await loadData('/contacts');
-  const contacts = Object.values(loadUsers)
+  const loadContacts = await loadData('/contacts');
+  const contacts = Object.values(loadContacts)
     .filter(contact => contact.name && contact.email && contact.phone)
     .sort((a, b) => a.name.localeCompare(b.name));
   const overlay = document.getElementById('contactRender');
@@ -168,7 +168,7 @@ const renderSubtask = () => {
 const getSubtask = (taskName, index) => {
   return /*html*/`
       <div class="subtaskSingle">
-        <p>${taskName}</p>
+        <p>ּ• ${ taskName}</p>
         <div class="editDeleteButtons">
           <img class="pointer" onclick="editSubtask(${index})" src="../assets/icon/edit.svg" alt="">
           <div class="smallLine"></div>
@@ -180,11 +180,17 @@ const getSubtask = (taskName, index) => {
 const editSubtask = (index) => {
   const subTaskContent = document.getElementById('subtasksContentId');
   subTaskContent.innerHTML = "";
-  subTaskContent.innerHTML = getEditSubtask(subtaskArray[index]);
+  subTaskContent.innerHTML = getEditSubtask(index);
   document.getElementById('editInput').value = subtaskArray[index];
 }
 
 //TODO löschen funktion in der edit funktion geht nicht richtig und die addTask function
+
+const saveEditSubtask = (i) => {
+  const editSubtask = document.getElementById('editInput').value;
+  subtaskArray[i] = editSubtask;
+  renderSubtask();
+} 
 
 const getEditSubtask = (index) => {
   return /*html*/`
@@ -193,7 +199,7 @@ const getEditSubtask = (index) => {
       <div class="editSubtask">
           <img onclick="deleteSubtask(${index})" class="pointer" src="../assets/icon/delete.svg" alt="">
           <div class="smallLine"></div>
-          <svg class="pointer" onclick="addSubtaskToArray()" id="checkSubtasks" width="24" height="25" viewBox="0 0 24 25" fill="black" xmlns="http://www.w3.org/2000/svg">
+          <svg class="pointer" onclick="saveEditSubtask(${index})" id="checkSubtasks" width="24" height="25" viewBox="0 0 24 25" fill="black" xmlns="http://www.w3.org/2000/svg">
             <mask id="mask0_191_600" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="25">
               <rect y="0.5" width="24" height="24"></rect>
             </mask>
