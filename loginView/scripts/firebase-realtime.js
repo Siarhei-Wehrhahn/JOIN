@@ -64,7 +64,7 @@ const signUpNewUser = async () => {
     const user = { name: nameInput, email: emailInput, passwort: passwordInput };
   
     if (passwordInput != passwordConfirmInput) {
-      alert("Dein Passwort stimmt nicht Überein!");
+      alert("Dein Passwort stimmt nicht Ã¼berein!");
       passwordInput = "";
       passwordConfirmInput = "";
       return;
