@@ -224,7 +224,6 @@ form {
   display: flex;
   justify-content: end;
   align-items: center;
-  margin-top: 10%;
   gap: 24px;
 }
 
@@ -357,6 +356,8 @@ form {
 
 .subtasksContent {
   width: 80%;
+  height: 113px;
+  overflow-y: auto;
 }
 
 .subtaskSingle {
@@ -407,4 +408,39 @@ form {
 
 #deleteOrSave {
   z-index: 2;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.editSubtask {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  position: absolute;
+  top: 73%;
+  right: 5.7%;
+}
+
+.editSubtaskDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+#editInput {
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid transparent;
+  outline: none;
+  text-decoration: none;
+  transition: border-color 0.3s ease;
+}
+
+#editInput:focus {
+  border-radius: 0;
+  border-bottom-color: blue;
 }
