@@ -126,6 +126,9 @@
   border-radius: 10px;
   box-sizing: border-box;
   position: relative;
+  display: flex; /* Flexbox aktivieren */
+  align-items: flex-start; /* Text an den oberen Rand ausrichten */
+  line-height: 1.5; /* Zeilenhöhe für bessere Lesbarkeit */
 }
 
 .description::placeholder {
@@ -294,7 +297,7 @@ form {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 8px;
+  margin-bottom: -8px;
 }
 
 .right-side {
@@ -330,7 +333,7 @@ form {
   flex-direction: row;
   gap: 10px;
   position: absolute;
-  top: 66.7%;
+  top: 69.4%;
   right: 5.5%;
 }
 

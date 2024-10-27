@@ -1,6 +1,7 @@
 let subtaskArray = [];
 let contactArrayAddTask = [];
 let selectedPriority = null;
+let selectedCategory = '';
 
 function allowDrop(ev) {
   ev.preventDefault();
@@ -370,10 +371,32 @@ function getNoteRef() {
 const addTaskToFirebase = () => {
   const title = document.getElementById('titleInputId').value;
   const description = document.getElementById('descriptionInputId').value;
-  const assignedTo = contactArrayAddTask;
   const dueDate = document.getElementById('dateInput').value;
-  const prioButton = selectedPriority;
-   
+  const taskObject = {
+    title: title, 
+    description: description, 
+    assignedTo: contactArrayAddTask, 
+    dueDate: dueDate,
+    prio: selectedPriority,
+    category: selectedCategory,
+    subtasks: subtaskArray,
+    area: "toDo"
+  }
+  postData("/tasks", taskObject);
+  title = "";
+  description = "";
+  contactArrayAddTask = [];
+  dueDate = "";
+  selectedPriority = "middle";
+  selectedCategory = "";
+  subtaskArray = [];
+  toggleAddTaskOverlay();
+}
+
+function updateInputValue() {
+  const selectElement = document.getElementById('categorySelect');
+  selectedCategory = selectElement.value;
+  console.log('Selected Category:', selectedCategory);
 }
 
 const toggleArrow = () => {
