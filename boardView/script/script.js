@@ -172,13 +172,123 @@ const deleteSubtask = (i) => {
 }
 
 const renderSubtask = () => {
+  
+}
+
+
+
+
+
+const renderNotesIntoTaskArray = async () => {
+  try {
+      const databaseJson = await loadData('/tasks');
+      const content = document.getElementById('tasksContent');
+      content.innerHTML = ""; 
+
+
+      const filteredTasks = Object.values(databaseJson).filter(task => 
+          task.type && 
+          task.title && 
+          task.description && 
+          task.subtask && 
+          task.users && 
+          task.prio
+      );
+
+
+      if (databaseJson) {
+          Object.keys(databaseJson).forEach(key => {
+              taskArray.push({
+                  id: key,
+                  type: databaseJson[key].type,
+                  task: databaseJson[key].task,
+                  description: databaseJson[key].description,
+                  subtask: databaseJson[key].subtask,
+                  users: databaseJson[key].users,
+                  prio: databaseJson[key].prio
+              });
+          });
+      }
+  } catch (error) {
+      console.error('Failed to load tasks in renderNotes', error);
+      // Optional: Benutzerbenachrichtigung hinzufügen
+      const content = document.getElementById('tasksContent');
+      content.innerHTML = "<p>Fehler beim Laden der Aufgaben. Bitte versuchen Sie es später erneut.</p>";
+  }
+}; 
+
+
+
+
+      function searchTaskNotes() {
+        function searchTaskNotes() {
+          document.getElementById('input').addEventListener('input', function() {
+              let lowCase = this.value.toLowerCase();
+              const noResults = document.getElementById('tooltip'); 
+              let hasResults = false; 
+      
+              
+              taskArray.taskNotes.forEach(taskNote => {
+                  let title = taskNote.getAttribute('data-title').toLowerCase();
+                  let description = taskNote.getAttribute('description').toLowerCase();
+                  if (title.includes(lowCase) || description.includes(lowCase)) {
+                      taskNote.style.display = ''; 
+                      hasResults = true; 
+                  } else {
+                      taskNote.style.display = 'none'; 
+                  }
+              });
+      
+             
+              if (hasResults) {
+                  noResults.style.opacity = '0'; 
+              } else {
+                  noResults.style.opacity = '1'; 
+              }
+          });
+      }
+
+
+
+
+
+
+      function updateProgress() {
+        const subtaskAmount = document.getElementById('subtaskAmount');
+        const totalTasks = subtasksArray.length; 
+        const subtaskDiv = document.getElementById("subtask-div");
+
+        if (totalTasks === 0) {
+           
+            subtaskDiv.style.display = 'none';
+            return;
+        } else {
+         
+          subtaskDiv.style.display = 'block';
+      }
+
+        const completedTasks = 0;
+
+        subtasksArray.forEach(task => {
+          const checkbox = document.getElementById(task.id);
+          if (checkbox.checked) completedTasks++;
+        });
+        const progressPercentage = (completedTasks / totalTasks) * 100;
+      
+        const progress = document.getElementById("progressBar");
+        progress.style.width = progressPercentage + '%'; 
+       
+        subtaskAmount.innerText = `${completedTasks}/${totalTasks} Subtasks`;
+    }
+  }
+
   const subTaskContent = document.getElementById('subtasksContentId');
   subTaskContent.innerHTML = "";
   for (let index = 0; index < subtaskArray.length; index++) {
     const task = subtaskArray[index];
     subTaskContent.innerHTML += getSubtask(task, index)
   }
-}
+
 
 const getSubtask = (taskName, index) => {
   return /*html*/`
