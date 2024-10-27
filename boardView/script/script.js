@@ -1,6 +1,7 @@
 let subtaskArray = [];
 let contactArrayAddTask = [];
 let selectedPriority = null;
+let selectedCategory = '';
 
 function allowDrop(ev) {
   ev.preventDefault();
@@ -183,7 +184,7 @@ const renderSubtask = () => {
 const getSubtask = (taskName, index) => {
   return /*html*/`
       <div class="subtaskSingle">
-        <p>ּ• ${ taskName}</p>
+        <p>ּ• ${taskName}</p>
         <div class="editDeleteButtons">
           <img class="pointer" onclick="editSubtask(${index})" src="../assets/icon/edit.svg" alt="">
           <div class="smallLine"></div>
@@ -203,7 +204,7 @@ const saveEditSubtask = (i) => {
   const editSubtask = document.getElementById('editInput').value;
   subtaskArray[i] = editSubtask;
   renderSubtask();
-} 
+}
 
 const getEditSubtask = (index) => {
   return /*html*/`
@@ -228,10 +229,32 @@ const getEditSubtask = (index) => {
 const addTaskToFirebase = () => {
   const title = document.getElementById('titleInputId').value;
   const description = document.getElementById('descriptionInputId').value;
-  const assignedTo = contactArrayAddTask;
   const dueDate = document.getElementById('dateInput').value;
-  const prioButton = selectedPriority;
-   
+  const taskObject = {
+    title: title, 
+    description: description, 
+    assignedTo: contactArrayAddTask, 
+    dueDate: dueDate,
+    prio: selectedPriority,
+    category: selectedCategory,
+    subtasks: subtaskArray,
+    area: "toDo"
+  }
+  postData("/tasks", taskObject);
+  title = "";
+  description = "";
+  contactArrayAddTask = [];
+  dueDate = "";
+  selectedPriority = "middle";
+  selectedCategory = "";
+  subtaskArray = [];
+  toggleAddTaskOverlay();
+}
+
+function updateInputValue() {
+  const selectElement = document.getElementById('categorySelect');
+  selectedCategory = selectElement.value;
+  console.log('Selected Category:', selectedCategory);
 }
 
 const toggleArrow = () => {
