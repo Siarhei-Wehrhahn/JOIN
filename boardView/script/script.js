@@ -18,83 +18,87 @@ function drop(ev) {
 }
 
 function selectPriority(priority) {
-  const urgentButton = document.getElementById('urgent-button');
-  const urgentText = document.getElementById('urgentText');
-  const urgentIcon = document.getElementById('urgentIcon');
-  const mediumButton = document.getElementById('medium-button');
-  const mediumText = document.getElementById('mediumText');
-  const mediumIcon = document.getElementById('mediumIcon');
-  const lowButton = document.getElementById('low-button');
-  const lowText = document.getElementById('lowText');
-  const lowIcon = document.getElementById('lowIcon');
+  const urgentButton = document.getElementById("urgent-button");
+  const urgentText = document.getElementById("urgentText");
+  const urgentIcon = document.getElementById("urgentIcon");
+  const mediumButton = document.getElementById("medium-button");
+  const mediumText = document.getElementById("mediumText");
+  const mediumIcon = document.getElementById("mediumIcon");
+  const lowButton = document.getElementById("low-button");
+  const lowText = document.getElementById("lowText");
+  const lowIcon = document.getElementById("lowIcon");
   if (selectedPriority === priority) {
-    urgentButton.classList.remove('redButton');
-    urgentText.classList.remove('whiteText');
-    urgentIcon.classList.remove('whiteIcon');
-    mediumButton.classList.remove('orangeButton');
-    mediumText.classList.remove('whiteText');
-    mediumIcon.classList.remove('whiteIcon');
-    lowButton.classList.remove('greenButton');
-    lowText.classList.remove('whiteText');
-    lowIcon.classList.remove('whiteIcon');
+    urgentButton.classList.remove("redButton");
+    urgentText.classList.remove("whiteText");
+    urgentIcon.classList.remove("whiteIcon");
+    mediumButton.classList.remove("orangeButton");
+    mediumText.classList.remove("whiteText");
+    mediumIcon.classList.remove("whiteIcon");
+    lowButton.classList.remove("greenButton");
+    lowText.classList.remove("whiteText");
+    lowIcon.classList.remove("whiteIcon");
     selectedPriority = null;
-    console.log('Priority deselected');
+    console.log("Priority deselected");
     return;
   }
-  urgentButton.classList.remove('redButton');
-  urgentText.classList.remove('whiteText');
-  urgentIcon.classList.remove('whiteIcon');
-  mediumButton.classList.remove('orangeButton');
-  mediumText.classList.remove('whiteText');
-  mediumIcon.classList.remove('whiteIcon');
-  lowButton.classList.remove('greenButton');
-  lowText.classList.remove('whiteText');
-  lowIcon.classList.remove('whiteIcon');
-  if (priority === 'urgent') {
-    urgentButton.classList.add('redButton');
-    urgentText.classList.add('whiteText');
-    urgentIcon.classList.add('whiteIcon');
-  } else if (priority === 'medium') {
-    mediumButton.classList.add('orangeButton');
-    mediumText.classList.add('whiteText');
-    mediumIcon.classList.add('whiteIcon');
-  } else if (priority === 'low') {
-    lowButton.classList.add('greenButton');
-    lowText.classList.add('whiteText');
-    lowIcon.classList.add('whiteIcon');
+  urgentButton.classList.remove("redButton");
+  urgentText.classList.remove("whiteText");
+  urgentIcon.classList.remove("whiteIcon");
+  mediumButton.classList.remove("orangeButton");
+  mediumText.classList.remove("whiteText");
+  mediumIcon.classList.remove("whiteIcon");
+  lowButton.classList.remove("greenButton");
+  lowText.classList.remove("whiteText");
+  lowIcon.classList.remove("whiteIcon");
+  if (priority === "urgent") {
+    urgentButton.classList.add("redButton");
+    urgentText.classList.add("whiteText");
+    urgentIcon.classList.add("whiteIcon");
+  } else if (priority === "medium") {
+    mediumButton.classList.add("orangeButton");
+    mediumText.classList.add("whiteText");
+    mediumIcon.classList.add("whiteIcon");
+  } else if (priority === "low") {
+    lowButton.classList.add("greenButton");
+    lowText.classList.add("whiteText");
+    lowIcon.classList.add("whiteIcon");
   }
   selectedPriority = priority;
   console.log(`Selected priority: ${selectedPriority}`);
 }
 
 const toggleContactSelection = () => {
-  const contentArea = document.getElementById('contactRender');
-  const arrow = document.querySelector('.dropDownArrow')
-  if (contentArea.classList.contains('d_none')) {
-    contentArea.classList.toggle('d_none');
-    arrow.classList.toggle('turnArrow');
+  const contentArea = document.getElementById("contactRender");
+  const arrow = document.querySelector(".dropDownArrow");
+  if (contentArea.classList.contains("d_none")) {
+    contentArea.classList.toggle("d_none");
+    arrow.classList.toggle("turnArrow");
     renderAddTaskOverlay();
   } else {
-    contentArea.classList.toggle('d_none');
-    arrow.classList.toggle('turnArrow');
+    contentArea.classList.toggle("d_none");
+    arrow.classList.toggle("turnArrow");
   }
-}
+};
 
 const renderAddTaskOverlay = async () => {
-  const loadContacts = await loadData('/contacts');
+  const loadContacts = await loadData("/contacts");
   const contacts = Object.values(loadContacts)
-    .filter(contact => contact.name && contact.email && contact.phone)
+    .filter((contact) => contact.name && contact.email && contact.phone)
     .sort((a, b) => a.name.localeCompare(b.name));
-  const overlay = document.getElementById('contactRender');
+  const overlay = document.getElementById("contactRender");
   overlay.innerHTML = "";
 
   for (let index = 0; index < contacts.length; index++) {
     const person = contacts[index];
-    const initials = person.name.split(' ').slice(0, 2).map(n => n[0]).join('');
+    const initials = person.name
+      .split(" ")
+      .slice(0, 2)
+      .map((n) => n[0])
+      .join("");
     const randomColor = colors[Math.floor(Math.random() * colors.length)];
     overlay.innerHTML += getOverlayAddTask(person, initials, randomColor, index);
   }
-}
+};
 
 const getOverlayAddTask = (user, initials, color, index) => {
   return /*html*/`
@@ -106,7 +110,7 @@ const getOverlayAddTask = (user, initials, color, index) => {
               </form>
             </div>
       `;
-}
+};
 
 const addContactToArray = async (index) => {
   const loadContacts = await loadData('/contacts');
@@ -124,65 +128,156 @@ const addContactToArray = async (index) => {
 }
 
 function toggleAddTaskOverlay() {
-  const overlay = document.getElementById('overlayAddTask');
-  if (overlay.classList.contains('d_none')) {
-    overlay.classList.remove('d_none');
-    overlay.classList.remove('slide-out');
-    overlay.classList.add('slide-in');
+  const overlay = document.getElementById("overlayAddTask");
+  if (overlay.classList.contains("d_none")) {
+    overlay.classList.remove("d_none");
+    overlay.classList.remove("slide-out");
+    overlay.classList.add("slide-in");
   } else {
-    overlay.classList.remove('slide-in');
-    overlay.classList.add('slide-out');
+    overlay.classList.remove("slide-in");
+    overlay.classList.add("slide-out");
     setTimeout(() => {
-      overlay.classList.add('d_none');
-      overlay.classList.remove('slide-out');
+      overlay.classList.add("d_none");
+      overlay.classList.remove("slide-out");
     }, 1000);
   }
 }
 
 function triggerInputButtons() {
-  const inputField = document.getElementById('subtaskInputId');
-  const buttons = document.getElementById('deleteOrSave');
-  const addIcon = document.getElementById('addIconId');
+  const inputField = document.getElementById("subtaskInputId");
+  const buttons = document.getElementById("deleteOrSave");
+  const addIcon = document.getElementById("addIconId");
 
   if (inputField.value.length > 0) {
-    buttons.classList.remove('d_none');
-    buttons.classList.add('deleteOrSaveBtn');
-    addIcon.classList.add('d_none');
+    buttons.classList.remove("d_none");
+    buttons.classList.add("deleteOrSaveBtn");
+    addIcon.classList.add("d_none");
   } else if (inputField.value.length <= 0) {
-    buttons.classList.add('d_none');
-    buttons.classList.remove('deleteOrSaveBtn');
-    addIcon.classList.remove('d_none');
+    buttons.classList.add("d_none");
+    buttons.classList.remove("deleteOrSaveBtn");
+    addIcon.classList.remove("d_none");
   }
 }
 
 const deleteInput = () => {
-  document.getElementById('subtaskInputId').value = "";
+  document.getElementById("subtaskInputId").value = "";
   triggerInputButtons();
-}
+};
 
 const addSubtaskToArray = () => {
-  const inputField = document.getElementById('subtaskInputId').value;
+  const inputField = document.getElementById("subtaskInputId").value;
   subtaskArray.push(inputField);
   deleteInput();
   renderSubtask();
-}
+};
 
 const deleteSubtask = (i) => {
-  subtaskArray.splice(i, 1)
+  subtaskArray.splice(i, 1);
   renderSubtask();
-}
+};
 
-const renderSubtask = () => {
-  const subTaskContent = document.getElementById('subtasksContentId');
-  subTaskContent.innerHTML = "";
-  for (let index = 0; index < subtaskArray.length; index++) {
-    const task = subtaskArray[index];
-    subTaskContent.innerHTML += getSubtask(task, index)
+const renderSubtask = () => {};
+
+const renderNotesIntoTaskArray = async () => {
+  try {
+    const databaseJson = await loadData("/tasks");
+    const content = document.getElementById("tasksContent");
+    content.innerHTML = "";
+
+    const filteredTasks = Object.values(databaseJson).filter(
+      (task) =>
+        task.type &&
+        task.title &&
+        task.description &&
+        task.subtask &&
+        task.users &&
+        task.prio
+    );
+
+    if (databaseJson) {
+      Object.keys(databaseJson).forEach((key) => {
+        taskArray.push({
+          id: key,
+          type: databaseJson[key].type,
+          title: databaseJson[key].title,
+          description: databaseJson[key].description,
+          subtask: databaseJson[key].subtask,
+          users: databaseJson[key].users,
+          prio: databaseJson[key].prio,
+        });
+      });
+    }
+  } catch (error) {
+    console.error("Failed to load tasks in renderNotes", error);
+    // Optional: Benutzerbenachrichtigung hinzufügen
+    const content = document.getElementById("tasksContent");
+    content.innerHTML =
+      "<p>Fehler beim Laden der Aufgaben. Bitte versuchen Sie es später erneut.</p>";
   }
+};
+
+function searchTaskNotes() {
+  function searchTaskNotes() {
+    document.getElementById("input").addEventListener("input", function () {
+      let lowCase = this.value.toLowerCase();
+      const noResults = document.getElementById("tooltip");
+      let hasResults = false;
+
+      taskArray.taskNotes.forEach((taskNote) => {
+        let title = taskNote.getAttribute("data-title").toLowerCase();
+        let description = taskNote.getAttribute("description").toLowerCase();
+        if (title.includes(lowCase) || description.includes(lowCase)) {
+          taskNote.style.display = "";
+          hasResults = true;
+        } else {
+          taskNote.style.display = "none";
+        }
+      });
+
+      if (hasResults) {
+        noResults.style.opacity = "0";
+      } else {
+        noResults.style.opacity = "1";
+      }
+    });
+  }
+
+  function updateProgress() {
+    const subtaskAmount = document.getElementById("subtaskAmount");
+    const totalTasks = subtasksArray.length;
+    const subtaskDiv = document.getElementById("subtask-div");
+
+    if (totalTasks === 0) {
+      subtaskDiv.style.display = "none";
+      return;
+    } else {
+      subtaskDiv.style.display = "block";
+    }
+
+    const completedTasks = 0;
+
+    subtasksArray.forEach((task) => {
+      const checkbox = document.getElementById(task.id);
+      if (checkbox.checked) completedTasks++;
+    });
+    const progressPercentage = (completedTasks / totalTasks) * 100;
+
+    const progress = document.getElementById("progressBar");
+    progress.style.width = progressPercentage + "%";
+
+    subtaskAmount.innerText = `${completedTasks}/${totalTasks} Subtasks`;
+  }
+
+
+const subTaskContent = document.getElementById("subtasksContentId");
+subTaskContent.innerHTML = "";
+for (let index = 0; index < subtaskArray.length; index++) {
+  const task = subtaskArray[index];
+  subTaskContent.innerHTML += getSubtask(task, index);
 }
 
 const getSubtask = (taskName, index) => {
-  return /*html*/`
+  return /*html*/ `
       <div class="subtaskSingle">
         <p>ּ• ${taskName}</p>
         <div class="editDeleteButtons">
@@ -191,23 +286,23 @@ const getSubtask = (taskName, index) => {
           <img class="pointer" onclick="deleteSubtask(${index})" src="../assets/icon/delete.svg" alt="">
         </div>
       </div>
-  `
-}
+  `;
+};
 const editSubtask = (index) => {
-  const subTaskContent = document.getElementById('subtasksContentId');
+  const subTaskContent = document.getElementById("subtasksContentId");
   subTaskContent.innerHTML = "";
   subTaskContent.innerHTML = getEditSubtask(index);
-  document.getElementById('editInput').value = subtaskArray[index];
-}
+  document.getElementById("editInput").value = subtaskArray[index];
+};
 
 const saveEditSubtask = (i) => {
-  const editSubtask = document.getElementById('editInput').value;
+  const editSubtask = document.getElementById("editInput").value;
   subtaskArray[i] = editSubtask;
   renderSubtask();
-}
+};
 
 const getEditSubtask = (index) => {
-  return /*html*/`
+  return /*html*/ `
     <div class="editSubtaskDiv">
       <input type="text" id="editInput">
       <div class="editSubtask">
@@ -223,7 +318,54 @@ const getEditSubtask = (index) => {
           </svg>
         </div>
     </div>
-  `
+  `;
+};
+
+
+
+function renderNotes() {
+  const contentRef1 = document.getElementById("content-to-do");
+  const contentRef2 = document.getElementById("content-progress");
+  const contentRef3 = document.getElementById("content-feedback");
+  const contentRef4 = document.getElementById("content-done");
+
+  contentRef1.innerHTML = "";
+  contentRef2.innerHTML = "";
+  contentRef3.innerHTML = "";
+  contentRef4.innerHTML = "";
+
+  if (taskArray.area === contentRef1) {
+    contentRef1.innerHTML += getNoteRef();
+  } else if (taskArray.area === contentRef2) {
+    contentRef2.innerHTML += getNoteRef();
+  } else if (taskArray.area === contentRef3) {
+    contentRef3.innerHTML += getNoteRef();
+  } else if (taskArray.area === contentRef4) {
+    contentRef4.innerHTML += getNoteRef();
+  }
+}
+function getNoteRef() {
+  return /*html*/ `
+        <div class="boardNotesCategory">
+                  <p>${taskArray.type}</p>
+                </div>
+                <div class="boardTitle">${taskArray.title}</div>
+                <div class="boardDescription">${taskArray.description}</div>
+
+                <div id="subtask-div" >
+                  <progress id="progressBar" class="subtaskLoadingBar" value="0" max="100"></progress>
+                  <div id="subtaskAmount" class="subtaskList">${taskArray.subtasks}</div>
+                </div>
+
+                <div class="boardNotesFooter">
+                  <div class="boardNotesContacts">
+                  ${taskArray.description}
+                  </div>
+                  <div class="boardNotesPrio">${taskArray.prio}</div>
+                </div>
+              </div>
+            </div>
+`;
 }
 
 const addTaskToFirebase = () => {
