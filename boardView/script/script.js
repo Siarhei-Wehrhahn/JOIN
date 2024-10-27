@@ -1,4 +1,5 @@
 let subtaskArray = [];
+let contactArrayAddTask = [];
 
 function allowDrop(ev) {
   ev.preventDefault();
@@ -91,20 +92,35 @@ const renderAddTaskOverlay = async () => {
     const person = contacts[index];
     const initials = person.name.split(' ').slice(0, 2).map(n => n[0]).join('');
     const randomColor = colors[Math.floor(Math.random() * colors.length)];
-    overlay.innerHTML += getOverlayAddTask(person, initials, randomColor);
+    overlay.innerHTML += getOverlayAddTask(person, initials, randomColor, index);
   }
 }
 
-const getOverlayAddTask = (user, initials, color) => {
+const getOverlayAddTask = (user, initials, color, index) => {
   return /*html*/`
             <div class="contact">
               <p id="initialsOverlay" style="background-color: ${color};">${initials}</p>
               <p id="contactName">${user.name}</p>
               <form>
-                <input type="checkbox" id="exampleCheckbox" name="exampleCheckbox">
+                <input onchange="addContactToArray(${index})" type="checkbox" id="exampleCheckbox" name="exampleCheckbox">
               </form>
             </div>
       `;
+}
+
+const addContactToArray = async (index) => {
+  const loadContacts = await loadData('/contacts');
+  const contacts = Object.values(loadContacts)
+    .filter(contact => contact.name && contact.email && contact.phone)
+    .sort((a, b) => a.name.localeCompare(b.name));
+  const contact = contacts[index];
+  if(!contactArrayAddTask.contains(contact)) {
+    contactArrayAddTask.push(contact);
+  } else {
+    let contactIndex = contactArrayAddTask.findIndex(contact => contact == contact)
+    contactArrayAddTask.splice(contactIndex, 1)
+  }
+  console.log(contactArrayAddTask);
 }
 
 function toggleAddTaskOverlay() {
@@ -184,8 +200,6 @@ const editSubtask = (index) => {
   document.getElementById('editInput').value = subtaskArray[index];
 }
 
-//TODO löschen funktion in der edit funktion geht nicht richtig und die addTask function
-
 const saveEditSubtask = (i) => {
   const editSubtask = document.getElementById('editInput').value;
   subtaskArray[i] = editSubtask;
@@ -210,4 +224,10 @@ const getEditSubtask = (index) => {
         </div>
     </div>
   `
+}
+
+const addTaskToFirebase = () => {
+  const title = document.getElementById('titleInputId').value;
+  const description = document.getElementById('descriptionInputId').value;
+
 }

@@ -176,6 +176,10 @@
   flex-direction: row;
 }
 
+.contact:hover {
+  background-color: rgba(100, 100, 100, 0.1);
+}
+
 .containerDescription img {
   position: absolute;
   top: 57%;
