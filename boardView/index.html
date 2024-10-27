@@ -19,12 +19,16 @@
     <section class="upper-sec">
       <h1>Board</h1>
       <div class="upper-sec-right">
-        <div onsubmit="searchNotes()" class="search-div">
+        <div class="search-div">
+
+          <div class="input-div">
           <input id="input" type="text" placeholder="Find task" />
+          <div id="tooltip" class="tooltip">No Results</div>
+          </div>
+
           <button type="submit">
             <img src="/assets/icon/search-icon.svg" alt="">
           </button>
-          <div class="tooltip">No Task found</div>
         </div>
 
         <button id="add-task" class="add-task" onclick="toggleAddTaskOverlay()">
@@ -69,14 +73,18 @@
                 <div class="boardTitle">CSS Architecture Planning</div>
                 <div class="boardDescription">Define CSS naming conventions and structure.</div>
 
-                <div class="subtask-div">
+                <div id="subtask-div" >
                   <progress id="progressBar" class="subtaskLoadingBar" value="0" max="100"></progress>
-                  <div class="subtaskList">2/2 Subtasks</div>
+                  <div id="subtaskAmount" class="subtaskList"></div>
                 </div>
 
                 <div class="boardNotesFooter">
-                  <div class="boardNotesContacts"></div>
-                  <div class="boardNotesPrio"></div>
+                  <div class="boardNotesContacts">
+                    <div class="d">AM</div>
+                    <div class="d">EM</div>
+                    <div class="d">MB</div>
+                  </div>
+                  <div class="boardNotesPrio">pp</div>
                 </div>
               </div>
             </div>
