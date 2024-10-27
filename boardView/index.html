@@ -7,8 +7,6 @@
   <link rel="stylesheet" href="styles/standart.css" />
   <link rel="stylesheet" href="/boardView/styles/board.css" />
   <link rel="stylesheet" href="/boardView/styles/overlayAddTask.css" />
-  <link rel="stylesheet" href="/boardView/styles/noteOverlay.css" />
-  <link rel="stylesheet" href="/boardView/styles/boardNote.css" />
   <script src="../loginView/scripts/firebase-realtime.js"></script>
 
   <title>Board</title>
@@ -20,12 +18,7 @@
       <h1>Board</h1>
       <div class="upper-sec-right">
         <div class="search-div">
-
-          <div class="input-div">
           <input id="input" type="text" placeholder="Find task" />
-          <div id="tooltip" class="tooltip">No Results</div>
-          </div>
-
           <button type="submit">
             <img src="/assets/icon/search-icon.svg" alt="">
           </button>
@@ -62,35 +55,7 @@
         </div>
         <div class="lower-column">
           <div class="no-task">No tasks To do</div>
-          <div class="content" id="content-progress">
-
-            <div class="boardNotes">
-              <div class="boardNotesContent"> 
-
-                <div class="boardNotesCategory">
-                  <p>Technical Task</p>
-                </div>
-                <div class="boardTitle">CSS Architecture Planning</div>
-                <div class="boardDescription">Define CSS naming conventions and structure.</div>
-
-                <div id="subtask-div" >
-                  <progress id="progressBar" class="subtaskLoadingBar" value="0" max="100"></progress>
-                  <div id="subtaskAmount" class="subtaskList"></div>
-                </div>
-
-                <div class="boardNotesFooter">
-                  <div class="boardNotesContacts">
-                    <div class="d">AM</div>
-                    <div class="d">EM</div>
-                    <div class="d">MB</div>
-                  </div>
-                  <div class="boardNotesPrio">pp</div>
-                </div>
-              </div>
-            </div>
-
-
-          </div>
+          <div class="content" id="content1"></div>
         </div>
       </div>
 
@@ -117,7 +82,6 @@
       </div>
 
     </section>
-
     <div class="overlay d_none slide-out" id="overlayAddTask">
       <div class="header">
         <h1 class="headerHeadline">Add Task</h1>

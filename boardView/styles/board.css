@@ -22,17 +22,16 @@ main {
 }
 .search-div {
   display: flex;
+  align-items: center;
 }
 .search-div button {
   border: none;
-  margin-top:12px;
   margin-left: -60px;
   margin-right: 60px;
   border-left: solid 0.5px rgb(197, 197, 197);
   height: 24px;
   width: 32px;
   padding-left: 16px;
-  z-index: 1;
 }
 h1 {
   font-size: 60px;
@@ -40,11 +39,10 @@ h1 {
 input {
   width: 320px;
   height: 44px;
-  background-color:transparent;
   border: solid 0.5px rgb(141, 141, 141);
   border-radius: 10px;
   cursor: pointer;
-  z-index: 2;
+  
 }
 
 input::placeholder {
@@ -119,28 +117,3 @@ input::placeholder {
   justify-content: center;
   align-items: center;
 }
-.input-div {
-  display:flex;
-  flex-direction: column;
-}
-.search-div .tooltip {
-  color:rgb(0, 0, 0);
-  font-size: 24px;
-  font-weight:600;
-  background-color:rgb(231, 231, 231);
-  border: dashed 1px rgb(163, 163, 163);
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 9px;
-  padding-right: 9px;
-  margin-top:8px;
-  border-radius: 8px;
-  opacity: 0;
-  transition: opacity 0.30s;
-  pointer-events: none;
-  white-space: nowrap;
-  display:flex;
-  justify-content: center;
-  align-items: center;
-}
-
