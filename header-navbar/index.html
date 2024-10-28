@@ -16,10 +16,11 @@
   <link rel="stylesheet" href="../contactsView/style/contact.css">
   <link rel="stylesheet" href="../contactsView/style/responsive-contact.css">
   <script src="../contactsView/script/script.js"></script>
-  <script src="./script.js" defer></script>
+  <script src="./script/script.js" defer></script>
+  <script src="../boardView/script/script.js"></script>
   <script src="../contactsView/script/script.js" defer></script>
   <script src="../loginView/scripts/firebase-realtime.js"></script>
-  <title>Document</title>
+  <title>Header-Navbar</title>
 </head>
 <body>
   <div class="leftSide" id="leftSideId">
@@ -38,12 +39,12 @@
             <p>Add task</p>
           </div>
 
-          <div class="board-button">
+          <div class="board-button" onclick="loadBoardView()">
             <img class="nav-icon" src="../assets/icon/board-icon.svg" alt="" />
             <p>Board</p>
           </div>
 
-          <div class="contacts-button">
+          <div class="contacts-button" onclick="loadContactsView()">
             <img class="nav-icon" src="../assets/icon/contacts-icon.svg" alt="" />
             <p>Contacts</p>
           </div>
@@ -57,13 +58,13 @@
     </nav>
   </div>
   <div class="rightSide" id="rightSideId">
-    <header>
+    <header id="headerId">
       <h4>Kanban Project Management Tool</h4>
       <div class="header-div">
         <a href="">
           <img class="question-icon" src="../assets/icon/default-icon.svg" alt="" />
         </a>
-        <img class="mobile-logo" src="/assets/img/logo-black.svg" alt="" />
+        <img class="mobile-logo" src="../assets/img/logo-black.svg" alt="" />
 
         <div class="account" onclick="">
           <p>SM</p>
@@ -73,5 +74,4 @@
 
     <div id="contentArea"></div>
 </body>
-
 </html>

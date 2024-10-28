@@ -59,7 +59,7 @@
   .add-tast-button,
   .board-button,
   .contacts-button {
-    margin-left: 40%;
+    padding-left: 40%;
   }
 }
 @media (max-width: 850px) {
@@ -67,13 +67,15 @@
   .add-tast-button,
   .board-button,
   .contacts-button {
-    margin-left: 30%;
+    padding-left: 30%;
   }
   .logo {
     width: 68px;
     margin-top: 68px;
   }
 }
+
+
 
 /* Mobile ab 768px */
 
@@ -129,7 +131,7 @@
     height: 72%;
     width: 12%;
     margin: 0%;
-    border: solid 2px black;
+
     border-radius: 20px;
     padding: 8px;
   }

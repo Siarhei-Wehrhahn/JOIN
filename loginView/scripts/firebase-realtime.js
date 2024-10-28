@@ -1,3 +1,5 @@
+let users = []
+
 const onloadFunc = () => {
   loadData();
 };
@@ -18,8 +20,18 @@ const postData = async (path = "", data = {}) => {
     },
     body: JSON.stringify(data),
   });
-  return (responseToJson = await response.json());
+  return await response.json();
 };
+
+const editContact = async (id, data = {}) => {
+  await fetch(base_url + `/contacts/${id}` + ".json", {
+    method: "PUT",
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data)
+  })
+}
 
 const deleteData = async (path = "") => {
     let response = await fetch(base_url + path + ".json", {
@@ -32,7 +44,12 @@ const loadUser = async () => {
     const usersData = loadData("/users");
     if(usersData) {
         Object.keys(usersData).forEach( key => {
-            console.log(usersData[key]['name'])
+            users.push( {
+              id: key,
+              name: usersData[key]['name'],
+              email: usersData[key]['email'],
+              phone: usersData[key]['phone']
+            })
         })
     } else {
         console.log("Userdata load failed!");
@@ -47,7 +64,7 @@ const signUpNewUser = async () => {
     const user = { name: nameInput, email: emailInput, passwort: passwordInput };
   
     if (passwordInput != passwordConfirmInput) {
-      alert("Dein Passwort stimmt nicht überein!");
+      alert("Dein Passwort stimmt nicht Ã¼berein!");
       passwordInput = "";
       passwordConfirmInput = "";
       return;
