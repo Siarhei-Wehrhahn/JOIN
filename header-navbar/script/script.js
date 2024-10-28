@@ -66,6 +66,15 @@ function loadBoardView() {
         .catch(error => console.error('Error loading content:', error));
 }
 
+function loadLoginView() {
+    fetch('../loginView/index.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('contentArea').innerHTML = data;
+        })
+        .catch(error => console.error('Error loading content:', error));
+}
+
 const renderContacts = async () => {
     try {
         const databaseJson = await loadData('/contacts');

@@ -88,7 +88,7 @@ const addContactToArray = async (index) => {
   const contacts = Object.values(loadContacts)
     .filter(contact => contact.name && contact.email && contact.phone)
     .sort((a, b) => a.name.localeCompare(b.name));
-  
+
   const contact = contacts[index];
   let contactIndex = contactArrayAddTask.findIndex(c => c.email === contact.email);
 
@@ -204,7 +204,14 @@ const renderNotesIntoTaskArray = async () => {
   try {
     const databaseJson = await loadData("/tasks");
     const todo = document.getElementById("contentTodo");
+    const progress = document.getElementById("contentProgress");
+    const feedback = document.getElementById("contentFeedback");
+    const done = document.getElementById("contentDone");
+
     todo.innerHTML = "";
+    progress.innerHTML = "";
+    feedback.innerHTML = "";
+    done.innerHTML = "";
 
     if (databaseJson) {
       Object.keys(databaseJson).forEach((key) => {
@@ -223,10 +230,31 @@ const renderNotesIntoTaskArray = async () => {
 
       for (let index = 0; index < taskArray.length; index++) {
         const task = taskArray[index];
-        todo.innerHTML += getNoteRef(task);
+        switch (task.area) {
+          case 'toDo':
+            todo.innerHTML += getNoteRef(task);
+            break;
+          case 'progress':
+            progress.innerHTML += getNoteRef(task);
+            break;
+          case 'feedback':
+            feedback.innerHTML += getNoteRef(task);
+            break;
+          case 'done':
+            done.innerHTML += getNoteRef(task);
+            break;
+          default:
+            todo.innerHTML += /*html*/`<div class="no-task">No tasks To do</div>`;
+            progress.innerHTML += /*html*/`<div class="no-task">No tasks in progress</div>`;
+            feedback.innerHTML += /*html*/`<div class="no-task">No tasks in feedback</div>`;
+            done.innerHTML += /*html*/`<div class="no-task">No tasks done</div>`;
+        }
       }
     } else {
-      todo.innerHTML = /*html*/`<div class="no-task">No tasks To do</div>`
+      todo.innerHTML = /*html*/`<div class="no-task">No tasks To do</div>`;
+      progress.innerHTML = /*html*/`<div class="no-task">No tasks in progress</div>`;
+      feedback.innerHTML = /*html*/`<div class="no-task">No tasks in feedback</div>`;
+      done.innerHTML = /*html*/`<div class="no-task">No tasks done</div>`;
     }
   } catch (error) {
     console.error("Failed to load tasks in renderNotes", error);
@@ -237,7 +265,7 @@ const renderNotesIntoTaskArray = async () => {
 
 function getNoteRef(task) {
   return /*html*/ `
-            <div draggable="true" ondragstart="drag(event) class="boardNotesCategory">
+            <div draggable="true" ondragstart="drag(event)" class="boardNotesCategory">
                   <p>${task.category}</p>
                 </div>
                 <div class="boardTitle">${task.title}</div>

@@ -128,11 +128,8 @@
   box-sizing: border-box;
   position: relative;
   display: flex;
-  /* Flexbox aktivieren */
   align-items: flex-start;
-  /* Text an den oberen Rand ausrichten */
   line-height: 1.5;
-  /* Zeilenhöhe für bessere Lesbarkeit */
 }
 
 .description::placeholder {
@@ -337,9 +334,9 @@ form {
   align-items: center;
   flex-direction: row;
   gap: 10px;
-  position: absolute;
-  top: 67.4%;
-  right: 5.5%;
+  position: relative;
+  top: -29%;
+  right: -35.5%;
 }
 
 .subtasksContent {
@@ -454,6 +451,10 @@ form {
   right: 13%;
 }
 
+#checkSubtasks {
+  cursor: pointer;
+}
+
 @media(max-height: 900px) {
   .headerHeadline {
     margin-top: 10px;
@@ -498,13 +499,15 @@ form {
   }
 
   .deleteOrSaveBtn {
-    top: 74.7%;
+    top: -30%;
+    right: -32%;
   }
 }
 
 @media(max-width: 1150px) {
   .deleteOrSaveBtn {
-    top: 71%;
+    top: -31%;
+    right: -30%;
   }
 }
 
@@ -516,6 +519,7 @@ form {
 
 @media(max-width: 768px) {
   .deleteOrSaveBtn {
-    top: 57%;
+    top: -38%;
+    right: -28%;
   }
 }
