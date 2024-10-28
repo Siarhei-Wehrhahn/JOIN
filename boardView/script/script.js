@@ -1,4 +1,4 @@
-let subtaskArray = [];
+let subtasksArray = [];
 let contactArrayAddTask = [];
 let selectedPriority = null;
 let selectedCategory = '';
