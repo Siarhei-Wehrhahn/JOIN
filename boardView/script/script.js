@@ -71,14 +71,47 @@ function selectPriority(priority) {
 const toggleContactSelection = () => {
   const contentArea = document.getElementById("contactRender");
   const arrow = document.querySelector(".dropDownArrow");
+
   if (contentArea.classList.contains("d_none")) {
     contentArea.classList.toggle("d_none");
     arrow.classList.toggle("turnArrow");
     renderAddTaskOverlay();
+    updateCheckboxes();
   } else {
     contentArea.classList.toggle("d_none");
     arrow.classList.toggle("turnArrow");
   }
+};
+
+const addContactToArray = async (index) => {
+  const loadContacts = await loadData('/contacts');
+  const contacts = Object.values(loadContacts)
+    .filter(contact => contact.name && contact.email && contact.phone)
+    .sort((a, b) => a.name.localeCompare(b.name));
+  
+  const contact = contacts[index];
+  let contactIndex = contactArrayAddTask.findIndex(c => c.email === contact.email);
+
+  if (contactIndex === -1) {
+    contactArrayAddTask.push(contact);
+  } else {
+    contactArrayAddTask.splice(contactIndex, 1);
+  }
+
+  document.querySelector(`#checkbox-${index}`).checked = contactIndex === -1;
+};
+
+const updateCheckboxes = async () => {
+  const loadContacts = await loadData('/contacts');
+  const contacts = Object.values(loadContacts)
+    .filter(contact => contact.name && contact.email && contact.phone)
+    .sort((a, b) => a.name.localeCompare(b.name));
+
+  contacts.forEach((contact, index) => {
+    const isSelected = contactArrayAddTask.some(c => c.email === contact.email);
+    const checkbox = document.querySelector(`#checkbox-${index}`);
+    if (checkbox) checkbox.checked = isSelected;
+  });
 };
 
 const renderAddTaskOverlay = async () => {
@@ -96,37 +129,26 @@ const renderAddTaskOverlay = async () => {
       .slice(0, 2)
       .map((n) => n[0])
       .join("");
-    const randomColor = colors[Math.floor(Math.random() * colors.length)];
-    overlay.innerHTML += getOverlayAddTask(person, initials, randomColor, index);
+    overlay.innerHTML += getOverlayAddTask(person, initials, index);
   }
 };
 
-const getOverlayAddTask = (user, initials, color, index) => {
+const getOverlayAddTask = (user, initials, index) => {
+  const color = colors[index % colors.length];
   return /*html*/`
-            <div class="contact">
-              <p id="initialsOverlay" style="background-color: ${color};">${initials}</p>
-              <p id="contactName">${user.name}</p>
-              <form>
-                <input onchange="addContactToArray(${index})" type="checkbox" id="exampleCheckbox" name="exampleCheckbox">
-              </form>
-            </div>
-      `;
+    <div class="contact">
+      <p id="initialsOverlay" style="background-color: ${color};">${initials}</p>
+      <p id="contactName">${user.name}</p>
+      <form>
+        <input onchange="addContactToArray(${index})" 
+               type="checkbox" 
+               class="contact-checkbox" 
+               id="checkbox-${index}" 
+               data-index="${index}">
+      </form>
+    </div>
+  `;
 };
-
-const addContactToArray = async (index) => {
-  const loadContacts = await loadData('/contacts');
-  const contacts = Object.values(loadContacts)
-    .filter(contact => contact.name && contact.email && contact.phone)
-    .sort((a, b) => a.name.localeCompare(b.name));
-  const contact = contacts[index];
-  let contactIndex = contactArrayAddTask.findIndex(c => c.email === contact.email);
-
-  if (contactIndex == -1 || contactArrayAddTask[contactIndex].email != contact.email) {
-    contactArrayAddTask.push(contact);
-  } else {
-    contactArrayAddTask.splice(contactIndex, 1);
-  }
-}
 
 function toggleAddTaskOverlay() {
   const overlay = document.getElementById("overlayAddTask");

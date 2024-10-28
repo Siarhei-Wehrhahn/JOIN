@@ -119,7 +119,7 @@ input::placeholder {
   flex-direction: column;
   align-items: center;
   justify-content: start;
-  height: 100%;
+  height: 89.9%;
 }
 
 .no-task {
@@ -136,4 +136,6 @@ input::placeholder {
 
 #contentTodo {
   width: 100%;
+  height: 100%;
+  overflow-y: auto;
 }
