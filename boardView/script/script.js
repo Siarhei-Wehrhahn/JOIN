@@ -287,6 +287,7 @@ const getSubtask = (taskName, index) => {
       </div>
   `;
 };
+
 const editSubtask = (index) => {
   const subTaskContent = document.getElementById("subtasksContentId");
   subTaskContent.innerHTML = "";
@@ -323,10 +324,10 @@ const getEditSubtask = (index) => {
 
 
 function renderNotes() {
-  const contentRef1 = document.getElementById("content-to-do");
-  const contentRef2 = document.getElementById("content-progress");
-  const contentRef3 = document.getElementById("content-feedback");
-  const contentRef4 = document.getElementById("content-done");
+  const toDo = document.getElementById("content-to-do");
+  const progress = document.getElementById("content-progress");
+  const feedback = document.getElementById("content-feedback");
+  const done = document.getElementById("content-done");
 
   contentRef1.innerHTML = "";
   contentRef2.innerHTML = "";
@@ -334,13 +335,13 @@ function renderNotes() {
   contentRef4.innerHTML = "";
 
   if (taskArray.area === contentRef1) {
-    contentRef1.innerHTML += getNoteRef();
+    toDo.innerHTML += getNoteRef();
   } else if (taskArray.area === contentRef2) {
-    contentRef2.innerHTML += getNoteRef();
+    progress.innerHTML += getNoteRef();
   } else if (taskArray.area === contentRef3) {
-    contentRef3.innerHTML += getNoteRef();
+    feedback.innerHTML += getNoteRef();
   } else if (taskArray.area === contentRef4) {
-    contentRef4.innerHTML += getNoteRef();
+    done.innerHTML += getNoteRef();
   }
 }
 function getNoteRef() {
@@ -385,4 +386,4 @@ document.addEventListener('click', (event) => {
   if (!arrow.contains(event.target)) {
     arrow.classList.remove('turnArrow');
   }
-});
+})}

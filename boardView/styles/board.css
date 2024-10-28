@@ -32,6 +32,7 @@ main {
   height: 24px;
   width: 32px;
   padding-left: 16px;
+  background-color: white;;
 }
 h1 {
   font-size: 60px;
