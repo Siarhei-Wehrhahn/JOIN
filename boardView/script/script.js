@@ -265,7 +265,9 @@ const renderNotesIntoTaskArray = async () => {
 
 function getNoteRef(task) {
   return /*html*/ `
-            <div draggable="true" ondragstart="drag(event)" class="boardNotesCategory">
+            <div draggable="true" ondragstart="drag(event)" class="boardNotes" onclick="renderTaskOverlay()">
+              <div class="boardNotesContent">
+                <div class="boardNotesCategory">
                   <p>${task.category}</p>
                 </div>
                 <div class="boardTitle">${task.title}</div>
