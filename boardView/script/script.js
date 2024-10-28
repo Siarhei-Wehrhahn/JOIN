@@ -131,6 +131,7 @@ const addContactToArray = async (index) => {
 function toggleAddTaskOverlay() {
   const overlay = document.getElementById("overlayAddTask");
   if (overlay.classList.contains("d_none")) {
+    resetInputAddTask();
     overlay.classList.remove("d_none");
     overlay.classList.remove("slide-out");
     overlay.classList.add("slide-in");
@@ -356,15 +357,19 @@ const addTaskToFirebase = () => {
     area: "toDo"
   }
   postData("/tasks", taskObject);
-  title = "";
-  description = "";
+  resetInputAddTask();
+  toggleAddTaskOverlay();
+  renderNotesIntoTaskArray();
+}
+
+const resetInputAddTask = () => {
+  document.getElementById('titleInputId').value = "";
+  document.getElementById('descriptionInputId').value = "";
+  document.getElementById('dateInput').value = "";
   contactArrayAddTask = [];
-  dueDate = "";
   selectedPriority = "middle";
   selectedCategory = "";
   subtaskArray = [];
-  toggleAddTaskOverlay();
-  renderNotesIntoTaskArray();
 }
 
 function updateInputValue() {
@@ -383,4 +388,3 @@ document.addEventListener('click', (event) => {
     arrow.classList.remove('turnArrow');
   }
 });
-
