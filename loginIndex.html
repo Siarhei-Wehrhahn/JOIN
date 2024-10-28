@@ -5,11 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="../assets/icon/Capa 1.png">
-    <link rel="stylesheet" href="./styles/assets.css">
-    <link rel="stylesheet" href="./styles/style.css">
-    <script src="scripts/script.js"></script>
+    <link rel="icon" type="image/png" href="assets/icon/Capa 1.png">
+    <link rel="stylesheet" href="./loginView/styles/assets.css">
+    <link rel="stylesheet" href="./loginView/styles/style.css">
+    <script src="./loginView/scripts/script.js" defer></script>
 </head>
 
 <body onload="onloadFunc()">
@@ -37,7 +36,7 @@
             </label>
             <div class="loginButtons">
                 <p class="blueBtn" onclick="signIn()">Log in</p>
-                <p class="outlinedText">Guest Log in</p>
+                <p onclick="signUpGuestUser()" href="./header-navbar/index.html" class="outlinedText">Guest Log in</p>
             </div>
         </div>
 
@@ -66,9 +65,7 @@
         <p>Privacy Policy</p>
         <p>Legal Notice</p>
     </footer>
-    <script type="module" src="scripts/firebase.js"></script>
-    <script type="module" src="./scripts/firebase-firestore.js"></script>
-    <script src="./scripts/firebase-realtime.js"></script>    
+    <script src="loginView/scripts/firebase-realtime.js"></script>    
 </body>
 
 </html>

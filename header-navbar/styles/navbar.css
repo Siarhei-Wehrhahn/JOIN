@@ -42,11 +42,19 @@ nav {
   flex-direction: row;
   align-items: center;
   justify-content: start;
-  padding-left: 50%;
-  width: 100%;
+  padding-left:30%;
+  width: 70%;
   cursor: pointer;
   gap: 8px;
   height:68px;
+}
+.summery-button p,
+.add-tast-button p,
+.board-button p,
+.contacts-button p{
+  font-size: 20px;
+  font-weight: 300;
+  color: white;
 }
 
 .summery-button:hover,
@@ -68,11 +76,7 @@ nav {
   height: 32px;
 }
 
-p {
-  font-size: 16px;
-  font-weight: 300;
-  color: white;
-}
+
 
 .nav-links {
   display: flex;

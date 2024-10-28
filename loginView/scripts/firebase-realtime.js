@@ -64,7 +64,7 @@ const signUpNewUser = async () => {
     const user = { name: nameInput, email: emailInput, passwort: passwordInput };
   
     if (passwordInput != passwordConfirmInput) {
-      alert("Dein Passwort stimmt nicht Ã¼berein!");
+      alert("Dein Passwort stimmt nicht Überein!");
       passwordInput = "";
       passwordConfirmInput = "";
       return;
@@ -73,6 +73,13 @@ const signUpNewUser = async () => {
       return;
     }
     postData("/users", user);
+    window.location.href = "header-navbar/index.html"
+  };
+
+  const signUpGuestUser = async () => {
+    const user = { name: "Guest Anonym", email: "guest@guest.guest", passwort: "guest" };
+    postData("/users", user);
+    window.location.href = "header-navbar/index.html"
   };
   
   //TODO: signIn function zu ende schreiben
