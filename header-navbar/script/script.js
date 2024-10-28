@@ -66,8 +66,8 @@ function loadBoardView() {
         .catch(error => console.error('Error loading content:', error));
 }
 
-function loadLoginView() {
-    fetch('../loginView/index.html')
+function loadAddTaskView() {
+    fetch('../addTask/index.html')
         .then(response => response.text())
         .then(data => {
             document.getElementById('contentArea').innerHTML = data;

@@ -394,75 +394,12 @@ const getEditSubtask = (index) => {
   `;
 };
 
-// function renderNotes() {
-//   const toDo = document.getElementById("content-to-do");
-//   const progress = document.getElementById("content-progress");
-//   const feedback = document.getElementById("content-feedback");
-//   const done = document.getElementById("content-done");
-
-//   contentRef1.innerHTML = "";
-//   contentRef2.innerHTML = "";
-//   contentRef3.innerHTML = "";
-//   contentRef4.innerHTML = "";
-
-//   if (taskArray.area === contentRef1) {
-//     toDo.innerHTML += getNoteRef();
-//   } else{
-//     toDo.innerHTML += noTasksTodo();
-//   }
-//   if (taskArray.area === contentRef2) {
-//     progress.innerHTML += getNoteRef();
-//   } else{
-//     progress.innerHTML += noTasksTodo();
-//   }
-//   if (taskArray.area === contentRef3) {
-//     feedback.innerHTML += getNoteRef();
-//   } else{
-//     feedback.innerHTML += noTasksTodo();
-//   }
-//   if (taskArray.area === contentRef4) {
-//     done.innerHTML += getNoteRef();
-//   } else {
-//     done.innerHTML += noTasksTodo();
-//   }
-// }
-
-// function noTasksTodo() {
-//   return /*html*/`
-//     <div class="no-task">No tasks To do</div>
-//   `
-// }
-
-function getNoteRef() {
-  return /*html*/ `
-            <div class="boardNotes" onclick="renderTaskOverlay()">
-              <div class="boardNotesContent"> 
-                <div class="boardNotesCategory" onclick="toggleTaskNoteOverlay()">
-                  <p>${task.type}</p>
-                </div>
-                <div class="boardTitle">${task.title}</div>
-                <div class="boardDescription">${task.description}</div>
-
-                <div id="subtask-div" >
-                  <progress id="progressBar" class="subtaskLoadingBar" value="0" max="100"></progress>
-                  <div id="subtaskAmount" class="subtaskList">${task.subtasks}</div>
-                </div>
-
-                <div class="boardNotesFooter">
-                  <div class="boardNotesContacts">
-                  ${task.description}
-                  </div>
-                  <div class="boardNotesPrio">${task.prio}</div>
-                </div>
-              </div>
-            </div>
-`;
-}
 function renderTaskOverlay(){
   const taskOverlay = document.getElementById('taskOverlay')
   toggleTaskNoteOverlay();
   taskOverlay.innerHTML = getTaskOverlay();
 }
+
 function getTaskOverlay() {
   return /*html*/ `
 <div class="taskOverlayContent"> 
@@ -528,7 +465,6 @@ function getTaskOverlay() {
   `;
 }
 
-
 const addTaskToFirebase = () => {
   const title = document.getElementById("titleInputId").value;
   const description = document.getElementById("descriptionInputId").value;
@@ -577,7 +513,6 @@ document.addEventListener("click", (event) => {
     arrow.classList.remove("turnArrow");
   }
 });
-
 
 function toggleTaskNoteOverlay() {
   const overlay = document.getElementById('taskOverlay');
