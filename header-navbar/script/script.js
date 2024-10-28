@@ -215,6 +215,7 @@ function toggleOverlay() {
 
 window.onload = () => {
     loadBoardView();
+    renderNotesIntoTaskArray();
 };
 
 function toggleEditOverlay(name) {

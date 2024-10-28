@@ -7,12 +7,15 @@
   <link rel="stylesheet" href="styles/standart.css" />
   <link rel="stylesheet" href="/boardView/styles/board.css" />
   <link rel="stylesheet" href="/boardView/styles/overlayAddTask.css" />
+  <link rel="stylesheet" href="/boardView/styles/noteOverlay.css" />
+  <link rel="stylesheet" href="/boardView/styles/boardNote.css" />
   <script src="../loginView/scripts/firebase-realtime.js"></script>
+  <script src="script/script.js" defer></script>
 
   <title>Board</title>
 </head>
 
-<body onload="onloadFunction()">
+<body>
   <main>
     <section class="upper-sec">
       <h1>Board</h1>
@@ -43,8 +46,7 @@
           </svg>
         </div>
         <div class="lower-column">
-          <div class="no-task">No tasks To do</div>
-          <div class="content" id="content-to-do"></div>
+          <div ondrop="drop(event)" ondragover="allowDrop(event)" class="content" id="contentTodo"></div>
         </div>
       </div>
 
@@ -55,7 +57,7 @@
         </div>
         <div class="lower-column">
           <div class="no-task">No tasks To do</div>
-          <div class="content" id="content1"></div>
+          <div ondrop="drop(event)" ondragover="allowDrop(event)" class="content" id="content1"></div>
         </div>
       </div>
 
@@ -66,7 +68,7 @@
         </div>
         <div class="lower-column">
           <div class="no-task">No tasks To do</div>
-          <div class="content" id="content-feedback"></div>
+          <div ondrop="drop(event)" ondragover="allowDrop(event)" class="content" id="content-feedback"></div>
         </div>
       </div>
 
@@ -77,7 +79,7 @@
         </div>
         <div class="lower-column">
           <div class="no-task">No tasks To do</div>
-          <div class="content" id="content-done"></div>
+          <div ondrop="drop(event)" ondragover="allowDrop(event)" class="content" id="content-done"></div>
         </div>
       </div>
 

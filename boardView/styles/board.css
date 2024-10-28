@@ -4,10 +4,11 @@ body {
 
 main {
   height: 89.5vh;
-  width:100%;
+  width: 100%;
   margin-left: 5%;
   margin-right: 5%;
 }
+
 .upper-sec {
   height: 14%;
   display: flex;
@@ -15,15 +16,18 @@ main {
   justify-content: space-between;
   margin-left: 1%;
   margin-right: 1%;
-  margin-top:80px;
+  margin-top: 80px;
 }
+
 .upper-sec-right {
   display: flex;
 }
+
 .search-div {
   display: flex;
   align-items: center;
 }
+
 .search-div button {
   border: none;
   margin-left: -60px;
@@ -34,16 +38,18 @@ main {
   padding-left: 16px;
   background-color: white;;
 }
+
 h1 {
   font-size: 60px;
 }
+
 input {
   width: 320px;
   height: 44px;
   border: solid 0.5px rgb(141, 141, 141);
   border-radius: 10px;
   cursor: pointer;
-  
+
 }
 
 input::placeholder {
@@ -51,6 +57,7 @@ input::placeholder {
   font-size: 20px;
   padding-left: 16px;
 }
+
 .add-task {
   width: 180px;
   height: 48px;
@@ -63,19 +70,23 @@ input::placeholder {
   align-items: center;
   cursor: pointer;
 }
-.add-task p{
+
+.add-task p {
   font-size: 20px;
   font-weight: 600;
 }
+
 .add-task:hover {
   background-color: rgb(41, 171, 226);
 }
+
 .lower-sec {
   height: 77.2%;
   width: 100%;
   display: flex;
   justify-content: center;
 }
+
 .columns {
   width: 24%;
   height: 100%;
@@ -84,22 +95,26 @@ input::placeholder {
   margin-left: 1%;
   margin-right: 1%;
 }
+
 .upper-column {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
 }
+
 .upper-column p {
   font-size: 22px;
   font-weight: 700;
   color: rgb(66, 82, 110);
 }
+
 .column-add-button:hover {
-  stroke:rgb(41, 171, 226);
+  stroke: rgb(41, 171, 226);
 
   cursor: pointer;
 }
+
 .lower-column {
   display: flex;
   flex-direction: column;
@@ -107,6 +122,7 @@ input::placeholder {
   justify-content: start;
   height: 100%;
 }
+
 .no-task {
   height: 48px;
   width: 100%;
@@ -117,4 +133,8 @@ input::placeholder {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+#contentTodo {
+  width: 100%;
 }

@@ -2,6 +2,7 @@ let subtaskArray = [];
 let contactArrayAddTask = [];
 let selectedPriority = null;
 let selectedCategory = '';
+let taskArray = [];
 
 function allowDrop(ev) {
   ev.preventDefault();
@@ -176,104 +177,122 @@ const deleteSubtask = (i) => {
   renderSubtask();
 };
 
-const renderSubtask = () => {};
-
 const renderNotesIntoTaskArray = async () => {
   try {
     const databaseJson = await loadData("/tasks");
-    const content = document.getElementById("tasksContent");
-    content.innerHTML = "";
-
-    const filteredTasks = Object.values(databaseJson).filter(
-      (task) =>
-        task.type &&
-        task.title &&
-        task.description &&
-        task.subtask &&
-        task.users &&
-        task.prio
-    );
+    const todo = document.getElementById("contentTodo");
+    todo.innerHTML = "";
 
     if (databaseJson) {
       Object.keys(databaseJson).forEach((key) => {
         taskArray.push({
           id: key,
-          type: databaseJson[key].type,
           title: databaseJson[key].title,
           description: databaseJson[key].description,
-          subtask: databaseJson[key].subtask,
-          users: databaseJson[key].users,
+          assignedTo: databaseJson[key].assignedTo,
+          dueDate: databaseJson[key].dueDate,
           prio: databaseJson[key].prio,
+          category: databaseJson[key].category,
+          subtasks: databaseJson[key].subtasks,
+          area: databaseJson[key].area
         });
       });
+
+      for (let index = 0; index < taskArray.length; index++) {
+        const task = taskArray[index];
+        todo.innerHTML += getNoteRef(task);
+      }
+    } else {
+      todo.innerHTML = /*html*/`<div class="no-task">No tasks To do</div>`
     }
   } catch (error) {
     console.error("Failed to load tasks in renderNotes", error);
-    // Optional: Benutzerbenachrichtigung hinzufügen
-    const content = document.getElementById("tasksContent");
     content.innerHTML =
       "<p>Fehler beim Laden der Aufgaben. Bitte versuchen Sie es später erneut.</p>";
   }
 };
 
+function getNoteRef(task) {
+  return /*html*/ `
+            <div draggable="true" ondragstart="drag(event) class="boardNotesCategory">
+                  <p>${task.category}</p>
+                </div>
+                <div class="boardTitle">${task.title}</div>
+                <div class="boardDescription">${task.description}</div>
+
+                <div id="subtask-div" >
+                  <progress id="progressBar" class="subtaskLoadingBar" value="0" max="100"></progress>
+                  <div id="subtaskAmount" class="subtaskList">${task.subtask}</div>
+                </div>
+
+                <div class="boardNotesFooter">
+                  <div class="boardNotesContacts">
+                  ${task.description}
+                  </div>
+                  <div class="boardNotesPrio">${task.prio}</div>
+                </div>
+              </div>
+            </div>`
+}
+
 function searchTaskNotes() {
-  function searchTaskNotes() {
-    document.getElementById("input").addEventListener("input", function () {
-      let lowCase = this.value.toLowerCase();
-      const noResults = document.getElementById("tooltip");
-      let hasResults = false;
+  document.getElementById("input").addEventListener("input", function () {
+    let lowCase = this.value.toLowerCase();
+    const noResults = document.getElementById("tooltip");
+    let hasResults = false;
 
-      taskArray.taskNotes.forEach((taskNote) => {
-        let title = taskNote.getAttribute("data-title").toLowerCase();
-        let description = taskNote.getAttribute("description").toLowerCase();
-        if (title.includes(lowCase) || description.includes(lowCase)) {
-          taskNote.style.display = "";
-          hasResults = true;
-        } else {
-          taskNote.style.display = "none";
-        }
-      });
-
-      if (hasResults) {
-        noResults.style.opacity = "0";
+    taskArray.taskNotes.forEach((taskNote) => {
+      let title = taskNote.getAttribute("data-title").toLowerCase();
+      let description = taskNote.getAttribute("description").toLowerCase();
+      if (title.includes(lowCase) || description.includes(lowCase)) {
+        taskNote.style.display = "";
+        hasResults = true;
       } else {
-        noResults.style.opacity = "1";
+        taskNote.style.display = "none";
       }
     });
-  }
 
-  function updateProgress() {
-    const subtaskAmount = document.getElementById("subtaskAmount");
-    const totalTasks = subtasksArray.length;
-    const subtaskDiv = document.getElementById("subtask-div");
-
-    if (totalTasks === 0) {
-      subtaskDiv.style.display = "none";
-      return;
+    if (hasResults) {
+      noResults.style.opacity = "0";
     } else {
-      subtaskDiv.style.display = "block";
+      noResults.style.opacity = "1";
     }
+  });
+}
 
-    const completedTasks = 0;
+function updateProgress() {
+  const subtaskAmount = document.getElementById("subtaskAmount");
+  const totalTasks = subtasksArray.length;
+  const subtaskDiv = document.getElementById("subtask-div");
 
-    subtasksArray.forEach((task) => {
-      const checkbox = document.getElementById(task.id);
-      if (checkbox.checked) completedTasks++;
-    });
-    const progressPercentage = (completedTasks / totalTasks) * 100;
-
-    const progress = document.getElementById("progressBar");
-    progress.style.width = progressPercentage + "%";
-
-    subtaskAmount.innerText = `${completedTasks}/${totalTasks} Subtasks`;
+  if (totalTasks === 0) {
+    subtaskDiv.style.display = "none";
+    return;
+  } else {
+    subtaskDiv.style.display = "block";
   }
 
+  const completedTasks = 0;
 
-const subTaskContent = document.getElementById("subtasksContentId");
-subTaskContent.innerHTML = "";
-for (let index = 0; index < subtaskArray.length; index++) {
-  const task = subtaskArray[index];
-  subTaskContent.innerHTML += getSubtask(task, index);
+  subtasksArray.forEach((task) => {
+    const checkbox = document.getElementById(task.id);
+    if (checkbox.checked) completedTasks++;
+  });
+  const progressPercentage = (completedTasks / totalTasks) * 100;
+
+  const progress = document.getElementById("progressBar");
+  progress.style.width = progressPercentage + "%";
+
+  subtaskAmount.innerText = `${completedTasks}/${totalTasks} Subtasks`;
+}
+
+const renderSubtask = () => {
+  const subTaskContent = document.getElementById('subtasksContentId');
+  subTaskContent.innerHTML = "";
+  for (let index = 0; index < subtaskArray.length; index++) {
+    const task = subtaskArray[index];
+    subTaskContent.innerHTML += getSubtask(task, index)
+  }
 }
 
 const getSubtask = (taskName, index) => {
@@ -374,9 +393,9 @@ const addTaskToFirebase = () => {
   const description = document.getElementById('descriptionInputId').value;
   const dueDate = document.getElementById('dateInput').value;
   const taskObject = {
-    title: title, 
-    description: description, 
-    assignedTo: contactArrayAddTask, 
+    title: title,
+    description: description,
+    assignedTo: contactArrayAddTask,
     dueDate: dueDate,
     prio: selectedPriority,
     category: selectedCategory,
@@ -392,6 +411,7 @@ const addTaskToFirebase = () => {
   selectedCategory = "";
   subtaskArray = [];
   toggleAddTaskOverlay();
+  renderNotesIntoTaskArray();
 }
 
 function updateInputValue() {
@@ -409,4 +429,5 @@ document.addEventListener('click', (event) => {
   if (!arrow.contains(event.target)) {
     arrow.classList.remove('turnArrow');
   }
-})}
+});
+
