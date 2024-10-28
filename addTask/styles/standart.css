@@ -1,6 +1,327 @@
-body{
-  margin:0;
-  padding:0;
-  font-family: 'Inter', sans-serif;
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
   font-weight: 270;
+  background-color: #f6f7f8;
 }
+
+footer {
+  margin-top: 96px;
+  margin-left: 32px;
+}
+.leftSide {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: space-between;
+}
+
+.betweenBothWorlds {
+  height: 400px;
+  width: 1px;
+  background-color: #d1d1d1;
+  border-radius: 8px;
+}
+
+.rightSide {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: space-between;
+}
+
+.containerBothSides {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  height: 500px;
+}
+
+/* .clearCreateBtns {
+  height: 100px;
+  gap: 10px;
+  display: flex;
+  justify-content: end;
+  align-items: end;
+} */
+
+.headline {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+h1 {
+  font-weight: 700;
+  font-size: 50px;
+}
+
+#textarea {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  color: #ccc;
+  height: 180px;
+  width: 440px;
+  font-family: "Inter", sans-serif;
+  border-radius: 8px;
+  border: 1px solid #d1d1d1;
+  padding: 8px;
+}
+
+.required {
+  color: red;
+}
+
+input,
+.dropbtn {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #ccc;
+  width: 458px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid #d1d1d1;
+  padding-left: 8px;
+  padding-right: 8px;
+  background-color: white;
+  cursor: pointer;
+  font-size: 14px;
+  text-align: left;
+}
+
+.inputDate {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #ccc;
+  width: 440px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid #d1d1d1;
+  padding-left: 8px;
+  padding-right: 8px;
+  background-color: white;
+  cursor: pointer;
+  font-size: 14px;
+  text-align: left;
+}
+
+/* Styling für den Pfeil rechts */
+.arrow {
+  color: grey;
+  font-size: 12px;
+  margin-left: auto;
+  transition: transform 0.3s ease;
+}
+
+/* Drehe den Pfeil beim Öffnen */
+.rotate-arrow {
+  transform: rotate(180deg);
+}
+
+/* Container für das Dropdown-Menü */
+.dropdown {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+/* Dropdown-Menü (versteckt) */
+.dropdown-content {
+  position: absolute;
+  background-color: white;
+  width: 440px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  z-index: 1;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
+}
+
+/* Zeige das Dropdown-Menü */
+.dropdown-content.show {
+  max-height: 500px; /* Genügend Platz für den Inhalt */
+  opacity: 1;
+}
+
+/* Standardisierte Buttons im Dropdown */
+.dropdown-content button {
+  background-color: white;
+  color: black;
+  padding: 10px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+/* Button Hover-Effekt */
+.dropdown-content button:hover {
+  background-color: #f1f1f1;
+}
+
+.prioBtns {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.prioBtn {
+  cursor: pointer;
+  width: 136px;
+  height: 56px;
+  border-radius: 8px;
+  border: 1px solid #d1d1d1;
+}
+
+/* Hintergrundfarbe auf Rot setzen */
+.active-red {
+  background-color: #ff3d00;
+  transition: 0.5s ease;
+}
+
+/* Hintergrundfarbe auf Orange setzen */
+.active-orange {
+  background-color: #ffa800;
+  transition: 0.5s ease;
+}
+
+/* Hintergrundfarbe auf Grün setzen */
+.active-green {
+  background-color: #7ae229;
+  transition: 0.5s ease;
+}
+
+/* Styling für das Eingabefeld und das + Symbol im Inneren */
+.input-container {
+  position: relative;
+  display: inline-block;
+}
+
+input[type="text"] {
+  color: black;
+  padding: 8px;
+  font-size: 16px;
+  width: 440px;
+}
+
+input[type="date"] {
+    color: rgb(0, 0, 0);
+}
+
+.addBtn {
+  position: absolute;
+  padding: 8px;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background-color: transparent;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* Liste der Subtasks */
+#subtaskList {
+  list-style-type: none; /* Entferne die standardmäßigen Bullet Points */
+  padding-left: 0;
+}
+
+/* Styling der Subtask Elemente */
+#subtaskList li {
+  display: flex; /* Flexbox für horizontale Anordnung */
+  justify-content: space-between; /* Text links, Symbole rechts */
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 5px 10px;
+  border-bottom: 1px solid #ccc; /* Optional: Trennlinie unter jeder Notiz */
+}
+
+/* Styling der Button-Container (für Bearbeiten und Löschen) */
+.button-container {
+  display: flex;
+  gap: 10px; /* Abstand zwischen den Symbolen */
+}
+
+/* Buttons für Bearbeiten und Löschen */
+.editBtn,
+.deleteBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.editBtn::before {
+  content: "✏️"; /* Stift Symbol */
+}
+
+.deleteBtn::before {
+  content: "🗑️"; /* Papierkorb Symbol */
+}
+
+.clearBtn {
+  cursor: pointer;
+  width: 126px;
+  height: 56px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f6f7f8;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.clearBtn:hover {
+  color: #29abe2;
+  border: solid 1px #29abe2;
+  background-color: #f6f7f8;
+  box-shadow: 2px 5px 5px 0px rgba(0, 0, 0, 0.308);
+  transition: 0.3s ease;
+}
+
+.createBtn {
+  cursor: pointer;
+  height: 56px;
+  width: 184px;
+  border: 1px solid rgb(42, 83, 110);
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: 400;
+  background-color: rgb(42, 83, 110);
+  color: white;
+}
+
+.createBtn:hover {
+  box-shadow: 2px 5px 5px 0px rgba(0, 0, 0, 0.308);
+  background-color: #29abe2;
+  border: solid 1px #29abe2;
+  transition: 0.3s ease;
+}
+
+.symbol:hover {
+  color: #29abe2;
+}
+
+footer {
+  width: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+}
+/* .btnsContainer {
+  height: 20vh;
+  display: flex;
+  align-items: end;
+  justify-content: end;
+}
+
+.clearCreateBtns {
+  gap: 10px;
+}
+
+.requiredSlogan {
+  height: 20vh;
+  display: flex;
+  align-items: end;
+  justify-content: start;
+} */
