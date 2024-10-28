@@ -71,14 +71,47 @@ function selectPriority(priority) {
 const toggleContactSelection = () => {
   const contentArea = document.getElementById("contactRender");
   const arrow = document.querySelector(".dropDownArrow");
+
   if (contentArea.classList.contains("d_none")) {
     contentArea.classList.toggle("d_none");
     arrow.classList.toggle("turnArrow");
     renderAddTaskOverlay();
+    updateCheckboxes();
   } else {
     contentArea.classList.toggle("d_none");
     arrow.classList.toggle("turnArrow");
   }
+};
+
+const addContactToArray = async (index) => {
+  const loadContacts = await loadData('/contacts');
+  const contacts = Object.values(loadContacts)
+    .filter(contact => contact.name && contact.email && contact.phone)
+    .sort((a, b) => a.name.localeCompare(b.name));
+
+  const contact = contacts[index];
+  let contactIndex = contactArrayAddTask.findIndex(c => c.email === contact.email);
+
+  if (contactIndex === -1) {
+    contactArrayAddTask.push(contact);
+  } else {
+    contactArrayAddTask.splice(contactIndex, 1);
+  }
+
+  document.querySelector(`#checkbox-${index}`).checked = contactIndex === -1;
+};
+
+const updateCheckboxes = async () => {
+  const loadContacts = await loadData('/contacts');
+  const contacts = Object.values(loadContacts)
+    .filter(contact => contact.name && contact.email && contact.phone)
+    .sort((a, b) => a.name.localeCompare(b.name));
+
+  contacts.forEach((contact, index) => {
+    const isSelected = contactArrayAddTask.some(c => c.email === contact.email);
+    const checkbox = document.querySelector(`#checkbox-${index}`);
+    if (checkbox) checkbox.checked = isSelected;
+  });
 };
 
 const renderAddTaskOverlay = async () => {
@@ -96,46 +129,25 @@ const renderAddTaskOverlay = async () => {
       .slice(0, 2)
       .map((n) => n[0])
       .join("");
-    const randomColor = colors[Math.floor(Math.random() * colors.length)];
-    overlay.innerHTML += getOverlayAddTask(
-      person,
-      initials,
-      randomColor,
-      index
-    );
+    overlay.innerHTML += getOverlayAddTask(person, initials, index);
   }
 };
 
-const getOverlayAddTask = (user, initials, color, index) => {
-  return /*html*/ `
-            <div class="contact">
-              <p id="initialsOverlay" style="background-color: ${color};">${initials}</p>
-              <p id="contactName">${user.name}</p>
-              <form>
-                <input onchange="addContactToArray(${index})" type="checkbox" id="exampleCheckbox" name="exampleCheckbox">
-              </form>
-            </div>
-      `;
-};
-
-const addContactToArray = async (index) => {
-  const loadContacts = await loadData("/contacts");
-  const contacts = Object.values(loadContacts)
-    .filter((contact) => contact.name && contact.email && contact.phone)
-    .sort((a, b) => a.name.localeCompare(b.name));
-  const contact = contacts[index];
-  let contactIndex = contactArrayAddTask.findIndex(
-    (c) => c.email === contact.email
-  );
-
-  if (
-    contactIndex == -1 ||
-    contactArrayAddTask[contactIndex].email != contact.email
-  ) {
-    contactArrayAddTask.push(contact);
-  } else {
-    contactArrayAddTask.splice(contactIndex, 1);
-  }
+const getOverlayAddTask = (user, initials, index) => {
+  const color = colors[index % colors.length];
+  return /*html*/`
+    <div class="contact">
+      <p id="initialsOverlay" style="background-color: ${color};">${initials}</p>
+      <p id="contactName">${user.name}</p>
+      <form>
+        <input onchange="addContactToArray(${index})" 
+               type="checkbox" 
+               class="contact-checkbox" 
+               id="checkbox-${index}" 
+               data-index="${index}">
+      </form>
+    </div>
+  `;
 };
 
 function toggleAddTaskOverlay() {
@@ -192,7 +204,14 @@ const renderNotesIntoTaskArray = async () => {
   try {
     const databaseJson = await loadData("/tasks");
     const todo = document.getElementById("contentTodo");
+    const progress = document.getElementById("contentProgress");
+    const feedback = document.getElementById("contentFeedback");
+    const done = document.getElementById("contentDone");
+
     todo.innerHTML = "";
+    progress.innerHTML = "";
+    feedback.innerHTML = "";
+    done.innerHTML = "";
 
     if (databaseJson) {
       Object.keys(databaseJson).forEach((key) => {
@@ -211,10 +230,31 @@ const renderNotesIntoTaskArray = async () => {
 
       for (let index = 0; index < taskArray.length; index++) {
         const task = taskArray[index];
-        todo.innerHTML += getNoteRef(task);
+        switch (task.area) {
+          case 'toDo':
+            todo.innerHTML += getNoteRef(task);
+            break;
+          case 'progress':
+            progress.innerHTML += getNoteRef(task);
+            break;
+          case 'feedback':
+            feedback.innerHTML += getNoteRef(task);
+            break;
+          case 'done':
+            done.innerHTML += getNoteRef(task);
+            break;
+          default:
+            todo.innerHTML += /*html*/`<div class="no-task">No tasks To do</div>`;
+            progress.innerHTML += /*html*/`<div class="no-task">No tasks in progress</div>`;
+            feedback.innerHTML += /*html*/`<div class="no-task">No tasks in feedback</div>`;
+            done.innerHTML += /*html*/`<div class="no-task">No tasks done</div>`;
+        }
       }
     } else {
-      todo.innerHTML = /*html*/ `<div class="no-task">No tasks To do</div>`;
+      todo.innerHTML = /*html*/`<div class="no-task">No tasks To do</div>`;
+      progress.innerHTML = /*html*/`<div class="no-task">No tasks in progress</div>`;
+      feedback.innerHTML = /*html*/`<div class="no-task">No tasks in feedback</div>`;
+      done.innerHTML = /*html*/`<div class="no-task">No tasks done</div>`;
     }
   } catch (error) {
     console.error("Failed to load tasks in renderNotes", error);
@@ -225,7 +265,7 @@ const renderNotesIntoTaskArray = async () => {
 
 function getNoteRef(task) {
   return /*html*/ `
-            <div draggable="true" ondragstart="drag(event) class="boardNotesCategory">
+            <div draggable="true" ondragstart="drag(event)" class="boardNotesCategory">
                   <p>${task.category}</p>
                 </div>
                 <div class="boardTitle">${task.title}</div>
