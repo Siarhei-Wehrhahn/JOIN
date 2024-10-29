@@ -31,7 +31,6 @@ main {
 .search-div button {
   border: none;
   margin-left: -60px;
-  margin-right: 60px;
   border-left: solid 0.5px rgb(197, 197, 197);
   height: 24px;
   width: 32px;
@@ -61,6 +60,7 @@ input::placeholder {
 .add-task {
   width: 180px;
   height: 48px;
+  margin-left:60px;
   background-color: rgb(9, 25, 49);
   color: white;
   border: solid 0.5px rgb(141, 141, 141);
@@ -107,6 +107,7 @@ input::placeholder {
   font-size: 22px;
   font-weight: 700;
   color: rgb(66, 82, 110);
+  white-space: nowrap;
 }
 
 .column-add-button:hover {
@@ -146,4 +147,7 @@ input::placeholder {
   align-items: center;
   flex-direction: column;
   gap: 16px;
+}
+.add-task-mobile{
+  display:none;
 }

@@ -42,8 +42,8 @@ nav {
   flex-direction: row;
   align-items: center;
   justify-content: start;
-  padding-left:30%;
-  width: 70%;
+  padding-left:25%;
+  width: 75%;
   cursor: pointer;
   gap: 8px;
   height:68px;
@@ -52,9 +52,10 @@ nav {
 .add-tast-button p,
 .board-button p,
 .contacts-button p{
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 300;
   color: white;
+  white-space: nowrap;
 }
 
 .summery-button:hover,
@@ -72,8 +73,8 @@ nav {
 }
 
 .nav-icon {
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
 }
 
 

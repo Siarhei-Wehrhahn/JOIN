@@ -46,6 +46,13 @@
   .smallText {
     font-size: 12px;
   }
+  .addContactBtn {
+    font-size: 16px;
+}
+#contactsContent {
+  height: 75vh;
+  width: 90%;
+}
 }
 @media (max-width: 790px) {
   .overlayBigText {
