@@ -131,9 +131,10 @@ const getContact = (person, index) => {
         </div>`;
 };
 
-const toggleContactExtended = (index) => {
+function toggleContactExtended(index){
     const contactExtendedDiv = document.getElementById('contactInfoExtendet');
     if(contactExtendedDiv.classList.contains("d_none")) {
+        contactExtendedDiv.classList.remove("d_none");
         contactExtendedDiv.classList.remove("slide-out");
         contactExtendedDiv.classList.add("slide-in");
         renderContactExtendet(index)
