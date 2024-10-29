@@ -1,19 +1,4 @@
-const getOverlayAddTask = (user, initials, index) => {
-    const color = colors[index % colors.length];
-    return /*html*/`
-      <div class="contact">
-        <p id="initialsOverlay" style="background-color: ${color};">${initials}</p>
-        <p id="contactName">${user.name}</p>
-        <form>
-          <input onchange="addContactToArray(${index})" 
-                 type="checkbox" 
-                 class="contact-checkbox" 
-                 id="checkbox-${index}" 
-                 data-index="${index}">
-        </form>
-      </div>
-    `;
-  };
+
   
   const getEditSubtask = (index) => {
     return /*html*/ `

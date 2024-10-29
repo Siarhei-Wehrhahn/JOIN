@@ -67,21 +67,6 @@ function selectPriority(priority) {
     console.log(`Selected priority: ${selectedPriority}`);
   }
 
-  const toggleContactSelection = () => {
-    const contentArea = document.getElementById("contactRender");
-    const arrow = document.querySelector(".dropDownArrow");
-  
-    if (contentArea.classList.contains("d_none")) {
-      contentArea.classList.toggle("d_none");
-      arrow.classList.toggle("turnArrow");
-      renderAddTaskOverlay();
-      updateCheckboxes();
-    } else {
-      contentArea.classList.toggle("d_none");
-      arrow.classList.toggle("turnArrow");
-    }
-  };
-
   const addContactToArray = async (index) => {
     const loadContacts = await loadData('/contacts');
     const contacts = Object.values(loadContacts)
@@ -111,41 +96,6 @@ function selectPriority(priority) {
       const checkbox = document.querySelector(`#checkbox-${index}`);
       if (checkbox) checkbox.checked = isSelected;
     });
-  };
-
-  const renderAddTaskOverlay = async () => {
-    const loadContacts = await loadData("/contacts");
-    const contacts = Object.values(loadContacts)
-      .filter((contact) => contact.name && contact.email && contact.phone)
-      .sort((a, b) => a.name.localeCompare(b.name));
-    const overlay = document.getElementById("contactRender");
-    overlay.innerHTML = "";
-  
-    for (let index = 0; index < contacts.length; index++) {
-      const person = contacts[index];
-      const initials = person.name
-        .split(" ")
-        .slice(0, 2)
-        .map((n) => n[0])
-        .join("");
-      overlay.innerHTML += getOverlayAddTask(person, initials, index);
-    }
-  };
-
-  const getOverlayAddTask = (user, initials, index) => {
-    const color = colors[index % colors.length];
-    return /*html*/`
-      <div class="contact">
-        <p id="initialsOverlay" style="background-color: ${color};">${initials}</p>
-        <p id="contactName">${user.name}</p>
-        <form>
-          <input onchange="addContactToArray(${index})" 
-                 type="checkbox" 
-                 class="contact-checkbox" 
-                 id="checkbox-${index}" 
-                 data-index="${index}">
-        </form>
-      </div>`;
   };
 
   function triggerInputButtons() {

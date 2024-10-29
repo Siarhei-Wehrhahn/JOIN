@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="../addTask/styles/style.css">
   <script src="script/template.js" defer></script>
   <script src="script/script.js" defer></script>
+  <script src="../loginView/scripts/firebase-realtime.js" defer></script>
 
   <title>Add Task</title>
 </head>
@@ -26,9 +27,9 @@
         <input id="descriptionInputId" class="description" type="text" placeholder="Enter a Description">
         <img class="containerDescriptionImg" src="../assets/icon/recurso.svg" alt="">
         <p class="headerText">Assigned to</p>
-        <input class="inputFieldStandart" onclick="toggleContactSelection()" class="contactSelection" type="text"
+        <input class="inputFieldStandart" onclick="toggleContactSelection1()" class="contactSelection" type="text"
           placeholder="Select contacts to assign">
-        <img onclick="toggleContactSelection()" class="dropDownArrow" src="../assets/icon/arrow_drop_down.svg"
+        <img onclick="toggleContactSelection1()" class="dropDownArrow" src="../assets/icon/arrow_drop_down.svg"
           alt="arrowDown">
         <div class="container d_none" id="contactRender"></div>
       </div>
