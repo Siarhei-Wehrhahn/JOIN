@@ -62,6 +62,7 @@ function loadBoardView() {
         .then(response => response.text())
         .then(data => {
             document.getElementById('contentArea').innerHTML = data;
+            renderNotesIntoTaskArray();
         })
         .catch(error => console.error('Error loading content:', error));
 }
@@ -223,8 +224,7 @@ function toggleOverlay() {
 };
 
 window.onload = () => {
-    loadBoardView();
-    renderNotesIntoTaskArray();
+    loadAddTaskView();
 };
 
 function toggleEditOverlay(name) {
