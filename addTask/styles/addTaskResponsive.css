@@ -1,0 +1,109 @@
+@media(max-width:768px) {
+.theLine {
+  display:none;
+}
+#addTask {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  margin-top:400px;
+}
+.header {
+  width: 100%;
+ position:fixed;
+ top:100px;
+ background-color:white;
+}
+.task {
+  width: 100%;
+  height: 120vh;
+  margin-top:100px;
+}
+.headerHeadline {
+ margin:60px 0 0 40px;
+}
+.right-side {
+  width: 100%;
+  height: 120vh;
+}
+.inputFieldStandart {
+  width: 90%;
+  height: 44px;
+}
+.headerText {
+  width: 90%;
+  text-align: start;
+  color:black;
+  margin:16px 0 8px 0;
+  font-weight:500;
+}
+.description {
+  width: 90%;
+}
+.dropDownArrow {
+  top: -6.5%;
+  right: -40%;
+}
+.calendar-icon {
+  top: -39%;
+  right: -40%;
+}
+.buttons-div {
+  width: 90%;
+  gap: 16px;
+}
+#categorySelect {
+  width: 90%;
+}
+.dropDowmArrowCategory {
+  top: -35%;
+  right: -40%;
+}
+.addSubtasksButton {
+  top: -36%;
+  right: -40%;
+}
+.subtasksContent {
+  width: 90%;
+}
+.overlayButtons {
+  width: 90%;
+}
+.deleteOrSaveBtn {
+  top: -32%;
+      right: -32%;
+  }
+  .container {
+    width: 90%;
+  }
+  .contact {
+   margin-top:16px;
+}
+}
+
+
+/* 
+
+
+
+
+
+
+#contactName {
+  width: 75%;
+  text-align: start;
+}
+
+#initialsOverlay {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  color: white;
+} */
