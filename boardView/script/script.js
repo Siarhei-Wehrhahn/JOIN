@@ -367,13 +367,6 @@ const toggleArrow = () => {
     .classList.toggle("turnArrow");
 };
 
-document.addEventListener("click", (event) => {
-  const arrow = document.getElementById("dropDowmArrowCategoryId");
-  if (!arrow.contains(event.target)) {
-    arrow.classList.remove("turnArrow");
-  }
-});
-
 function toggleTaskNoteOverlay() {
   const overlay = document.getElementById('taskOverlay');
   if (overlay.classList.contains("d_none")) {

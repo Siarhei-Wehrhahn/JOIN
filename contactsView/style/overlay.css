@@ -34,12 +34,12 @@ width: 100%;
 background-color: red;
 }
 
-.slide-in {
+.overlay-slide-in {
     animation: slide-in 1.0s forwards;
 
 }
 
-@keyframes slide-in {
+@keyframes overlay-slide-in {
     from {
         transform: translate(100%, -50%);
     }
@@ -48,11 +48,11 @@ background-color: red;
     }
 }
 
-.slide-out {
+.overlay-slide-out {
     animation: slide-out 1.0s forwards;
 }
 
-@keyframes slide-out {
+@keyframes overlay-slide-out {
     from {
         transform: translate(-50%, -50%);
     }

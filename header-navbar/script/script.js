@@ -117,11 +117,19 @@ const renderContacts = async () => {
 
 const toggleContactExtended = (index) => {
     const contactExtendedDiv = document.getElementById('contactInfoExtendet');
-    contactExtendedDiv.classList.toggle('d_none')
-    if(!contactExtendedDiv.classList.contains('d_none')) {
-        renderContactExtendet(index)
+    if (contactExtendedDiv.classList.contains('d_none')) {
+        contactExtendedDiv.classList.remove('d_none');
+        contactExtendedDiv.classList.remove('slide-out-contact');
+        contactExtendedDiv.classList.add('slide-in-contact');
+        renderContactExtendet(index);
     } else {
-        contactExtendedDiv.innerHTML = ""
+        contactExtendedDiv.classList.remove('slide-in-contact');
+        contactExtendedDiv.classList.add('slide-out-contact');
+
+        setTimeout(() => {
+            contactExtendedDiv.classList.add('d_none-contact');
+            contactExtendedDiv.classList.remove('slide-out-contact');
+        }, 1000);
     }
 }
 
