@@ -200,4 +200,4 @@ function toggleEditOverlay(name) {
             overlay.classList.remove('slide-out');
         }, 1000);
     }
-};
+}
