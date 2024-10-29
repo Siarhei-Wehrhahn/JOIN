@@ -227,10 +227,10 @@ const renderNotesIntoTaskArray = async () => {
             done.innerHTML += getNoteRef(task);
             break;
           default:
-            todo.innerHTML += /*html*/`<div class="no-task">No tasks To do</div>`;
-            progress.innerHTML += /*html*/`<div class="no-task">No tasks in progress</div>`;
-            feedback.innerHTML += /*html*/`<div class="no-task">No tasks in feedback</div>`;
-            done.innerHTML += /*html*/`<div class="no-task">No tasks done</div>`;
+            todo.innerHTML = /*html*/`<div class="no-task">No tasks To do</div>`;
+            progress.innerHTML = /*html*/`<div class="no-task">No tasks in progress</div>`;
+            feedback.innerHTML = /*html*/`<div class="no-task">No tasks in feedback</div>`;
+            done.innerHTML = /*html*/`<div class="no-task">No tasks done</div>`;
         }
       }
     } else {

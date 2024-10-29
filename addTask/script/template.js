@@ -1,7 +1,5 @@
-
-  
-  const getEditSubtask = (index) => {
-    return /*html*/ `
+const getEditSubtask = (index) => {
+  return /*html*/ `
       <div class="editSubtaskDiv">
         <input type="text" id="editInput">
         <div class="editSubtask">
@@ -18,4 +16,4 @@
           </div>
       </div>
     `;
-  };
+};
