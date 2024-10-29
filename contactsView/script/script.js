@@ -51,18 +51,3 @@ function getEditOverlay(person) {
   </div>
 `;
 };
-
-function  toggleEditOverlay(){
-  const editOverlay = document.getElementById('overlayEditContact');
-  if(editOverlay.classList.contains("d_none")) {
-    editOverlay.classList.remove("slide-out");
-    editOverlay.classList.add("slide-in");
-  }else{
-    editOverlay.classList.add("slide-out");
-    editOverlay.classList.remove("slide-in");
-    setTimeout(() => {
-      editOverlay.classList.add("d_none");
-      editOverlay.classList.remove("slide-out");
-    }, 1000);
-  }
-}

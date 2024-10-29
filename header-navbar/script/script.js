@@ -133,13 +133,19 @@ const getContact = (person, index) => {
 
 const toggleContactExtended = (index) => {
     const contactExtendedDiv = document.getElementById('contactInfoExtendet');
-    contactExtendedDiv.classList.toggle('d_none')
-    if(!contactExtendedDiv.classList.contains('d_none')) {
+    if(contactExtendedDiv.classList.contains("d_none")) {
+        contactExtendedDiv.classList.remove("slide-out");
+        contactExtendedDiv.classList.add("slide-in");
         renderContactExtendet(index)
-    } else {
-        contactExtendedDiv.innerHTML = ""
-    }
-}
+    }else{
+        contactExtendedDiv.classList.add("slide-out");
+        contactExtendedDiv.classList.remove("slide-in");
+        setTimeout(() => {
+            contactExtendedDiv.classList.add("d_none");
+            contactExtendedDiv.classList.remove("slide-out");
+        }, 1000);
+      }   
+    };
 
 const renderContactExtendet = async (index) => {
     const databaseJson = await loadData('/contacts');
@@ -246,4 +252,4 @@ function toggleEditOverlay(name) {
             overlay.classList.remove('slide-out');
         }, 1000);
     }
-};
+}
