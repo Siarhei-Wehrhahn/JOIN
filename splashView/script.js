@@ -1,3 +1,4 @@
-window.onload = function() {
-    const svg = document.getElementById('mySvg');
-    svg.classList.add('animate');}
+    window.onload = function() {
+        const logo = document.getElementById('logo');
+        logo.classList.add('animate');
+    };

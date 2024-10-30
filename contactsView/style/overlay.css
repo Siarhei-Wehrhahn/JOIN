@@ -22,18 +22,6 @@
     filter: none!important;
 }
 
-.overlayBody {
-height: 100%;
-width: 100%;
-background-color: red;
-}
-
-.overlayBody {
-height: 100%;
-width: 100%;
-background-color: red;
-}
-
 .slide-in {
     animation: slide-in 1.0s forwards;
 
@@ -59,6 +47,18 @@ background-color: red;
     to {
         transform: translate(100%, -50%);
     }
+}
+
+.overlayBody {
+height: 100%;
+width: 100%;
+background-color: red;
+}
+
+.overlayBody {
+height: 100%;
+width: 100%;
+background-color: red;
 }
 
 .logoDiv {
@@ -212,12 +212,6 @@ background-color: red;
     transition: 0.2s ease;
 }
 
-.cancelBtn:active{
-    background-color: #472a2a4a;
-    border: 1px solid #472a2a4a;
-}
-
-
 .createBtn {
     cursor: pointer;
     width: 215px;
@@ -238,23 +232,6 @@ background-color: red;
     border: 1px solid #29abe2;
     box-shadow: 0px 4px 10px 0px #000000;
     transition: 0.2s ease;
-}
-
-.createBtn:active{
-    background-color: #472a2a4a;
-    border: 1px solid #472a2a4a;
-}
-
-.createBtn:hover {
-    background: #29ABE2;
-    border: 1px solid #29abe2;
-    box-shadow: 0px 4px 10px 0px #000000;
-    transition: 0.2s ease;
-}
-
-.createBtn:active{
-    background-color: #472a2a4a;
-    border: 1px solid #472a2a4a;
 }
 
 .d_none {
@@ -278,7 +255,6 @@ background-color: red;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: orange;
     color: white;
     border-radius: 50%;
     transition: box-shadow 0.3s ease;

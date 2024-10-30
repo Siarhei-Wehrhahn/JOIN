@@ -16,6 +16,10 @@
   transition: transform 0.5s ease-in-out;
 }
 
+.slide-in {
+  animation: slide-in 0.5s forwards;
+}
+
 @keyframes slide-in {
   from {
     transform: translate(100%, -50%);
@@ -134,7 +138,7 @@
 
 .description::placeholder {
   position: relative;
-  top: -57px;
+  top: -24px;
   left: 2px;
   transform: translateY(-50%);
   font-size: 20px;
@@ -213,7 +217,7 @@ form {
 }
 
 .overlayButtons {
-  width: 80%;
+  width: 90%;
   display: flex;
   justify-content: end;
   align-items: center;
@@ -393,6 +397,50 @@ form {
 
 #deleteOrSave {
   z-index: 2;
+}
+
+.cancelBtn {
+  cursor: pointer;
+  width: 120px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  border: 1px solid #2A3647;
+  border-radius: 10px;
+  background: transparent;
+  font-size: 18px;
+  color: #2A3647;
+}
+
+.cancelBtn:hover {
+  background: #29ABE2;
+  border: 1px solid #29abe2;
+  box-shadow: 0px 4px 10px 0px #000000;
+  transition: 0.2s ease;
+}
+
+.createBtn {
+  cursor: pointer;
+  width: 215px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  background-color: #2A3647;
+  border-radius: 10px;
+  color: white;
+  font-size: 19px;
+  white-space: nowrap;
+}
+
+.createBtn:hover {
+  background: #29ABE2;
+  border: 1px solid #29abe2;
+  box-shadow: 0px 4px 10px 0px #000000;
+  transition: 0.2s ease;
 }
 
 .pointer {

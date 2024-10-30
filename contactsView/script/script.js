@@ -1,7 +1,9 @@
-function renderEditContactOverlay(name) {
+
+
+function renderEditContactOverlay(name, initials, color) {
   let overlayEditContact = document.getElementById('overlayEditContact');
   const selectedPerson = contactsArray.find(contact => contact.name === name);
-  overlayEditContact.innerHTML = getEditOverlay(selectedPerson);
+  overlayEditContact.innerHTML = getEditOverlay(selectedPerson, initials, color);
   document.getElementById('inputNameEdit').value = selectedPerson.name;
   document.getElementById('inputEmailEdit').value = selectedPerson.email;
   document.getElementById('inputPhoneEdit').value = selectedPerson.phone;
@@ -16,7 +18,7 @@ function editedContactSaveToStoredData(persoId) {
   toggleEditOverlay();
 }
 
-function getEditOverlay(person) {
+function getEditOverlay(person, initials, color) {
   return /*html*/ `
         <div class="logoDiv">
     <div class="logo">
@@ -30,7 +32,7 @@ function getEditOverlay(person) {
 
   <div class="addContactDiv">
     <div class="photoSelectionDiv">
-      <img id="profileEditPic" src="/assets/icon/person.svg" alt="profilePic" />
+      <p id="profileEditPic" style="background-color: ${color};">${initials}</p>
     </div>
     <div class="inputFieldDiv">
       <div class="closeButton">
@@ -51,18 +53,3 @@ function getEditOverlay(person) {
   </div>
 `;
 };
-
-function  toggleEditOverlay(){
-  const editOverlay = document.getElementById('overlayEditContact');
-  if(editOverlay.classList.contains("d_none")) {
-    editOverlay.classList.remove("slide-out");
-    editOverlay.classList.add("slide-in");
-  }else{
-    editOverlay.classList.add("slide-out");
-    editOverlay.classList.remove("slide-in");
-    setTimeout(() => {
-      editOverlay.classList.add("d_none");
-      editOverlay.classList.remove("slide-out");
-    }, 1000);
-  }
-}

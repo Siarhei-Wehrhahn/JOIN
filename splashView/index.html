@@ -4,51 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join</title>
-    <!-- <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script> -->
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
 </head>
-
-<style>
-    body {
-        margin: 0;
-        height: 100vh;
-        overflow: hidden;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: #f3f3f3;
-    }
-    
-    #button{
-        position: absolute;
-        top: 50%;
-        left:70%;
-    }
-
-    #logo {
-        position: absolute;
-        top: 30%; 
-        left: 43%;
-        transform: translate(0, 0); /*starting position*/
-        opacity: 1;
-        transition: transform 2s ease-in-out, opacity 3s ease-in-out;
-    }
-    
-    .animate {
-        transform: translate(-100%, -100%) scale(0.5); /*finished position*/
-        opacity: 1;
-    }
-    </style>
-    
-    <script>
-    function animation() {
-        const svg = document.getElementById('logo');
-        svg.classList.add('animate');
-    }
-    </script>
-    
-    <body>       
-        <button id="button" onclick="animation()">animation</button>
-        <img src="./icon/Capa 2.svg" alt="logo" id="logo">
-    </body>
-    </html>
+<body>
+    <img src="../assets/icon/Capa 1.svg" alt="logo" id="logo">
+</body>
+</html>
