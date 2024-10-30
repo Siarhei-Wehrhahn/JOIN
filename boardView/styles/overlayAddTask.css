@@ -123,7 +123,7 @@
 }
 
 .description {
-  height: 100px;
+  height: 200px;
   resize: both;
   padding: 10px;
   font-size: 16px;
@@ -217,7 +217,7 @@ form {
 }
 
 .overlayButtons {
-  width: 80%;
+  width: 90%;
   display: flex;
   justify-content: end;
   align-items: center;

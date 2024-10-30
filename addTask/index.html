@@ -6,10 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="../addTask/styles/standart.css" />
   <link rel="stylesheet" href="../addTask/styles/style.css">
-  <link rel="stylesheet" href="../addTask/styles/addTaskResponsive.css">
-  <script src="script/template.js" defer></script>
-  <script src="script/script.js" defer></script>
-  <script src="../loginView/scripts/firebase-realtime.js" defer></script>
+  <script src="scripts/script.js"></script>
 
   <title>Add Task</title>
 </head>
@@ -18,19 +15,20 @@
   <div class="body">
     <div class="header">
       <h1 class="headerHeadline">Add Task</h1>
+      <img src="../assets/icon/Close.svg" alt="closeButton" onclick="toggleAddTaskOverlay()">
     </div>
 
     <div id="addTask">
       <div class="task">
         <p class="headerText">Title</p>
-        <input class="inputFieldStandart" id="titleInputId" type="text" placeholder="Enter a title">
-        <p class="headerText ">Description</p>
+        <input id="titleInputId" type="text" placeholder="Enter a title">
+        <p class="headerText">Description</p>
         <input id="descriptionInputId" class="description" type="text" placeholder="Enter a Description">
         <img class="containerDescriptionImg" src="../assets/icon/recurso.svg" alt="">
         <p class="headerText">Assigned to</p>
-        <input class="inputFieldStandart" onclick="toggleContactSelection1()" class="contactSelection" type="text"
+        <input onclick="toggleContactSelection()" class="contactSelection" type="text"
           placeholder="Select contacts to assign">
-        <img onclick="toggleContactSelection1()" class="dropDownArrow" src="../assets/icon/arrow_drop_down.svg"
+        <img onclick="toggleContactSelection()" class="dropDownArrow" src="../assets/icon/arrow_drop_down.svg"
           alt="arrowDown">
         <div class="container d_none" id="contactRender"></div>
       </div>
@@ -40,7 +38,7 @@
       <div class="right-side">
         <div class="dateCategory">
           <p class="headerText">Due date</p>
-          <input class="inputFieldStandart" class="dateInput" id="dateInput" type="text" placeholder="dd/mm/yyyy">
+          <input class="dateInput" id="dateInput" type="text" placeholder="dd/mm/yyyy">
           <img src="../assets/icon/eventCalendar.svg" alt="calendarIcon" class="calendar-icon">
         </div>
         <div class="prio-buttons">
@@ -88,7 +86,7 @@
         </div>
         <div class="category">
           <p class="headerText">Category</p>
-          <select class="cursorPointer" id="categorySelect" onclick="toggleArrow()" onchange="updateInputValue()">
+          <select id="categorySelect" onclick="toggleArrow()" onchange="updateInputValue()">
             <option value="" disabled selected hidden>Select Category</option>
             <option onclick="updateInputValue()" value="Technical Task">Technical Task</option>
             <option onclick="updateInputValue()" value="User Story">User Story</option>
@@ -102,12 +100,12 @@
         </div>
         <div class="subtasks">
           <p class="headerText">Subtasks</p>
-          <input class="inputFieldStandart" id="subtaskInputId" onkeyup="triggerInputButtons()" type="text">
-          <img class="addSubtasksButton cursorPointer" id="addIconId" src="../assets/icon/add.svg" alt="">
+          <input id="subtaskInputId" onkeyup="triggerInputButtons()" type="text">
+          <img class="addSubtasksButton" id="addIconId" src="../assets/icon/add.svg" alt="">
           <div class="d_none" id="deleteOrSave">
-            <img class="rotateToDeleteBtn cursorPointer" onclick="deleteInput()" src="../assets/icon/add.svg" alt="deleteBtn">
+            <img class="rotateToDeleteBtn" onclick="deleteInput()" src="../assets/icon/add.svg" alt="deleteBtn">
             <div class="smallLine"></div>
-            <svg class="cursorPointer" onclick="addSubtaskToArray()" id="checkSubtasks" width="24" height="25" viewBox="0 0 24 25"
+            <svg onclick="addSubtaskToArray()" id="checkSubtasks" width="24" height="25" viewBox="0 0 24 25"
               fill="black" xmlns="http://www.w3.org/2000/svg">
               <mask id="mask0_191_600" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24"
                 height="25">
@@ -123,7 +121,7 @@
         <div class="subtasksContent" id="subtasksContentId"></div>
         <div class="overlayButtons">
           <p class="cancelBtn" onclick="toggleAddTaskOverlay()">
-            Clear<img src="/assets/icon/Close.svg" alt="cancelIcon" />
+            Cancel<img src="/assets/icon/Close.svg" alt="cancelIcon" />
           </p>
           <button class="createBtn" onclick="addTaskToFirebase()">
             Create Task<img src="/assets/icon/check.svg" alt="" />

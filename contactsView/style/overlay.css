@@ -27,7 +27,7 @@
 
 }
 
-@keyframes overlay-slide-in {
+@keyframes slide-in {
     from {
         transform: translate(100%, -50%);
     }
@@ -36,11 +36,11 @@
     }
 }
 
-.overlay-slide-out {
+.slide-out {
     animation: slide-out 1.0s forwards;
 }
 
-@keyframes overlay-slide-out {
+@keyframes slide-out {
     from {
         transform: translate(-50%, -50%);
     }

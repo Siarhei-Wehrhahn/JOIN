@@ -62,7 +62,6 @@ function loadBoardView() {
         .then(response => response.text())
         .then(data => {
             document.getElementById('contentArea').innerHTML = data;
-            renderNotesIntoTaskArray();
         })
         .catch(error => console.error('Error loading content:', error));
 }
@@ -115,21 +114,30 @@ const renderContacts = async () => {
     }
 };
 
+const getContact = (person, index) => {
+    const nameParts = person.name.split(' ').slice(0, 2);
+    const initials = nameParts.map(n => n[0]).join('');
+    const color = colors[index % colors.length];
+
+    return /*html*/`
+        <div class="contact" onclick='toggleContactExtended(${index})'>
+            <div class="contactPhotoDiv">
+                <div class="contactInitials" style="background-color: ${color};">${initials}</div>
+            </div>
+            <div class="contactWithEmail">
+                <p class="personName">${person.name}</p>
+                <p class="emailAdress">${person.email}</p>
+            </div>
+        </div>`;
+};
+
 const toggleContactExtended = (index) => {
     const contactExtendedDiv = document.getElementById('contactInfoExtendet');
-    if (contactExtendedDiv.classList.contains('d_none')) {
-        contactExtendedDiv.classList.remove('d_none');
-        contactExtendedDiv.classList.remove('slide-out-contact');
-        contactExtendedDiv.classList.add('slide-in-contact');
-        renderContactExtendet(index);
+    contactExtendedDiv.classList.toggle('d_none')
+    if(!contactExtendedDiv.classList.contains('d_none')) {
+        renderContactExtendet(index)
     } else {
-        contactExtendedDiv.classList.remove('slide-in-contact');
-        contactExtendedDiv.classList.add('slide-out-contact');
-
-        setTimeout(() => {
-            contactExtendedDiv.classList.add('d_none-contact');
-            contactExtendedDiv.classList.remove('slide-out-contact');
-        }, 1000);
+        contactExtendedDiv.innerHTML = ""
     }
 }
 
@@ -146,8 +154,6 @@ const renderContactExtendet = async (index) => {
     content.innerHTML += getContactExtended(person, initials, color);
 }
 
-<<<<<<< HEAD
-=======
 const getContactExtended = (person, initials, color) => {
     return /*html*/`
     <div class="contactExtendDiv">
@@ -186,7 +192,6 @@ const getContactExtended = (person, initials, color) => {
     </div>`
 };
 
->>>>>>> ec5b7cf (Sicherheitscommit alles funktioniert fehlerfrei)
 const deleteContact = async (person) => {
     const selectedPerson = contactsArray.find(contact => contact.name === person);
 
@@ -218,7 +223,8 @@ function toggleOverlay() {
 };
 
 window.onload = () => {
-    loadAddTaskView();
+    loadBoardView();
+    renderNotesIntoTaskArray();
 };
 
 function toggleEditOverlay(name, initials, color) {
@@ -240,4 +246,4 @@ function toggleEditOverlay(name, initials, color) {
             overlay.classList.remove('slide-out');
         }, 1000);
     }
-}
+};

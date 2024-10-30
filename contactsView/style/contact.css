@@ -12,36 +12,6 @@
     width: 100%;
 }
 
-.slide-in-contact {
-    animation: slide-in 1.0s forwards;
-}
-
-@keyframes slide-in-contact {
-    from {
-      transform: translateX(100%);
-      opacity: 0;
-    }
-    to {
-      transform: translateX(0);
-      opacity: 1;
-    }
-}
-
-.slide-out-contact {
-    animation: slide-out 1.0s forwards;
-}
-
-@keyframes slide-out-contact {
-    from {
-      transform: translateX(0);
-      opacity: 1;
-    }
-    to {
-      transform: translateX(100%);
-      opacity: 0;
-    }
-  }
-
 .contact {
     height: 80px;
     width: 100%;
