@@ -190,13 +190,13 @@ const deleteInput = () => {
 
 const addSubtaskToArray = () => {
   const inputField = document.getElementById("subtaskInputId").value;
-  subtaskArray.push(inputField);
+  subtasksArray.push(inputField);
   deleteInput();
   renderSubtask();
 };
 
 const deleteSubtask = (i) => {
-  subtaskArray.splice(i, 1);
+  subtasksArray.splice(i, 1);
   renderSubtask();
 };
 
@@ -344,8 +344,8 @@ function updateProgress() {
 const renderSubtask = () => {
   const subTaskContent = document.getElementById("subtasksContentId");
   subTaskContent.innerHTML = "";
-  for (let index = 0; index < subtaskArray.length; index++) {
-    const task = subtaskArray[index];
+  for (let index = 0; index < subtasksArray.length; index++) {
+    const task = subtasksArray[index];
     subTaskContent.innerHTML += getSubtask(task, index);
   }
 };
@@ -367,12 +367,12 @@ const editSubtask = (index) => {
   const subTaskContent = document.getElementById("subtasksContentId");
   subTaskContent.innerHTML = "";
   subTaskContent.innerHTML = getEditSubtask(index);
-  document.getElementById("editInput").value = subtaskArray[index];
+  document.getElementById("editInput").value = subtasksArray[index];
 };
 
 const saveEditSubtask = (i) => {
   const editSubtask = document.getElementById("editInput").value;
-  subtaskArray[i] = editSubtask;
+  subtasksArray[i] = editSubtask;
   renderSubtask();
 };
 
@@ -478,7 +478,7 @@ const addTaskToFirebase = () => {
     dueDate: dueDate,
     prio: selectedPriority,
     category: selectedCategory,
-    subtasks: subtaskArray,
+    subtasks: subtasksArray,
     area: "toDo",
   };
   postData("/tasks", taskObject);
@@ -494,7 +494,7 @@ const resetInputAddTask = () => {
   contactArrayAddTask = [];
   selectedPriority = "middle";
   selectedCategory = "";
-  subtaskArray = [];
+  subtasksArray = [];
 };
 
 function updateInputValue() {
