@@ -134,7 +134,7 @@ const renderAddTaskOverlay = async () => {
 };
 
 const getOverlayAddTask = (user, initials, index) => {
-  const color = colors[index % colors.length];
+  const color = color[index % colors.length];
   return /*html*/`
     <div class="contact">
       <p id="initialsOverlay" style="background-color: ${color};">${initials}</p>
@@ -467,6 +467,26 @@ function getTaskOverlay() {
   `;
 }
 
+const addTaskViewToFirebase = () => {
+  const title = document.getElementById("titleInputId").value;
+  const description = document.getElementById("descriptionInputId").value;
+  const dueDate = document.getElementById("dateInput").value;
+  const taskObject = {
+    title: title,
+    description: description,
+    assignedTo: contactArrayAddTask,
+    dueDate: dueDate,
+    prio: selectedPriority,
+    category: selectedCategory,
+    subtasks: subtasksArray,
+    area: "toDo",
+  };
+  postData("/tasks", taskObject);
+  resetInputAddTask();
+  toggleAddTaskOverlay();
+  renderNotesIntoTaskArray();
+};
+
 const addTaskToFirebase = () => {
   const title = document.getElementById("titleInputId").value;
   const description = document.getElementById("descriptionInputId").value;
@@ -493,7 +513,7 @@ const resetInputAddTask = () => {
   document.getElementById("dateInput").value = "";
   contactArrayAddTask = [];
   selectedPriority = "middle";
-  selectedCategory = "";
+  selectedCategory = "medium";
   subtasksArray = [];
 };
 
