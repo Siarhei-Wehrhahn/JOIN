@@ -244,10 +244,10 @@ const renderNotesIntoTaskArray = async () => {
             done.innerHTML += getNoteRef(task);
             break;
           default:
-            todo.innerHTML += /*html*/`<div class="no-task">No tasks To do</div>`;
-            progress.innerHTML += /*html*/`<div class="no-task">No tasks in progress</div>`;
-            feedback.innerHTML += /*html*/`<div class="no-task">No tasks in feedback</div>`;
-            done.innerHTML += /*html*/`<div class="no-task">No tasks done</div>`;
+            todo.innerHTML = /*html*/`<div class="no-task">No tasks To do</div>`;
+            progress.innerHTML = /*html*/`<div class="no-task">No tasks in progress</div>`;
+            feedback.innerHTML = /*html*/`<div class="no-task">No tasks in feedback</div>`;
+            done.innerHTML = /*html*/`<div class="no-task">No tasks done</div>`;
         }
       }
     } else {
@@ -288,6 +288,7 @@ function getNoteRef(task) {
             </div>`;
 }
 
+// TODO
 function searchTaskNotes() {
   document.getElementById("input").addEventListener("input", function () {
     let lowCase = this.value.toLowerCase();
@@ -313,6 +314,7 @@ function searchTaskNotes() {
   });
 }
 
+// TODO
 function updateProgress() {
   const subtaskAmount = document.getElementById("subtaskAmount");
   const totalTasks = subtasksArray.length;
