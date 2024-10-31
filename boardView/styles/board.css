@@ -148,6 +148,10 @@ input::placeholder {
   flex-direction: column;
   gap: 16px;
 }
+.contentdragAndDrop {
+  background-color: rgb(231, 231, 231);
+  border: dashed 1px rgb(163, 163, 163);
+}
 .add-task-mobile{
   display:none;
 }

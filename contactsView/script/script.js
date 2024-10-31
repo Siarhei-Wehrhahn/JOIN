@@ -53,3 +53,7 @@ function getEditOverlay(person, initials, color) {
   </div>
 `;
 };
+
+// function slideIn() {
+//   document.getElementById("contactsInfo").classList.add("active");
+// }

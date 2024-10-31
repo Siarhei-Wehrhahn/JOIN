@@ -157,7 +157,7 @@ const renderContactExtendet = async (index) => {
 
 const getContactExtended = (person, initials, color) => {
     return /*html*/`
-    <div class="contactExtendDiv">
+    <div class="slide-in" class="contactExtendDiv">
         <div class="contactName">
             <div class="contactPhotoExtendedDiv">
                 <div class="contactInitialsExtended" style="background-color: ${color};">${initials}</div>
@@ -192,6 +192,7 @@ const getContactExtended = (person, initials, color) => {
         </div>
     </div>`
 };
+
 
 const deleteContact = async (person) => {
     const selectedPerson = contactsArray.find(contact => contact.name === person);
