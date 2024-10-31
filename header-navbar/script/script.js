@@ -1,4 +1,5 @@
-let contactsArray = []
+let contactsArray = [];
+let href = "";
 
 const colors = [
     '#FF5733', // Rot-Orange
@@ -69,6 +70,15 @@ function loadBoardView() {
 
 function loadAddTaskView() {
     fetch('../addTask/index.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('contentArea').innerHTML = data;
+        })
+        .catch(error => console.error('Error loading content:', error));
+}
+
+function loadSummaryView() {
+    fetch('../summaryView/index.html')
         .then(response => response.text())
         .then(data => {
             document.getElementById('contentArea').innerHTML = data;
@@ -224,9 +234,33 @@ function toggleOverlay() {
     }
 };
 
-window.onload = () => {
-    loadAddTaskView();
+const navigateToNavHeader = (link) => {
+    sessionStorage.setItem("navigateTo", link);
+    window.location.href = "../header-navbar/index.html";
 };
+
+document.addEventListener("DOMContentLoaded", () => {
+    const href = sessionStorage.getItem("navigateTo");
+
+    switch (href) {
+        case "../contactsView/index.html":
+            loadContactsView();
+            break;
+        case "../boardView/index.html":
+            loadBoardView();
+            break;
+        case "../addTask/index.html":
+            loadAddTaskView();
+            break;
+        case "../summaryView/index.html":
+            loadSummaryView();
+            break;
+        default:
+            break;
+    }
+
+    sessionStorage.removeItem("navigateTo");
+});
 
 function toggleEditOverlay(name, initials, color) {
     const overlay = document.getElementById('overlayEditContact');

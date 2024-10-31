@@ -214,7 +214,7 @@ const renderAddTaskOverlay = async () => {
 };
 
 const getOverlayAddTask = (user, initials, index) => {
-  const color = colors[index % colors.length];
+  const color = color[index % colors.length];
   return /*html*/`
     <div class="contact">
       <p id="initialsOverlay" style="background-color: ${color};">${initials}</p>
@@ -270,13 +270,13 @@ const deleteInput = () => {
 
 const addSubtaskToArray = () => {
   const inputField = document.getElementById("subtaskInputId").value;
-  subtaskArray.push(inputField);
+  subtasksArray.push(inputField);
   deleteInput();
   renderSubtask();
 };
 
 const deleteSubtask = (i) => {
-  subtaskArray.splice(i, 1);
+  subtasksArray.splice(i, 1);
   renderSubtask();
 };
 
@@ -401,8 +401,8 @@ function updateProgress() {
 const renderSubtask = () => {
   const subTaskContent = document.getElementById("subtasksContentId");
   subTaskContent.innerHTML = "";
-  for (let index = 0; index < subtaskArray.length; index++) {
-    const task = subtaskArray[index];
+  for (let index = 0; index < subtasksArray.length; index++) {
+    const task = subtasksArray[index];
     subTaskContent.innerHTML += getSubtask(task, index);
   }
 };
@@ -424,12 +424,12 @@ const editSubtask = (index) => {
   const subTaskContent = document.getElementById("subtasksContentId");
   subTaskContent.innerHTML = "";
   subTaskContent.innerHTML = getEditSubtask(index);
-  document.getElementById("editInput").value = subtaskArray[index];
+  document.getElementById("editInput").value = subtasksArray[index];
 };
 
 const saveEditSubtask = (i) => {
   const editSubtask = document.getElementById("editInput").value;
-  subtaskArray[i] = editSubtask;
+  subtasksArray[i] = editSubtask;
   renderSubtask();
 };
 
@@ -524,6 +524,26 @@ function getTaskOverlay() {
   `;
 }
 
+const addTaskViewToFirebase = () => {
+  const title = document.getElementById("titleInputId").value;
+  const description = document.getElementById("descriptionInputId").value;
+  const dueDate = document.getElementById("dateInput").value;
+  const taskObject = {
+    title: title,
+    description: description,
+    assignedTo: contactArrayAddTask,
+    dueDate: dueDate,
+    prio: selectedPriority,
+    category: selectedCategory,
+    subtasks: subtasksArray,
+    area: "toDo",
+  };
+  postData("/tasks", taskObject);
+  resetInputAddTask();
+  toggleAddTaskOverlay();
+  renderNotesIntoTaskArray();
+};
+
 const addTaskToFirebase = () => {
   const title = document.getElementById("titleInputId").value;
   const description = document.getElementById("descriptionInputId").value;
@@ -535,7 +555,7 @@ const addTaskToFirebase = () => {
     dueDate: dueDate,
     prio: selectedPriority,
     category: selectedCategory,
-    subtasks: subtaskArray,
+    subtasks: subtasksArray,
     area: "toDo",
   };
   postData("/tasks", taskObject);
@@ -550,8 +570,8 @@ const resetInputAddTask = () => {
   document.getElementById("dateInput").value = "";
   contactArrayAddTask = [];
   selectedPriority = "middle";
-  selectedCategory = "";
-  subtaskArray = [];
+  selectedCategory = "medium";
+  subtasksArray = [];
 };
 
 function updateInputValue() {

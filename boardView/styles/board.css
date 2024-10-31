@@ -3,7 +3,7 @@ body {
 }
 
 main {
-  height: 89.5vh;
+  height: 88vh;
   width: 100%;
   margin-left: 5%;
   margin-right: 5%;
@@ -81,7 +81,7 @@ input::placeholder {
 }
 
 .lower-sec {
-  height: 77.2%;
+  height: 74.5%;
   width: 100%;
   display: flex;
   justify-content: center;
