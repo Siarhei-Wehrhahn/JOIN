@@ -58,7 +58,8 @@
 }
 
 dialog::backdrop {
-    background-color: rgba(0, 0, 0, 0.8); /* Dunkler Hintergrund */
+    background-color: rgba(0, 0, 0, 0.8);
+    /* Dunkler Hintergrund */
 }
 
 .theLine {
@@ -85,7 +86,7 @@ dialog::backdrop {
     border: 0.5px solid rgb(141, 141, 141);
     border-radius: 10px;
     box-sizing: border-box;
-  
+
     display: flex;
     align-items: flex-start;
     line-height: 1.5;
@@ -250,6 +251,15 @@ dialog::backdrop {
     display: none !important;
 }
 
+.rotateToDeleteBtn {
+    transform: rotate(45deg);
+    cursor: pointer;
+}
+
+#checkSubtasks {
+    cursor: pointer;
+}
+
 .subtasksContent {
     width: 80%;
     height: 150px;
@@ -399,49 +409,49 @@ dialog::backdrop {
     align-items: center;
     flex-direction: row;
     border-radius: 10px;
-  }
-  
-  .subtaskSingle:hover {
+}
+
+.subtaskSingle:hover {
     background-color: darkgray;
-  }
-  
-  .subtaskSingle:hover .editDeleteButtons {
+}
+
+.subtaskSingle:hover .editDeleteButtons {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: row;
     margin-right: 20px;
     gap: 8px;
-  }
-  
-  .subtaskSingle p {
+}
+
+.subtaskSingle p {
     color: black;
     margin-left: 20px;
-  }
-  
-  .editDeleteButtons {
+}
+
+.editDeleteButtons {
     display: none;
-  }
-  
-  .editDeleteButtons:hover {
+}
+
+.editDeleteButtons:hover {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: row;
     margin-right: 20px;
     gap: 8px;
-  }
-  
-  #subtaskInputId {
+}
+
+#subtaskInputId {
     z-index: 1;
     background-color: transparent;
-  }
-  
-  #deleteOrSave {
-    z-index: 2;
-  }
+}
 
-  .editSubtask {
+#deleteOrSave {
+    z-index: 2;
+}
+
+.editSubtask {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -449,17 +459,17 @@ dialog::backdrop {
     position: absolute;
     top: 80.5%;
     right: 4.5%;
-  }
-  
-  .editSubtaskDiv {
+}
+
+.editSubtaskDiv {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: row;
     margin-top: 8px;
-  }
-  
-  #editInput {
+}
+
+#editInput {
     width: 100%;
     height: 30px;
     border: none;
@@ -468,12 +478,16 @@ dialog::backdrop {
     text-decoration: none;
     transition: border-color 0.3s ease;
     background-color: transparent;
-  }
-  
-  #editInput:focus {
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+#editInput:focus {
     border-radius: 0;
     border-bottom-color: blue;
-  }
+}
 
 @media(max-height: 850px) {
     .subtasksContent {
