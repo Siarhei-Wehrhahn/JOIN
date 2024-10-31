@@ -30,7 +30,7 @@
 
       <div class="upper-sec-right">
         <div class="search-div">
-          <input id="inputSearchBar" type="text" placeholder="Find task">
+          <input oninput="searchTaskNotes()" id="input" type="text" placeholder="Find task" />
           <button type="submit">
             <img class="pointer" onclick="searchTask()" src="/assets/icon/search-icon.svg" alt="">
           </button>

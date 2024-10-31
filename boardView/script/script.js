@@ -343,15 +343,47 @@ const renderNotesIntoTaskArray = async () => {
   }
 };
 
-const setPrioIcon = ((prio) => {
-  if (prio == "low") {
-    return "../assets/icon/prioLow.svg"
-  } else if (prio == "urgent") {
-    return "../assets/icon/prioUrgent.svg"
+
+
+// TODO
+function searchTaskNotes() {
+  document.getElementById("input").addEventListener("input", function () {
+    let lowCase = this.value.toLowerCase();
+    const noResults = document.getElementById("tooltip");
+    let hasResults = false;
+
+    taskArray.taskNotes.forEach((taskNote) => {
+      let title = taskNote.getAttribute("title").toLowerCase();
+      let description = taskNote.getAttribute("description").toLowerCase();
+      if (title.includes(lowCase) || description.includes(lowCase)) {
+        taskNote.style.display = "";
+        hasResults = true;
+      } else {
+        taskNote.style.display = "none";
+      }
+    });
+
+    if (hasResults) {
+      noResults.style.opacity = "0";
+    } else {
+      noResults.style.opacity = "1";
+    }
+  });
+}
+
+// TODO
+function updateProgress() {
+  const subtaskAmount = document.getElementById("subtaskAmount");
+  const totalTasks = subtasksArray.length;
+  const subtaskDiv = document.getElementById("subtask-div");
+
+  if (totalTasks === 0) {
+    subtaskDiv.style.display = "none";
+    return;
   } else {
     return "../assets/icon/prioMedia.svg"
   }
-})
+}
 
 const renderContactAssignedTo = (persons, index) => {
   const content = document.getElementById('assignedToPeopleId' + index);
