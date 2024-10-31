@@ -65,7 +65,9 @@
 .emailAdress {
     color: rgb(71, 71, 255);
 }
-
+.personName {
+    font-size:20px;
+}
 .contactInitials {
     height: 40px;
     width: 40px;

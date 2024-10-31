@@ -85,7 +85,7 @@ dialog::backdrop {
     border: 0.5px solid rgb(141, 141, 141);
     border-radius: 10px;
     box-sizing: border-box;
-    position: relative;
+  
     display: flex;
     align-items: flex-start;
     line-height: 1.5;
