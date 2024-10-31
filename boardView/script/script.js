@@ -214,7 +214,7 @@ const renderAddTaskOverlay = async () => {
 };
 
 const getOverlayAddTask = (user, initials, index) => {
-  const color = color[index % colors.length];
+  const color = colors[index % colors.length];
   return /*html*/`
     <div class="contact">
       <p id="initialsOverlay" style="background-color: ${color};">${initials}</p>

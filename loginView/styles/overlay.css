@@ -1,0 +1,42 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.hidden_overlay {
+    display: none;
+}
+
+#logo {
+    position: absolute;
+    width: 200px;
+    height: auto;
+    transition: transform 1s ease-in-out;
+    transform-origin: center;
+}
+
+@keyframes logoMove {
+    0% {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+        top: 0;
+        left: 0;
+        transform: translate(0, 0) scale(0.63);
+    }
+}
+
+.animate {
+    animation: logoMove 1s forwards;
+}
