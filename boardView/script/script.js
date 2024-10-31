@@ -353,7 +353,7 @@ function searchTaskNotes() {
     let hasResults = false;
 
     taskArray.taskNotes.forEach((taskNote) => {
-      let title = taskNote.getAttribute("data-title").toLowerCase();
+      let title = taskNote.getAttribute("title").toLowerCase();
       let description = taskNote.getAttribute("description").toLowerCase();
       if (title.includes(lowCase) || description.includes(lowCase)) {
         taskNote.style.display = "";
