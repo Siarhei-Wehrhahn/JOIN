@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="/boardView/styles/overlayAddTask.css" />
   <link rel="stylesheet" href="/boardView/styles/noteOverlay.css" />
   <link rel="stylesheet" href="/boardView/styles/boardNote.css" />
+  <link rel="stylesheet" href="/boardView/styles/boardResponsive.css" />
   <script src="../loginView/scripts/firebase-realtime.js"></script>
   <script src="script/script.js" defer></script>
 
@@ -18,7 +19,14 @@
 <body>
   <main>
     <section class="upper-sec">
-      <h1>Board</h1>
+
+      <div class="responsive-div">
+        <h1>Board</h1>
+        <button id="add-task" class="add-task-mobile" onclick="toggleAddTaskOverlay()">
+        <img class="add-task-cross-icon" src="/assets/icon/cross.svg" alt="">
+        </button>
+      </div>
+
       <div class="upper-sec-right">
         <div class="search-div">
           <input id="input" type="text" placeholder="Find task" />
@@ -76,7 +84,10 @@
           <img class="column-add-button" src="/assets/icon/add-button.svg" alt="" />
         </div>
         <div class="lower-column">
-          <div ondrop="drop(event)" ondragover="allowDrop(event)" class="content" id="contentDone"></div>
+          <div ondrop="drop(event)" ondragover="allowDrop(event)" class="content" id="contentDone">
+            
+            
+          </div>
         </div>
       </div>
 
