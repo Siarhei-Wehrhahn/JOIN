@@ -1,5 +1,10 @@
 .rightSide {
+  height: 100%;
   width: 84%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
 }
 header {
   display: flex;

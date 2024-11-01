@@ -238,10 +238,6 @@ background-color: red;
     display: none;
 }
 
-.activateOverlay {
-    cursor: pointer;
-}
-
 .overlayBigTextExtended {
     font-size: 50px;
     font-weight: 500;

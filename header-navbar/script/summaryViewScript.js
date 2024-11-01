@@ -23,20 +23,17 @@ const loadTaskInfos = async () => {
       }, tasks[0]);
 
       if (mostUrgentTask) {
-        console.log("Dringendste Aufgabe:", mostUrgentTask);
-        console.log("Fälligkeitsdatum der dringendsten Aufgabe:", mostUrgentTask.dueDate);
         deadline.textContent = new Date(mostUrgentTask.dueDate).toLocaleDateString();
       } else {
         console.log("Keine Aufgaben gefunden.");
       }
-
       todoCount.innerText = filterTodoTasks.length;
       doneCount.innerText = filterDoneTasks.length;
       urgentCount.innerText = filterUrgentTasks.length;
       tasksCount.innerText = tasks.length;
       progressCount.innerText = filterTasksInProgress.length;
       awaitingFeedbackCount.innerText = filterFeedbackTasks.length;
-      name.innerText = currentUser[name]
+      name.innerText = currentUser.name
 
     } catch (error) {
       console.error("Failed to load Tasks in summaryView: " + error);
