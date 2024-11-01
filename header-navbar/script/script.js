@@ -11,8 +11,54 @@ const colors = [
     '#A633FF', // Lila
     '#FF3333', // Rot
     '#33FF33', // Hellgrün
-    '#3333FF'  // Dunkelblau
+    '#3333FF', // Dunkelblau
+    '#FFFFFF', // Weiß
+    '#000000', // Schwarz
+    '#C0C0C0', // Silber
+    '#808080', // Grau
+    '#800000', // Kastanienbraun
+    '#808000', // Oliv
+    '#00FF00', // Neon-Grün
+    '#008000', // Dunkelgrün
+    '#00FFFF', // Cyan
+    '#008080', // Teal
+    '#0000FF', // Königsblau
+    '#000080', // Marineblau
+    '#FF00FF', // Magenta
+    '#800080', // Dunkellila
+    '#FFA500', // Orange
+    '#FFD700', // Gold
+    '#A52A2A', // Braun
+    '#DC143C', // Karmesinrot
+    '#FF4500', // Orangerot
+    '#ADFF2F', // Gelbgrün
+    '#7FFF00', // Chartreuse-Grün
+    '#32CD32', // Limette-Grün
+    '#00FA9A', // Mittelmeergrün
+    '#40E0D0', // Türkis
+    '#1E90FF', // Himmelblau
+    '#4682B4', // Stahlblau
+    '#4B0082', // Indigo
+    '#EE82EE', // Violett
+    '#DDA0DD', // Pflaume
+    '#F0E68C', // Khaki
+    '#E6E6FA', // Lavendel
+    '#FFFACD', // Zitronengelb
+    '#FAFAD2', // Hellgold
+    '#FFE4B5', // Moccasin
+    '#FFDAB9', // Pfirsich
+    '#FFE4E1', // Nebelweiß
+    '#F5F5DC', // Beige
+    '#D2B48C', // Hellbraun
+    '#DEB887', // Burlywood
+    '#BDB76B', // Dunkelkhaki
+    '#BC8F8F', // Rosenholz
 ];
+
+function getColorForName(name) {
+    const hash = Array.from(name).reduce((acc, char) => acc + char.charCodeAt(0), 0);
+    return colors[hash % colors.length];
+}
 
 const validateEmail = (email) => {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -183,7 +229,7 @@ const renderContactExtendet = async (index) => {
         .filter(contact => contact.name && contact.email && contact.phone)
         .sort((a, b) => a.name.localeCompare(b.name));
     const person = contacts[index];
-    const color = colors[index % colors.length];
+    const color = getColorForName(person.name)
     const initials = person.name.split(' ').slice(0, 2).map(n => n[0]).join('');
     const content = document.getElementById('contactInfoExtendet');
     content.innerHTML = "";

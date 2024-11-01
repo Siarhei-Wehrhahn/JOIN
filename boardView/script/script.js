@@ -199,6 +199,8 @@ const renderNotesIntoTaskArray = async () => {
   try {
     const databaseJson = await loadData("/tasks");
     if (databaseJson) {
+      taskArray.length = 0;
+
       Object.keys(databaseJson).forEach((key) => {
         taskArray.push({
           id: key,
@@ -213,40 +215,71 @@ const renderNotesIntoTaskArray = async () => {
         });
       });
 
+      if (taskArray.length === 0) {
+        todo.innerHTML = `<div class="no-task">No tasks To do</div>`;
+        progress.innerHTML = `<div class="no-task">No tasks in progress</div>`;
+        feedback.innerHTML = `<div class="no-task">No tasks in feedback</div>`;
+        done.innerHTML = `<div class="no-task">No tasks done</div>`;
+        return;
+      }
+
       for (let index = 0; index < taskArray.length; index++) {
         const task = taskArray[index];
+        let people = Object.values(task.assignedTo).filter(person => person.name);
+        let colorCategory = "";
+        if (task.category == "User Story") {
+          colorCategory = "#0038FF";
+        } else {
+          colorCategory = "#1FD7C1";
+        }
         switch (task.area) {
           case "toDo":
-            todo.innerHTML += getNoteRef(task, index);
+            todo.innerHTML += getNoteRef(task, index, colorCategory);
+            renderContactAssignedTo(people, index);
             break;
           case "progress":
-            progress.innerHTML += getNoteRef(task, index);
+            progress.innerHTML += getNoteRef(task, index, colorCategory);
+            renderContactAssignedTo(people, index);
             break;
           case "feedback":
-            feedback.innerHTML += getNoteRef(task, index);
+            feedback.innerHTML += getNoteRef(task, index, colorCategory);
+            renderContactAssignedTo(people, index);
             break;
           case "done":
-            done.innerHTML += getNoteRef(task, index);
+            done.innerHTML += getNoteRef(task, index, colorCategory);
+            renderContactAssignedTo(people, index);
             break;
-          default:
-            todo.innerHTML = /*html*/`<div class="no-task">No tasks To do</div>`;
-            progress.innerHTML = /*html*/`<div class="no-task">No tasks in progress</div>`;
-            feedback.innerHTML = /*html*/`<div class="no-task">No tasks in feedback</div>`;
-            done.innerHTML = /*html*/`<div class="no-task">No tasks done</div>`;
         }
       }
     } else {
-      todo.innerHTML = /*html*/ `<div class="no-task">No tasks To do</div>`;
-      progress.innerHTML = /*html*/ `<div class="no-task">No tasks in progress</div>`;
-      feedback.innerHTML = /*html*/ `<div class="no-task">No tasks in feedback</div>`;
-      done.innerHTML = /*html*/ `<div class="no-task">No tasks done</div>`;
+      todo.innerHTML = `<div class="no-task">No tasks To do</div>`;
+      progress.innerHTML = `<div class="no-task">No tasks in progress</div>`;
+      feedback.innerHTML = `<div class="no-task">No tasks in feedback</div>`;
+      done.innerHTML = `<div class="no-task">No tasks done</div>`;
     }
   } catch (error) {
     console.error("Failed to load tasks in renderNotes", error);
-    content.innerHTML =
-      "<p>Fehler beim Laden der Aufgaben. Bitte versuchen Sie es später erneut.</p>";
   }
 };
+
+const setPrioIcon = ((prio) => {
+  if (prio == "low") {
+    return "../assets/icon/prioLow.svg"
+  } else if (prio == "urgent") {
+    return "../assets/icon/prioUrgent.svg"
+  } else {
+    return "../assets/icon/prioMedia.svg"
+  }
+})
+
+const renderContactAssignedTo = (persons, index) => {
+  const content = document.getElementById('assignedToPeopleId');
+  persons.forEach(person => {
+    let color = getColorForName(person.name)
+    const initials = person.name.split(' ').slice(0, 2).map(n => n[0]).join('');
+    content.innerHTML += getPersonLogo(initials, color);
+  })
+}
 
 // TODO
 function searchTaskNotes() {

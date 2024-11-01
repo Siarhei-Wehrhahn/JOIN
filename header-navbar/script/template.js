@@ -1,7 +1,7 @@
 const getContact = (person, index) => {
     const nameParts = person.name.split(' ').slice(0, 2);
     const initials = nameParts.map(n => n[0]).join('');
-    const color = colors[index % colors.length];
+    const color = getColorForName(person.name)
 
     return /*html*/`
         <div class="contact" onclick='toggleContactExtended(${index})'>

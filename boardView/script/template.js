@@ -95,12 +95,13 @@ const getSubtask = (taskName, index) => {
     `;
 };
 
-function getNoteRef(task, index) {
+function getNoteRef(task, index, color) {
+  let url = setPrioIcon(task.prio)
     return /*html*/ `
-              <div id="${task.name} + ${index}" draggable="true" ondragstart="drag(event)" class="boardNotes" onclick="renderTaskOverlay()">
+              <div id="${task.name} ${index}" draggable="true" ondragstart="drag(event)" class="boardNotes" onclick="renderTaskOverlay()">
                 <div class="boardNotesContent">
                   <div class="boardNotesCategory">
-                    <p>${task.category}</p>
+                    <p class="categoryText" style="background-color: ${color}">${task.category}</p>
                   </div>
                   <div class="boardTitle">${task.title}</div>
                   <div class="boardDescription">${task.description}</div>
@@ -111,17 +112,15 @@ function getNoteRef(task, index) {
                   </div>
   
                   <div class="boardNotesFooter">
-                    <div class="boardNotesContacts">
-                    ${task.description}
-                    </div>
-                    <div class="boardNotesPrio">${task.prio}</div>
+                    <div class="boardNotesContacts" id="assignedToPeopleId"></div>
+                    <div class="boardNotesPrio"><img src="${url}" alt=""></div>
                   </div>
                 </div>
               </div>`;
 }
 
 const getOverlayAddTask = (user, initials, index) => {
-    const color = colors[index % colors.length];
+    const color = getColorForName(user.name);
     return /*html*/`
       <div class="contact">
         <p id="initialsOverlay" style="background-color: ${color};">${initials}</p>
@@ -136,3 +135,9 @@ const getOverlayAddTask = (user, initials, index) => {
       </div>
     `;
 };
+
+const getPersonLogo = (initials, color) => {
+  return /*html*/`
+   <span class="pofileInitials" style="background-color: ${color}">${initials}</span>
+  `
+}
