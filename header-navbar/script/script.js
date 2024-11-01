@@ -215,13 +215,21 @@ const renderContacts = async () => {
 
 const toggleContactExtended = (index) => {
     const contactExtendedDiv = document.getElementById('contactInfoExtendet');
-    contactExtendedDiv.classList.toggle('d_none')
-    if (!contactExtendedDiv.classList.contains('d_none')) {
-        renderContactExtendet(index)
+
+    if (contactExtendedDiv.classList.contains('d_none')) {
+        contactExtendedDiv.classList.remove('contact-slide-out');
+        contactExtendedDiv.classList.add('contact-slide-in');
+        contactExtendedDiv.classList.remove('d_none');
+        renderContactExtendet(index);
     } else {
-        contactExtendedDiv.innerHTML = ""
+        contactExtendedDiv.classList.remove('contact-slide-in');
+        contactExtendedDiv.classList.add('contact-slide-out');
+        setTimeout(() => {
+            contactExtendedDiv.classList.add('d_none');
+            contactExtendedDiv.innerHTML = "";
+        }, 1000);
     }
-}
+};
 
 const renderContactExtendet = async (index) => {
     const databaseJson = await loadData('/contacts');
@@ -242,7 +250,9 @@ const deleteContact = async (person) => {
     if (selectedPerson) {
         await deleteData(`/contacts/${selectedPerson.id}`);
         contactsArray = contactsArray.filter(contact => contact.name !== person);
+        toggleContactExtended();
         renderContacts();
+
     }
 };
 

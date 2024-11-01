@@ -98,7 +98,7 @@
 
 .singleContactButtons {
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     flex-direction: row;
     gap: 16px;

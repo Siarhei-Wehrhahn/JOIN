@@ -49,6 +49,33 @@
     }
 }
 
+.contact-slide-in {
+    animation: slide-in 1.0s forwards;
+
+}
+
+@keyframes contact-slide-in {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0%);
+    }
+}
+
+.contact-slide-out {
+    animation: slide-out 1.0s forwards;
+}
+
+@keyframes contact-slide-out {
+    from {
+        transform: translateX(0%);
+    }
+    to {
+        transform: translateX(100%);
+    }
+}
+
 .overlayBody {
 height: 100%;
 width: 100%;
