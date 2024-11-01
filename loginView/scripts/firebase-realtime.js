@@ -1,4 +1,5 @@
-let users = []
+let users = [];
+let currentUser;
 
 const onloadFunc = () => {
   loadData();
@@ -79,6 +80,7 @@ const signUpNewUser = async () => {
   const signUpGuestUser = async () => {
     const user = { name: "Guest Anonym", email: "guest@guest.guest", passwort: "guest" };
     postData("/users", user);
+    currentUser = user;
     window.location.href = "header-navbar/index.html"
   };
   
