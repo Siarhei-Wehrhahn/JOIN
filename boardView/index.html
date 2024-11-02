@@ -30,8 +30,8 @@
 
       <div class="upper-sec-right">
         <div class="search-div">
-          <input id="input" type="text" placeholder="Find task" />
-          <button type="submit">
+          <input id="inputSearchBar" type="text" placeholder="Find task">
+          <button type="submit" onclick="searchTask()">
             <img src="/assets/icon/search-icon.svg" alt="">
           </button>
         </div>
@@ -112,7 +112,7 @@
             placeholder="Select contacts to assign">
           <img onclick="toggleContactSelection()" class="dropDownArrow" src="../assets/icon/arrow_drop_down.svg"
             alt="arrowDown">
-          <div class="container d_none" id="contactRender"></div>
+          <div class="containerContacts d_none" id="contactRender"></div>
         </div>
 
         <div class="theLine"></div>
@@ -209,8 +209,18 @@
         </div>
       </div>
     </div>
-  
+  <div class="grayBackground d_none"></div>
     <section class="taskOverlay d_none slide-out" id="taskOverlay"></section>
-</body>
+    <script>
+      // TODO umbauen
+      document.getElementById('inputSearchBar').addEventListener('input', function(input) {
+  if (input.value.length < 3) {
+    renderNotesIntoTaskArray();
+  } else {
+    searchTask();
+  }
+});
+    </script>
+  </body>
 
 </html>

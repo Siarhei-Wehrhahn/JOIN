@@ -234,19 +234,19 @@ const renderNotesIntoTaskArray = async () => {
         }
         switch (task.area) {
           case "toDo":
-            todo.innerHTML += getNoteRef(task, index, colorCategory);
+            todo.innerHTML += getNoteRef(task, colorCategory, index);
             renderContactAssignedTo(people, index);
             break;
           case "progress":
-            progress.innerHTML += getNoteRef(task, index, colorCategory);
+            progress.innerHTML += getNoteRef(task, colorCategory, index);
             renderContactAssignedTo(people, index);
             break;
           case "feedback":
-            feedback.innerHTML += getNoteRef(task, index, colorCategory);
+            feedback.innerHTML += getNoteRef(task, colorCategory, index);
             renderContactAssignedTo(people, index);
             break;
           case "done":
-            done.innerHTML += getNoteRef(task, index, colorCategory);
+            done.innerHTML += getNoteRef(task, colorCategory, index);
             renderContactAssignedTo(people, index);
             break;
         }
@@ -273,38 +273,12 @@ const setPrioIcon = ((prio) => {
 })
 
 const renderContactAssignedTo = (persons, index) => {
-  const content = document.getElementById('assignedToPeopleId');
+  const content = document.getElementById('assignedToPeopleId' + index);
   persons.forEach(person => {
     let color = getColorForName(person.name)
     const initials = person.name.split(' ').slice(0, 2).map(n => n[0]).join('');
     content.innerHTML += getPersonLogo(initials, color);
   })
-}
-
-// TODO
-function searchTaskNotes() {
-  document.getElementById("input").addEventListener("input", function () {
-    let lowCase = this.value.toLowerCase();
-    const noResults = document.getElementById("tooltip");
-    let hasResults = false;
-
-    taskArray.taskNotes.forEach((taskNote) => {
-      let title = taskNote.getAttribute("data-title").toLowerCase();
-      let description = taskNote.getAttribute("description").toLowerCase();
-      if (title.includes(lowCase) || description.includes(lowCase)) {
-        taskNote.style.display = "";
-        hasResults = true;
-      } else {
-        taskNote.style.display = "none";
-      }
-    });
-
-    if (hasResults) {
-      noResults.style.opacity = "0";
-    } else {
-      noResults.style.opacity = "1";
-    }
-  });
 }
 
 // TODO
@@ -356,10 +330,11 @@ const saveEditSubtask = (i) => {
   renderSubtask();
 };
 
-function renderTaskOverlay() {
+// TODO ASSIGNEDTO contacte rendern lassen
+function renderTaskOverlay(i) {
   const taskOverlay = document.getElementById('taskOverlay')
   toggleTaskNoteOverlay();
-  taskOverlay.innerHTML = getTaskOverlay();
+  taskOverlay.innerHTML = getTaskOverlay(taskArray[i]);
 }
 
 const addTaskViewToFirebase = () => {
@@ -407,7 +382,6 @@ const resetInputAddTask = () => {
   document.getElementById("descriptionInputId").value = "";
   document.getElementById("dateInput").value = "";
   contactArrayAddTask = [];
-  selectedPriority = "middle";
   selectedCategory = "medium";
   subtasksArray = [];
 };
@@ -425,6 +399,7 @@ const toggleArrow = () => {
 
 function toggleTaskNoteOverlay() {
   const overlay = document.getElementById("taskOverlay");
+  document.querySelector('.grayBackground').classList.toggle('d_none')
   if (overlay.classList.contains("d_none")) {
     resetInputAddTask();
     overlay.classList.remove("d_none");
@@ -454,3 +429,69 @@ function toggleEditOverlay() {
     }, 1000);
   }
 }
+
+// TODO beim löschen soll gerendert werden 
+const searchTask = async () => {
+  const inputValue = document.getElementById('inputSearchBar').value.toLowerCase();
+  const todo = document.getElementById("contentTodo");
+  const progress = document.getElementById("contentProgress");
+  const feedback = document.getElementById("contentFeedback");
+  const done = document.getElementById("contentDone");
+  const databaseJson = await loadData("/tasks");
+
+
+  todo.innerHTML = "";
+  progress.innerHTML = "";
+  feedback.innerHTML = "";
+  done.innerHTML = "";
+
+  taskArray = [];
+  if (databaseJson) {
+    taskArray.length = 0;
+
+    Object.keys(databaseJson).forEach((key) => {
+      taskArray.push({
+        id: key,
+        title: databaseJson[key].title,
+        description: databaseJson[key].description,
+        assignedTo: databaseJson[key].assignedTo,
+        dueDate: databaseJson[key].dueDate,
+        prio: databaseJson[key].prio,
+        category: databaseJson[key].category,
+        subtasks: databaseJson[key].subtasks,
+        area: databaseJson[key].area,
+      });
+    });}
+  if (inputValue.length >= 2) {
+    for (let index = 0; index < taskArray.length; index++) {
+      const task = taskArray[index];
+      if (task.title.toLowerCase().includes(inputValue)) {
+      let colorCategory = "";
+      if (task.category == "User Story") {
+        colorCategory = "#0038FF";
+      } else {
+        colorCategory = "#1FD7C1";
+      }
+      switch (task.area) {
+        case "toDo":
+          todo.innerHTML += getNoteRef(task, colorCategory);
+          renderContactAssignedTo(task.assignedTo);
+          break;
+        case "progress":
+          progress.innerHTML += getNoteRef(task, colorCategory);
+          renderContactAssignedTo(task.assignedTo);
+          break;
+        case "feedback":
+          feedback.innerHTML += getNoteRef(task, colorCategory);
+          renderContactAssignedTo(task.assignedTo);
+          break;
+        case "done":
+          done.innerHTML += getNoteRef(task, colorCategory);
+          renderContactAssignedTo(task.assignedTo);
+          break;
+      }
+    }
+    }
+  }
+}
+

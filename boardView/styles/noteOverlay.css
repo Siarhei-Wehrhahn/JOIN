@@ -1,156 +1,188 @@
+/*TODO OVERLAY BEARBEITEN*/
 .taskOverlay {
-  height:80vh;
-  width:32%;
-  position:absolute;
-  background-color:white;
+  height: 80vh;
+  width: 32%;
+  position: absolute;
+  background-color: white;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  border:solid 1px black;
+  border: solid 0.01px rgba(0, 0, 0, 0.3);
   border-radius: 25px;
   box-shadow: 10px 5px 10px 0px rgba(0, 0, 0, 0.3);
-  z-index: 100;
+  z-index: 101;
   background-color: white;
   transition: transform 0.5s ease-in-out;
-  padding:40px;
-
+  padding: 40px;
 }
 
+.grayBackground {
+  position: fixed;
+  right: 0;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.4);
+}
 
+.headerTaskOverlay {
+  height: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
 
-.taskOverlayCategory{
-  width:200px;
-  height:40px;
-  background-color:rgb(31, 215, 193);
-  border-radius:8px;
-  display:flex;
+.taskOverlayCategory {
+  height: 30px;
+  background-color: rgb(31, 215, 193);
+  border-radius: 8px;
+  color: white;
+  display: flex;
   justify-content: center;
-  align-items:center;
+  align-items: center;
+  padding-inline: 16px;
 }
+
 .taskOverlayCategory p {
-  color:white;
-  font-size:24px;
-  font-weight:300;
+  color: white;
+  font-size: 24px;
+  font-weight: 300;
 }
 
 
 .taskOverlayTitle {
-  font-size:60px;
-  font-weight:700;
-  margin:24px 0 24px 0;
+  font-size: 60px;
+  font-weight: 700;
+  margin: 24px 0 24px 0;
 }
+
 .taskOverlayDescription {
-  font-size:20px;
-  color:black;
-  font-weight:500;
-  margin:24px 0 24px 0;
+  font-size: 20px;
+  color: black;
+  font-weight: 500;
+  margin: 24px 0 24px 0;
 }
 
 
 
 .deadline-div {
-  display:flex;
-  margin:24px 0 24px 0;
+  display: flex;
+  margin: 24px 0 24px 0;
 }
+
 .taskOverlaydeadline {
-  font-size:20px;
-  color:rgb(66, 82, 110);
-  font-weight:400;
+  font-size: 20px;
+  color: rgb(66, 82, 110);
+  font-weight: 400;
   margin-right: 20px;
 }
+
 .taskOverlaydeadlineContent {
-  font-size:20px;
-  color:black;
-  font-weight:400;
+  font-size: 20px;
+  color: black;
+  font-weight: 400;
 }
 
 
 
 .priority-div {
-  display:flex;
-  margin:24px 0 24px 0;
+  display: flex;
+  margin: 24px 0 24px 0;
 }
+
 .taskOverlaypriority {
-  font-size:20px;
-  color:rgb(66, 82, 110);
-  font-weight:400;
+  font-size: 20px;
+  color: rgb(66, 82, 110);
+  font-weight: 400;
   margin-right: 36px;
 }
+
 .taskOverlayPriorityContent {
-  font-size:20px;
-  color:black;
-  font-weight:400;
+  font-size: 20px;
+  color: black;
+  font-weight: 400;
 }
 
 
-.assigned-to-div{
-  display:flex;
-  flex-direction:column;
-  margin:24px 0 24px 0;
+.assigned-to-div {
+  display: flex;
+  flex-direction: column;
+  margin: 24px 0 24px 0;
 }
+
 .taskOverlayassigned-to {
-  font-size:20px;
-  color:rgb(66, 82, 110);
-  font-weight:400;
+  font-size: 20px;
+  color: rgb(66, 82, 110);
+  font-weight: 400;
 }
+
 .taskOverlayassigned-toContent {
-  font-size:20px;
-  color:black;
-  font-weight:400;
-  width:100%;
-  height:160px;
+  font-size: 20px;
+  color: black;
+  font-weight: 400;
+  width: 100%;
+  height: 160px;
 }
 
 
-#subtasks-div{
-  display:flex;
-  flex-direction:column;
-  margin:24px 0 24px 0;
+#subtasks-div {
+  display: flex;
+  flex-direction: column;
+  margin: 24px 0 24px 0;
 }
+
 .taskOverlaysubtasks {
-  font-size:20px;
-  color:rgb(66, 82, 110);
-  font-weight:400;
+  font-size: 20px;
+  color: rgb(66, 82, 110);
+  font-weight: 400;
 }
+
+/*TODO subtasks anpassen*/
 .taskOverlaysubtasksContent {
-  font-size:20px;
-  color:black;
-  font-weight:400;
-  width:100%;
-  height:120px;
+  font-size: 20px;
+  color: black;
+  font-weight: 400;
+  width: 100%;
+  height: 120px;
 }
 
 .taskOverlay-edit-delete {
-  display:flex;
+  display: flex;
   align-items: center;
   justify-content: end;
 }
 
 .taskOverlayDelete {
-  display:flex;
+  display: flex;
   align-items: center;
-  gap:8px;
+  gap: 8px;
 }
+
 .taskOverlayDelete p {
-  font-size:16px;
-  color:black;
-  font-weight:400;
+  font-size: 16px;
+  color: black;
+  font-weight: 400;
 }
 
 
 .taskOverlayEdit {
-  display:flex;
+  display: flex;
   align-items: center;
-  gap:8px;
+  gap: 8px;
 }
+
 .taskOverlayEdit p {
-  font-size:16px;
-  color:black;
-  font-weight:400;
+  font-size: 16px;
+  color: black;
+  font-weight: 400;
 }
 
 .middle-line {
-  border:solid 0.1px rgb(209, 209, 209);
-  height:20px;
+  border: solid 0.1px rgb(209, 209, 209);
+  height: 20px;
   margin: 0 12px 0 12px;
 }

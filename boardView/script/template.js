@@ -1,35 +1,38 @@
-function getTaskOverlay() {
+//TODO Delete und edit funktion schreiben
+function getTaskOverlay(task) {
     return /*html*/ `
   <div class="taskOverlayContent"> 
   
-    <div class="taskOverlayCategory">
-      <p>Technical Task</p>
+    <div class="headerTaskOverlay">
+      <p class="taskOverlayCategory">Technical Task</p>
+      <img class="pointer" onclick="toggleTaskNoteOverlay()" src="../assets/icon/Close.svg" alt="">
     </div>
   
-    <div class="taskOverlayTitle">CSS Architecture Planning</div>
+    <div class="taskOverlayTitle">${task.title}</div>
   
-    <div class="taskOverlayDescription">Define CSS naming conventions and structure.</div>
+    <div class="taskOverlayDescription">${task.description}</div>
   
    <div class="deadline-div">
     <div class="taskOverlaydeadline">Due date:</div>
-    <div class="taskOverlaydeadlineContent">02/09/2023</div>
+    <div class="taskOverlaydeadlineContent">${task.dueDate}</div>
    </div>
   
    <div class="priority-div">
     <div class="taskOverlaypriority">Priority:</div>
-    <div class="taskOverlayPriorityContent">Urgent</div>
+    <div class="taskOverlayPriorityContent">${task.prio}</div>
    </div>
   
     <div class="assigned-to-div">
       <div class="taskOverlayassigned-to">Assigned To:</div>
-      <div class="taskOverlayassigned-toContent"></div>
+      <div class="taskOverlayassigned-toContent">${task.assignedTo}</div>
     </div>
   
     <div class="subtasks-div">
       <div class="taskOverlaysubtasks">Subtasks:</div>
-      <div class="taskOverlaysubtasksContent"></div>
+      <div class="taskOverlaysubtasksContent">${task.subtasks}</div>
     </div>
   
+    
     <div class="taskOverlay-edit-delete">
       <div class="taskOverlayDelete">
         <svg class="delete-button" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -95,10 +98,10 @@ const getSubtask = (taskName, index) => {
     `;
 };
 
-function getNoteRef(task, index, color) {
+function getNoteRef(task, color, index) {
   let url = setPrioIcon(task.prio)
     return /*html*/ `
-              <div id="${task.name} ${index}" draggable="true" ondragstart="drag(event)" class="boardNotes" onclick="renderTaskOverlay()">
+              <div id="${task.title}" draggable="true" ondragstart="drag(event)" class="boardNotes" onclick="renderTaskOverlay(${index})">
                 <div class="boardNotesContent">
                   <div class="boardNotesCategory">
                     <p class="categoryText" style="background-color: ${color}">${task.category}</p>
@@ -112,7 +115,7 @@ function getNoteRef(task, index, color) {
                   </div>
   
                   <div class="boardNotesFooter">
-                    <div class="boardNotesContacts" id="assignedToPeopleId"></div>
+                    <div class="boardNotesContacts" id="assignedToPeopleId${index}"></div>
                     <div class="boardNotesPrio"><img src="${url}" alt=""></div>
                   </div>
                 </div>

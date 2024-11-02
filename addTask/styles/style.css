@@ -321,7 +321,7 @@ dialog::backdrop {
     transition: 0.2s ease;
 }
 
-.container {
+.containerContacts {
     width: 80%;
     max-height: 0;
     display: flex;
@@ -337,7 +337,7 @@ dialog::backdrop {
     transition: max-height 1s ease, opacity 1s ease;
 }
 
-.container.open {
+.containerContacts.open {
     max-height: 230px;
     opacity: 1;
     overflow-y: auto;

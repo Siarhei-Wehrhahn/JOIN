@@ -147,7 +147,7 @@
   margin: 0;
 }
 
-.container {
+.containerContacts {
   max-height: 270px;
   display: flex;
   justify-content: start;
