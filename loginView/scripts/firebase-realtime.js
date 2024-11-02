@@ -1,4 +1,4 @@
-let users = []
+let users = [];
 
 const onloadFunc = () => {
   loadData();
@@ -77,15 +77,28 @@ const signUpNewUser = async () => {
   };
 
   const signUpGuestUser = async () => {
-    const user = { name: "Guest Anonym", email: "guest@guest.guest", passwort: "guest" };
+    const date = Date()
+    const user = { name: "Guest Anonym", email: "guest@guest.guest", passwort: date + "guest" };
     postData("/users", user);
+    currentUser = user;
     window.location.href = "header-navbar/index.html"
   };
   
-  //TODO: signIn function zu ende schreiben
   const signIn = async () => {
     const emailInputLogin = document.getElementById("emailInputLogin").value;
     const passwordInputLogin = document.getElementById("passwordInputLogin").value;
-    const usersData = loadData("/users");
-    console.log(usersData);
+    const usersData = await loadData("/users");
+    const users = Object.values(usersData)
+    .filter((user) => user.name && user.email && user.passwort)
+    .sort((a, b) => a.name.localeCompare(b.name));
+    const findUser = users.find( user => user.email == emailInputLogin)
+    if(findUser && findUser.passwort == passwordInputLogin) {
+      sessionStorage.setItem("currentUser", JSON.stringify(findUser));
+      alert("Du hast dich erfolgreich angemeldet!")
+      window.location.href = "header-navbar/index.html"
+    } else if(findUser && findUser.passwort != passwordInputLogin) {
+      alert("E-Mail oder Passwort stimmen nicht überein mit den hinterlegten daten!")
+    } else {
+      alert("Es wurde kein konte mit der E-Mail Adresse gefunden. Bitte registrieren sie sich zuert!")
+    }
   };
