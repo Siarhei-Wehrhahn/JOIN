@@ -13,12 +13,15 @@
   <link rel="stylesheet" href="../summaryView/styles/standart.css" />
   <script src="../contactsView/script/script.js"></script>
   <script src="./script/script.js" defer></script>
+  <script src="./script/template.js" defer></script>
   <script src="./script/addTaskScript.js" defer></script>
   <script src="../boardView/script/script.js"></script>
+  <script src="../boardView/script/template.js"></script>
   <script src="../contactsView/script/script.js" defer></script>
   <script src="../loginView/scripts/firebase-realtime.js"></script>
   <title>Header-Navbar</title>
 </head>
+
 <body>
   <div class="leftSide" id="leftSideId">
     <nav>
@@ -28,7 +31,7 @@
         <div class="menu-buttons">
           <div class="summery-button" onclick="loadSummaryView()">
             <img class="nav-icon" src="../assets/icon/summary-icon.svg" alt="" />
-            <p onclick="activateOverlay()">Summary</p>
+            <p>Summary</p>
           </div>
 
           <div class="add-tast-button" onclick="loadAddTaskView()">

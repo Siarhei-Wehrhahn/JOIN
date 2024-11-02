@@ -5,17 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join</title>
-    <link rel="icon" type="image/png" href="assets/icon/Capa 1.png">
     <link rel="stylesheet" href="./loginView/styles/assets.css">
     <link rel="stylesheet" href="./loginView/styles/style.css">
+    <link rel="stylesheet" href="./loginView/styles/splashStyle.css">
     <script src="./loginView/scripts/script.js" defer></script>
+    <script src="./loginView/scripts/overlay.js" defer></script>
 </head>
 
-<body onload="onloadFunc()">
+<body onload="onload()">
     <header>
-        <div class="logoDiv">
-            <img class="headerLogo" src="../assets/icon/Capa 1.svg" alt="logo">
-        </div>
         <div class="signUp">
             <p class="blacktext" id="dNonen1">Not a Join user?</p>
             <p class="blueBtn" id="dNonen2" onclick="signUp()">Sign up</p>
@@ -60,6 +58,9 @@
             </div>
         </div>
     </main>
+    <div class="splashScreen">
+        <img src="../assets/icon/logoSplashScreen.svg" alt="">
+    </div>
 
     <footer>
         <p>Privacy Policy</p>

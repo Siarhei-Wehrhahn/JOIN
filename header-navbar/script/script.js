@@ -11,8 +11,54 @@ const colors = [
     '#A633FF', // Lila
     '#FF3333', // Rot
     '#33FF33', // Hellgrün
-    '#3333FF'  // Dunkelblau
+    '#3333FF', // Dunkelblau
+    '#FFFFFF', // Weiß
+    '#000000', // Schwarz
+    '#C0C0C0', // Silber
+    '#808080', // Grau
+    '#800000', // Kastanienbraun
+    '#808000', // Oliv
+    '#00FF00', // Neon-Grün
+    '#008000', // Dunkelgrün
+    '#00FFFF', // Cyan
+    '#008080', // Teal
+    '#0000FF', // Königsblau
+    '#000080', // Marineblau
+    '#FF00FF', // Magenta
+    '#800080', // Dunkellila
+    '#FFA500', // Orange
+    '#FFD700', // Gold
+    '#A52A2A', // Braun
+    '#DC143C', // Karmesinrot
+    '#FF4500', // Orangerot
+    '#ADFF2F', // Gelbgrün
+    '#7FFF00', // Chartreuse-Grün
+    '#32CD32', // Limette-Grün
+    '#00FA9A', // Mittelmeergrün
+    '#40E0D0', // Türkis
+    '#1E90FF', // Himmelblau
+    '#4682B4', // Stahlblau
+    '#4B0082', // Indigo
+    '#EE82EE', // Violett
+    '#DDA0DD', // Pflaume
+    '#F0E68C', // Khaki
+    '#E6E6FA', // Lavendel
+    '#FFFACD', // Zitronengelb
+    '#FAFAD2', // Hellgold
+    '#FFE4B5', // Moccasin
+    '#FFDAB9', // Pfirsich
+    '#FFE4E1', // Nebelweiß
+    '#F5F5DC', // Beige
+    '#D2B48C', // Hellbraun
+    '#DEB887', // Burlywood
+    '#BDB76B', // Dunkelkhaki
+    '#BC8F8F', // Rosenholz
 ];
+
+function getColorForName(name) {
+    const hash = Array.from(name).reduce((acc, char) => acc + char.charCodeAt(0), 0);
+    return colors[hash % colors.length];
+}
 
 const validateEmail = (email) => {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -82,8 +128,52 @@ function loadSummaryView() {
         .then(response => response.text())
         .then(data => {
             document.getElementById('contentArea').innerHTML = data;
+            loadTaskInfos();
         })
         .catch(error => console.error('Error loading content:', error));
+}
+
+const loadTaskInfos = async () => {
+    const todoCount = document.getElementById('todoCountId');
+    const doneCount = document.getElementById('doneCountId');
+    const deadline = document.getElementById('urgentDeadlineId');
+    const tasksCount = document.getElementById('taskCountId');
+    const progressCount = document.getElementById('progressCountId');
+    const awaitingFeedbackCount = document.getElementById('awaitingFeedbackCountId');
+    const name = document.getElementById('profileNameId');
+    const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+    if (currentUser) {
+        name.innerText = currentUser.name;
+    }
+    try {
+        const taskData = await loadData("/tasks");
+        const tasks = Object.values(taskData)
+            .filter(task => task.title && task.dueDate && task.area)
+            .sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
+        const filterTodoTasks = tasks.filter(task => task.area == "toDo");
+        const filterDoneTasks = tasks.filter(task => task.area == "done");
+        const filterTasksInProgress = tasks.filter(task => task.area == "progress");
+        const filterFeedbackTasks = tasks.filter(task => task.area == "feedback");
+        const mostUrgentTask = tasks.reduce((earliest, currentTask) => {
+            return new Date(currentTask.dueDate) < new Date(earliest.dueDate) ? currentTask : earliest;
+        }, tasks[0]);
+
+        if (mostUrgentTask) {
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            deadline.textContent = new Date(mostUrgentTask.dueDate).toLocaleDateString('en-US', options);
+        } else {
+            console.log("Keine Aufgaben gefunden.");
+        }
+
+        todoCount.innerText = filterTodoTasks.length;
+        doneCount.innerText = filterDoneTasks.length;
+        tasksCount.innerText = tasks.length;
+        progressCount.innerText = filterTasksInProgress.length;
+        awaitingFeedbackCount.innerText = filterFeedbackTasks.length;
+
+    } catch (error) {
+        console.error("Failed to load Tasks in summaryView: " + error);
+    }
 }
 
 const renderContacts = async () => {
@@ -96,17 +186,15 @@ const renderContacts = async () => {
             .filter(contact => contact.name && contact.email && contact.phone)
             .sort((a, b) => a.name.localeCompare(b.name));
 
-        if(databaseJson) {
+        if (databaseJson) {
             Object.keys(databaseJson).forEach(key => {
-                contactsArray.push( {
+                contactsArray.push({
                     id: key,
                     name: databaseJson[key].name,
                     email: databaseJson[key].email,
                     phone: databaseJson[key].phone
                 })
             })
-            console.log(contactsArray);
-            console.log(contacts);
         }
 
         let currentLetter = '';
@@ -125,32 +213,23 @@ const renderContacts = async () => {
     }
 };
 
-const getContact = (person, index) => {
-    const nameParts = person.name.split(' ').slice(0, 2);
-    const initials = nameParts.map(n => n[0]).join('');
-    const color = colors[index % colors.length];
-
-    return /*html*/`
-        <div class="contact" onclick='toggleContactExtended(${index})'>
-            <div class="contactPhotoDiv">
-                <div class="contactInitials" style="background-color: ${color};">${initials}</div>
-            </div>
-            <div class="contactWithEmail">
-                <p class="personName">${person.name}</p>
-                <p class="emailAdress">${person.email}</p>
-            </div>
-        </div>`;
-};
-
 const toggleContactExtended = (index) => {
     const contactExtendedDiv = document.getElementById('contactInfoExtendet');
-    contactExtendedDiv.classList.toggle('d_none')
-    if(!contactExtendedDiv.classList.contains('d_none')) {
-        renderContactExtendet(index)
+
+    if (contactExtendedDiv.classList.contains('d_none')) {
+        contactExtendedDiv.classList.remove('contact-slide-out');
+        contactExtendedDiv.classList.add('contact-slide-in');
+        contactExtendedDiv.classList.remove('d_none');
+        renderContactExtendet(index);
     } else {
-        contactExtendedDiv.innerHTML = ""
+        contactExtendedDiv.classList.remove('contact-slide-in');
+        contactExtendedDiv.classList.add('contact-slide-out');
+        setTimeout(() => {
+            contactExtendedDiv.classList.add('d_none');
+            contactExtendedDiv.innerHTML = "";
+        }, 1000);
     }
-}
+};
 
 const renderContactExtendet = async (index) => {
     const databaseJson = await loadData('/contacts');
@@ -158,51 +237,12 @@ const renderContactExtendet = async (index) => {
         .filter(contact => contact.name && contact.email && contact.phone)
         .sort((a, b) => a.name.localeCompare(b.name));
     const person = contacts[index];
-    const color = colors[index % colors.length];
+    const color = getColorForName(person.name)
     const initials = person.name.split(' ').slice(0, 2).map(n => n[0]).join('');
     const content = document.getElementById('contactInfoExtendet');
     content.innerHTML = "";
     content.innerHTML += getContactExtended(person, initials, color);
 }
-
-const getContactExtended = (person, initials, color) => {
-    return /*html*/`
-    <div class="slide-in" class="contactExtendDiv">
-        <div class="contactName">
-            <div class="contactPhotoExtendedDiv">
-                <div class="contactInitialsExtended" style="background-color: ${color};">${initials}</div>
-            </div>
-            <div class="rightSectionContact">
-                <div class="contactName">
-                    <p class="personNameExtended">${person.name}</p>
-                </div>
-            <div class="singleContactButtons">
-                <div class="singleContactEdit" onclick="toggleEditOverlay('${person.name}', '${initials}', '${color}')">
-                    <img onclick="renderOverlay()" src="../assets/icon/edit.svg" alt="edit pic">
-                    <p>Edit</p>
-                </div>
-                <div class="singleContactEdit" onclick="deleteContact('${person.name}')">
-                    <img src="../assets/icon/delete.svg" alt="trashcan">
-                    <p>Delete</p>
-                </div>
-                </div>
-            </div>
-        </div>
-        <div class="contactInfo">
-
-        </div>
-        <div class="contactInformation">
-        <h3 class="contactInfoHeader">Contact Information</h3>
-        <div class="contactMailAndPhone">
-            <h3>Email</h3>
-            <p class="emailAdress">${person.email}</p>
-            <h3>Phone</h3>
-            <p class="phoneNumber">${person.phone}</p>
-        </div>
-        </div>
-    </div>`
-};
-
 
 const deleteContact = async (person) => {
     const selectedPerson = contactsArray.find(contact => contact.name === person);
@@ -210,7 +250,9 @@ const deleteContact = async (person) => {
     if (selectedPerson) {
         await deleteData(`/contacts/${selectedPerson.id}`);
         contactsArray = contactsArray.filter(contact => contact.name !== person);
+        toggleContactExtended();
         renderContacts();
+
     }
 };
 
@@ -256,6 +298,7 @@ document.addEventListener("DOMContentLoaded", () => {
             loadSummaryView();
             break;
         default:
+            loadSummaryView();
             break;
     }
 
