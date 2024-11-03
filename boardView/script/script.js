@@ -266,17 +266,16 @@ const renderNotesIntoTaskArray = async () => {
   const progress = document.getElementById("contentProgress");
   const feedback = document.getElementById("contentFeedback");
   const done = document.getElementById("contentDone");
-
   todo.innerHTML = "";
   progress.innerHTML = "";
   feedback.innerHTML = "";
   done.innerHTML = "";
-
   try {
     const databaseJson = await loadData("/tasks");
     if (databaseJson) {
       taskArray.length = 0;
 
+      taskArray = [];
       Object.keys(databaseJson).forEach((key) => {
         taskArray.push({
           id: key,
@@ -287,9 +286,11 @@ const renderNotesIntoTaskArray = async () => {
           prio: databaseJson[key].prio,
           category: databaseJson[key].category,
           subtasks: databaseJson[key].subtasks,
+          checkedSubtasks: databaseJson[key].checkedSubtasks,
           area: databaseJson[key].area,
         });
       });
+      savetasksToLocalStorage();
 
       if (taskArray.length === 0) {
         todo.innerHTML = `<div class="no-task">No tasks To do</div>`;
@@ -310,20 +311,24 @@ const renderNotesIntoTaskArray = async () => {
         }
         switch (task.area) {
           case "toDo":
-            todo.innerHTML += getNoteRef(task, index, colorCategory);
+            todo.innerHTML += getNoteRef(task, colorCategory, index);
             renderContactAssignedTo(people, index);
+            updateProgressBar(index);
             break;
           case "progress":
-            progress.innerHTML += getNoteRef(task, index, colorCategory);
+            progress.innerHTML += getNoteRef(task, colorCategory, index);
             renderContactAssignedTo(people, index);
+            updateProgressBar(index);
             break;
           case "feedback":
-            feedback.innerHTML += getNoteRef(task, index, colorCategory);
+            feedback.innerHTML += getNoteRef(task, colorCategory, index);
             renderContactAssignedTo(people, index);
+            updateProgressBar(index);
             break;
           case "done":
-            done.innerHTML += getNoteRef(task, index, colorCategory);
+            done.innerHTML += getNoteRef(task, colorCategory, index);
             renderContactAssignedTo(people, index);
+            updateProgressBar(index);
             break;
         }
       }
@@ -349,7 +354,7 @@ const setPrioIcon = ((prio) => {
 })
 
 const renderContactAssignedTo = (persons, index) => {
-  const content = document.getElementById('assignedToPeopleId');
+  const content = document.getElementById('assignedToPeopleId' + index);
   persons.forEach(person => {
     let color = getColorForName(person.name)
     const initials = person.name.split(' ').slice(0, 2).map(n => n[0]).join('');
@@ -357,57 +362,93 @@ const renderContactAssignedTo = (persons, index) => {
   })
 }
 
-// TODO
-function searchTaskNotes() {
-  document.getElementById("input").addEventListener("input", function () {
-    let lowCase = this.value.toLowerCase();
-    const noResults = document.getElementById("tooltip");
-    let hasResults = false;
+const getTaskData = async () => {
+  const databaseJson = await loadData("/tasks");
+  if (databaseJson) {
 
-    taskArray.taskNotes.forEach((taskNote) => {
-      let title = taskNote.getAttribute("title").toLowerCase();
-      let description = taskNote.getAttribute("description").toLowerCase();
-      if (title.includes(lowCase) || description.includes(lowCase)) {
-        taskNote.style.display = "";
-        hasResults = true;
-      } else {
-        taskNote.style.display = "none";
-      }
+    taskArray = [];
+    return Object.keys(databaseJson).forEach((key) => {
+      taskArray.push({
+        id: key,
+        title: databaseJson[key].title,
+        description: databaseJson[key].description,
+        assignedTo: databaseJson[key].assignedTo,
+        dueDate: databaseJson[key].dueDate,
+        prio: databaseJson[key].prio,
+        category: databaseJson[key].category,
+        subtasks: databaseJson[key].subtasks,
+        checkedSubtasks: databaseJson[key].checkedSubtasks,
+        area: databaseJson[key].area,
+      });
     });
-
-    if (hasResults) {
-      noResults.style.opacity = "0";
-    } else {
-      noResults.style.opacity = "1";
-    }
-  });
+  }
 }
 
-// TODO
-function updateProgress() {
-  const subtaskAmount = document.getElementById("subtaskAmount");
-  const totalTasks = subtasksArray.length;
-  const subtaskDiv = document.getElementById("subtask-div");
+const savetasksToLocalStorage = () => {
+  localStorage.setItem("tasks", JSON.stringify(taskArray))
+}
 
-  if (totalTasks === 0) {
-    subtaskDiv.style.display = "none";
-    return;
-  } else {
-    subtaskDiv.style.display = "block";
+const loadTasksFromLocalStorage = () => {
+  const savedTaks =localeStorage.getItem("tasks");
+  taskArray = JSON.parse(savedTaks);
+  taskArray.forEach(updateProgressBar);  
+}
+
+const toggleSubtask = (taskId, subtaskIndex) => {
+  const task = taskArray.find ( task => task.id == taskId );
+  if(task) {
+    task.subtask[subtaskIndex].checked = !task.subtask[subtaskIndex].checked;
+    savetasksToLocalStorage();
+    updateProgressBar(task);
   }
+}
 
-  const completedTasks = 0;
+const updateProgressBar = async (index) => {
+  const databaseJson = await loadData("/tasks");
+  if (databaseJson) {
 
-  subtasksArray.forEach((task) => {
-    const checkbox = document.getElementById(task.id);
-    if (checkbox.checked) completedTasks++;
-  });
-  const progressPercentage = (completedTasks / totalTasks) * 100;
+    taskArray = [];
+    Object.keys(databaseJson).forEach((key) => {
+      taskArray.push({
+        id: key,
+        title: databaseJson[key].title,
+        description: databaseJson[key].description,
+        assignedTo: databaseJson[key].assignedTo,
+        dueDate: databaseJson[key].dueDate,
+        prio: databaseJson[key].prio,
+        category: databaseJson[key].category,
+        subtasks: databaseJson[key].subtasks || {},
+        checkedSubtasks: databaseJson[key].checkedSubtasks || {},
+        area: databaseJson[key].area,
+      });
+    });
+  }
+  const task = taskArray[index];
+  const completedSubtasks = Object.keys(task.checkedSubtasks || {}).length;
+  const totalSubtasks = Object.keys(task.subtasks || {}).length;
 
-  const progress = document.getElementById("progressBar");
-  progress.style.width = progressPercentage + "%";
+  const progressPercentage = totalSubtasks > 0 ? (completedSubtasks / totalSubtasks) * 100 : 0;
 
-  subtaskAmount.innerText = `${completedTasks}/${totalTasks} Subtasks`;
+  const progressBar = document.getElementById(`progressBar${task.title}`);
+  const subtaskAmount = document.getElementById(`subtaskAmount${task.title}`);
+
+  if (progressBar && subtaskAmount) {
+    progressBar.value = progressPercentage;
+    subtaskAmount.innerText = `${completedSubtasks}/${totalSubtasks} Subtasks`;
+  } else {
+    progressBar.value = progressPercentage;
+    subtaskAmount.innerText = `0/0 Subtasks`;
+  }
+};
+
+const renderAssignedToContacts = async (task) => {
+  const renderDiv = document.getElementById('assignedToContactsId');
+   for (let index = 0; index < task.assignedTo.length; index++) {
+    const contact = task.assignedTo[index];
+    let color = getColorForName(contact.name)
+    const initials = contact.name.split(' ').slice(0, 2).map(n => n[0]).join('');
+    renderDiv.innerHTML = getAssignedToContacts(color, initials, contact)
+   }
 }
 
 const renderSubtask = () => {
@@ -432,10 +473,12 @@ const saveEditSubtask = (i) => {
   renderSubtask();
 };
 
-function renderTaskOverlay() {
+// TODO ASSIGNEDTO contacte rendern lassen
+function renderTaskOverlay(i) {
   const taskOverlay = document.getElementById('taskOverlay')
   toggleTaskNoteOverlay();
-  taskOverlay.innerHTML = getTaskOverlay();
+  taskOverlay.innerHTML = getTaskOverlay(taskArray[i]);
+  renderAssignedToContacts(taskArray[i]);
 }
 
 const addTaskViewToFirebase = () => {
@@ -450,6 +493,7 @@ const addTaskViewToFirebase = () => {
     prio: selectedPriority,
     category: selectedCategory,
     subtasks: subtasksArray,
+    checkedSubtasks: [],
     area: "toDo",
   };
   postData("/tasks", taskObject);
@@ -470,6 +514,7 @@ const addTaskToFirebase = () => {
     prio: selectedPriority,
     category: selectedCategory,
     subtasks: subtasksArray,
+    checkedSubtasks: [],
     area: "toDo",
   };
   postData("/tasks", taskObject);
@@ -483,7 +528,6 @@ const resetInputAddTask = () => {
   document.getElementById("descriptionInputId").value = "";
   document.getElementById("dateInput").value = "";
   contactArrayAddTask = [];
-  selectedPriority = "middle";
   selectedCategory = "medium";
   subtasksArray = [];
 };
@@ -501,6 +545,7 @@ const toggleArrow = () => {
 
 function toggleTaskNoteOverlay() {
   const overlay = document.getElementById("taskOverlay");
+  document.querySelector('.grayBackground').classList.toggle('d_none')
   if (overlay.classList.contains("d_none")) {
     resetInputAddTask();
     overlay.classList.remove("d_none");
@@ -530,3 +575,70 @@ function toggleEditOverlay() {
     }, 1000);
   }
 }
+
+// TODO beim löschen soll gerendert werden 
+const searchTask = async () => {
+  const inputValue = document.getElementById('inputSearchBar').value.toLowerCase();
+  const todo = document.getElementById("contentTodo");
+  const progress = document.getElementById("contentProgress");
+  const feedback = document.getElementById("contentFeedback");
+  const done = document.getElementById("contentDone");
+  const databaseJson = await loadData("/tasks");
+
+
+  todo.innerHTML = "";
+  progress.innerHTML = "";
+  feedback.innerHTML = "";
+  done.innerHTML = "";
+
+  taskArray = [];
+  if (databaseJson) {
+    taskArray.length = 0;
+
+    Object.keys(databaseJson).forEach((key) => {
+      taskArray.push({
+        id: key,
+        title: databaseJson[key].title,
+        description: databaseJson[key].description,
+        assignedTo: databaseJson[key].assignedTo,
+        dueDate: databaseJson[key].dueDate,
+        prio: databaseJson[key].prio,
+        category: databaseJson[key].category,
+        subtasks: databaseJson[key].subtasks,
+        area: databaseJson[key].area,
+      });
+    });
+  }
+  if (inputValue.length >= 2) {
+    for (let index = 0; index < taskArray.length; index++) {
+      const task = taskArray[index];
+      if (task.title.toLowerCase().includes(inputValue)) {
+        let colorCategory = "";
+        if (task.category == "User Story") {
+          colorCategory = "#0038FF";
+        } else {
+          colorCategory = "#1FD7C1";
+        }
+        switch (task.area) {
+          case "toDo":
+            todo.innerHTML += getNoteRef(task, colorCategory);
+            renderContactAssignedTo(task.assignedTo);
+            break;
+          case "progress":
+            progress.innerHTML += getNoteRef(task, colorCategory);
+            renderContactAssignedTo(task.assignedTo);
+            break;
+          case "feedback":
+            feedback.innerHTML += getNoteRef(task, colorCategory);
+            renderContactAssignedTo(task.assignedTo);
+            break;
+          case "done":
+            done.innerHTML += getNoteRef(task, colorCategory);
+            renderContactAssignedTo(task.assignedTo);
+            break;
+        }
+      }
+    }
+  }
+}
+

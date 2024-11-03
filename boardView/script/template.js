@@ -1,35 +1,38 @@
-function getTaskOverlay() {
+//TODO Delete und edit funktion schreiben
+function getTaskOverlay(task) {
     return /*html*/ `
   <div class="taskOverlayContent"> 
   
-    <div class="taskOverlayCategory">
-      <p>Technical Task</p>
+    <div class="headerTaskOverlay">
+      <p class="taskOverlayCategory">Technical Task</p>
+      <img class="pointer" onclick="toggleTaskNoteOverlay()" src="../assets/icon/Close.svg" alt="">
     </div>
   
-    <div class="taskOverlayTitle">CSS Architecture Planning</div>
+    <div class="taskOverlayTitle">${task.title}</div>
   
-    <div class="taskOverlayDescription">Define CSS naming conventions and structure.</div>
+    <div class="taskOverlayDescription">${task.description}</div>
   
    <div class="deadline-div">
     <div class="taskOverlaydeadline">Due date:</div>
-    <div class="taskOverlaydeadlineContent">02/09/2023</div>
+    <div class="taskOverlaydeadlineContent">${task.dueDate}</div>
    </div>
   
    <div class="priority-div">
     <div class="taskOverlaypriority">Priority:</div>
-    <div class="taskOverlayPriorityContent">Urgent</div>
+    <div class="taskOverlayPriorityContent">${task.prio}</div>
    </div>
   
     <div class="assigned-to-div">
       <div class="taskOverlayassigned-to">Assigned To:</div>
-      <div class="taskOverlayassigned-toContent"></div>
+      <div class="taskOverlayassigned-toContent" id="assignedToContactsId"></div>
     </div>
   
     <div class="subtasks-div">
       <div class="taskOverlaysubtasks">Subtasks:</div>
-      <div class="taskOverlaysubtasksContent"></div>
+      <div class="taskOverlaysubtasksContent">${task.subtasks}</div>
     </div>
   
+    
     <div class="taskOverlay-edit-delete">
       <div class="taskOverlayDelete">
         <svg class="delete-button" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -60,6 +63,15 @@ function getTaskOverlay() {
     </div>
   
   </div>`;
+}
+
+const getAssignedToContacts = (color, initials, contact) => {
+  return /*html*/`
+    <div class="contact">
+      <p class="initials" style="background-color: ${color}">${initials}</p>
+      <p class="contactName">${contact.name}</p>
+    </div>
+  `
 }
 
 const getEditSubtask = (index) => {
@@ -95,10 +107,10 @@ const getSubtask = (taskName, index) => {
     `;
 };
 
-function getNoteRef(task, index, color) {
+function getNoteRef(task, color, index) {
   let url = setPrioIcon(task.prio)
     return /*html*/ `
-              <div id="${task.name} ${index}" draggable="true" ondragstart="drag(event)" class="boardNotes" onclick="renderTaskOverlay()">
+              <div id="${task.title}" draggable="true" ondragstart="drag(event)" class="boardNotes" onclick="renderTaskOverlay(${index})">
                 <div class="boardNotesContent">
                   <div class="boardNotesCategory">
                     <p class="categoryText" style="background-color: ${color}">${task.category}</p>
@@ -107,12 +119,12 @@ function getNoteRef(task, index, color) {
                   <div class="boardDescription">${task.description}</div>
   
                   <div id="subtask-div" >
-                    <progress id="progressBar" class="subtaskLoadingBar" value="0" max="100"></progress>
-                    <div id="subtaskAmount" class="subtaskList">${task.subtask}</div>
+                    <progress id="progressBar${task.title}" class="subtaskLoadingBar" value="0" max="100"></progress>
+                    <div id="subtaskAmount${task.title}" class="subtaskList"></div>
                   </div>
   
                   <div class="boardNotesFooter">
-                    <div class="boardNotesContacts" id="assignedToPeopleId"></div>
+                    <div class="boardNotesContacts" id="assignedToPeopleId${index}"></div>
                     <div class="boardNotesPrio"><img src="${url}" alt=""></div>
                   </div>
                 </div>

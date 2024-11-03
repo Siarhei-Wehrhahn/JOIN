@@ -32,19 +32,19 @@
       <div class="upper-sec-right">
         <div class="search-div">
           <div class="input-div">
-            <input oninput="searchTaskNotes()" id="input" type="text" placeholder="Find task" />
+            <input id="inputSearchBar" oninput="searchTaskNotes()" id="input" type="text" placeholder="Find task" />
             <div id="tooltip" class="tooltip d_none">No Results</div>
             </div>
   
-            <button type="submit">
-              <img src="/assets/icon/search-icon.svg" alt="">
+          
+            <button  id="add-task" class="add-task" onclick="toggleAddTaskOverlay()">
+              <p>Add task</p>
+              <img class="add-task-cross-icon" src="/assets/icon/cross.svg" alt="">
             </button>
           </div>
+            <img class="pointer" onclick="searchTask()" src="/assets/icon/search-icon.svg" alt="">
+        </div>
 
-          <button id="add-task" class="add-task" onclick="toggleAddTaskOverlay()">
-            <p>Add task</p>
-            <img class="add-task-cross-icon" src="/assets/icon/cross.svg" alt="">
-          </button>
       </div>
     </section>
 
@@ -117,7 +117,7 @@
             placeholder="Select contacts to assign">
           <img onclick="toggleContactSelection()" class="dropDownArrow" src="../assets/icon/arrow_drop_down.svg"
             alt="arrowDown">
-          <div class="container d_none" id="contactRender"></div>
+          <div class="containerContacts d_none" id="contactRender"></div>
         </div>
 
         <div class="theLine"></div>
@@ -214,8 +214,18 @@
         </div>
       </div>
     </div>
-  
+  <div class="grayBackground d_none"></div>
     <section class="taskOverlay d_none slide-out" id="taskOverlay"></section>
-</body>
+    <script>
+      // TODO umbauen
+      document.getElementById('inputSearchBar').addEventListener('input', function(input) {
+  if (input.value.length < 3) {
+    renderNotesIntoTaskArray();
+  } else {
+    searchTask();
+  }
+});
+    </script>
+  </body>
 
 </html>
