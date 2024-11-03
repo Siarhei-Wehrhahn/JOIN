@@ -24,7 +24,7 @@ function getTaskOverlay(task) {
   
     <div class="assigned-to-div">
       <div class="taskOverlayassigned-to">Assigned To:</div>
-      <div class="taskOverlayassigned-toContent">${task.assignedTo}</div>
+      <div class="taskOverlayassigned-toContent" id="assignedToContactsId"></div>
     </div>
   
     <div class="subtasks-div">
@@ -63,6 +63,15 @@ function getTaskOverlay(task) {
     </div>
   
   </div>`;
+}
+
+const getAssignedToContacts = (color, initials, contact) => {
+  return /*html*/`
+    <div class="contact">
+      <p class="initials" style="background-color: ${color}">${initials}</p>
+      <p class="contactName">${contact.name}</p>
+    </div>
+  `
 }
 
 const getEditSubtask = (index) => {
@@ -110,8 +119,8 @@ function getNoteRef(task, color, index) {
                   <div class="boardDescription">${task.description}</div>
   
                   <div id="subtask-div" >
-                    <progress id="progressBar" class="subtaskLoadingBar" value="0" max="100"></progress>
-                    <div id="subtaskAmount" class="subtaskList">${task.subtask}</div>
+                    <progress id="progressBar${task.title}" class="subtaskLoadingBar" value="0" max="100"></progress>
+                    <div id="subtaskAmount${task.title}" class="subtaskList"></div>
                   </div>
   
                   <div class="boardNotesFooter">

@@ -190,17 +190,16 @@ const renderNotesIntoTaskArray = async () => {
   const progress = document.getElementById("contentProgress");
   const feedback = document.getElementById("contentFeedback");
   const done = document.getElementById("contentDone");
-
   todo.innerHTML = "";
   progress.innerHTML = "";
   feedback.innerHTML = "";
   done.innerHTML = "";
-
   try {
     const databaseJson = await loadData("/tasks");
     if (databaseJson) {
       taskArray.length = 0;
 
+      taskArray = [];
       Object.keys(databaseJson).forEach((key) => {
         taskArray.push({
           id: key,
@@ -211,9 +210,11 @@ const renderNotesIntoTaskArray = async () => {
           prio: databaseJson[key].prio,
           category: databaseJson[key].category,
           subtasks: databaseJson[key].subtasks,
+          checkedSubtasks: databaseJson[key].checkedSubtasks,
           area: databaseJson[key].area,
         });
       });
+      savetasksToLocalStorage();
 
       if (taskArray.length === 0) {
         todo.innerHTML = `<div class="no-task">No tasks To do</div>`;
@@ -236,18 +237,22 @@ const renderNotesIntoTaskArray = async () => {
           case "toDo":
             todo.innerHTML += getNoteRef(task, colorCategory, index);
             renderContactAssignedTo(people, index);
+            updateProgressBar(index);
             break;
           case "progress":
             progress.innerHTML += getNoteRef(task, colorCategory, index);
             renderContactAssignedTo(people, index);
+            updateProgressBar(index);
             break;
           case "feedback":
             feedback.innerHTML += getNoteRef(task, colorCategory, index);
             renderContactAssignedTo(people, index);
+            updateProgressBar(index);
             break;
           case "done":
             done.innerHTML += getNoteRef(task, colorCategory, index);
             renderContactAssignedTo(people, index);
+            updateProgressBar(index);
             break;
         }
       }
@@ -281,31 +286,93 @@ const renderContactAssignedTo = (persons, index) => {
   })
 }
 
-// TODO
-function updateProgress() {
-  const subtaskAmount = document.getElementById("subtaskAmount");
-  const totalTasks = subtasksArray.length;
-  const subtaskDiv = document.getElementById("subtask-div");
+const getTaskData = async () => {
+  const databaseJson = await loadData("/tasks");
+  if (databaseJson) {
 
-  if (totalTasks === 0) {
-    subtaskDiv.style.display = "none";
-    return;
-  } else {
-    subtaskDiv.style.display = "block";
+    taskArray = [];
+    return Object.keys(databaseJson).forEach((key) => {
+      taskArray.push({
+        id: key,
+        title: databaseJson[key].title,
+        description: databaseJson[key].description,
+        assignedTo: databaseJson[key].assignedTo,
+        dueDate: databaseJson[key].dueDate,
+        prio: databaseJson[key].prio,
+        category: databaseJson[key].category,
+        subtasks: databaseJson[key].subtasks,
+        checkedSubtasks: databaseJson[key].checkedSubtasks,
+        area: databaseJson[key].area,
+      });
+    });
   }
+}
 
-  const completedTasks = 0;
+const savetasksToLocalStorage = () => {
+  localStorage.setItem("tasks", JSON.stringify(taskArray))
+}
 
-  subtasksArray.forEach((task) => {
-    const checkbox = document.getElementById(task.id);
-    if (checkbox.checked) completedTasks++;
-  });
-  const progressPercentage = (completedTasks / totalTasks) * 100;
+const loadTasksFromLocalStorage = () => {
+  const savedTaks =localeStorage.getItem("tasks");
+  taskArray = JSON.parse(savedTaks);
+  taskArray.forEach(updateProgressBar);  
+}
 
-  const progress = document.getElementById("progressBar");
-  progress.style.width = progressPercentage + "%";
+const toggleSubtask = (taskId, subtaskIndex) => {
+  const task = taskArray.find ( task => task.id == taskId );
+  if(task) {
+    task.subtask[subtaskIndex].checked = !task.subtask[subtaskIndex].checked;
+    savetasksToLocalStorage();
+    updateProgressBar(task);
+  }
+}
 
-  subtaskAmount.innerText = `${completedTasks}/${totalTasks} Subtasks`;
+const updateProgressBar = async (index) => {
+  const databaseJson = await loadData("/tasks");
+  if (databaseJson) {
+
+    taskArray = [];
+    Object.keys(databaseJson).forEach((key) => {
+      taskArray.push({
+        id: key,
+        title: databaseJson[key].title,
+        description: databaseJson[key].description,
+        assignedTo: databaseJson[key].assignedTo,
+        dueDate: databaseJson[key].dueDate,
+        prio: databaseJson[key].prio,
+        category: databaseJson[key].category,
+        subtasks: databaseJson[key].subtasks || {},
+        checkedSubtasks: databaseJson[key].checkedSubtasks || {},
+        area: databaseJson[key].area,
+      });
+    });
+  }
+  const task = taskArray[index];
+  const completedSubtasks = Object.keys(task.checkedSubtasks || {}).length;
+  const totalSubtasks = Object.keys(task.subtasks || {}).length;
+
+  const progressPercentage = totalSubtasks > 0 ? (completedSubtasks / totalSubtasks) * 100 : 0;
+
+  const progressBar = document.getElementById(`progressBar${task.title}`);
+  const subtaskAmount = document.getElementById(`subtaskAmount${task.title}`);
+
+  if (progressBar && subtaskAmount) {
+    progressBar.value = progressPercentage;
+    subtaskAmount.innerText = `${completedSubtasks}/${totalSubtasks} Subtasks`;
+  } else {
+    progressBar.value = progressPercentage;
+    subtaskAmount.innerText = `0/0 Subtasks`;
+  }
+};
+
+const renderAssignedToContacts = async (task) => {
+  const renderDiv = document.getElementById('assignedToContactsId');
+   for (let index = 0; index < task.assignedTo.length; index++) {
+    const contact = task.assignedTo[index];
+    let color = getColorForName(contact.name)
+    const initials = contact.name.split(' ').slice(0, 2).map(n => n[0]).join('');
+    renderDiv.innerHTML = getAssignedToContacts(color, initials, contact)
+   }
 }
 
 const renderSubtask = () => {
@@ -335,6 +402,7 @@ function renderTaskOverlay(i) {
   const taskOverlay = document.getElementById('taskOverlay')
   toggleTaskNoteOverlay();
   taskOverlay.innerHTML = getTaskOverlay(taskArray[i]);
+  renderAssignedToContacts(taskArray[i]);
 }
 
 const addTaskViewToFirebase = () => {
@@ -349,6 +417,7 @@ const addTaskViewToFirebase = () => {
     prio: selectedPriority,
     category: selectedCategory,
     subtasks: subtasksArray,
+    checkedSubtasks: [],
     area: "toDo",
   };
   postData("/tasks", taskObject);
@@ -369,6 +438,7 @@ const addTaskToFirebase = () => {
     prio: selectedPriority,
     category: selectedCategory,
     subtasks: subtasksArray,
+    checkedSubtasks: [],
     area: "toDo",
   };
   postData("/tasks", taskObject);
@@ -461,36 +531,37 @@ const searchTask = async () => {
         subtasks: databaseJson[key].subtasks,
         area: databaseJson[key].area,
       });
-    });}
+    });
+  }
   if (inputValue.length >= 2) {
     for (let index = 0; index < taskArray.length; index++) {
       const task = taskArray[index];
       if (task.title.toLowerCase().includes(inputValue)) {
-      let colorCategory = "";
-      if (task.category == "User Story") {
-        colorCategory = "#0038FF";
-      } else {
-        colorCategory = "#1FD7C1";
+        let colorCategory = "";
+        if (task.category == "User Story") {
+          colorCategory = "#0038FF";
+        } else {
+          colorCategory = "#1FD7C1";
+        }
+        switch (task.area) {
+          case "toDo":
+            todo.innerHTML += getNoteRef(task, colorCategory);
+            renderContactAssignedTo(task.assignedTo);
+            break;
+          case "progress":
+            progress.innerHTML += getNoteRef(task, colorCategory);
+            renderContactAssignedTo(task.assignedTo);
+            break;
+          case "feedback":
+            feedback.innerHTML += getNoteRef(task, colorCategory);
+            renderContactAssignedTo(task.assignedTo);
+            break;
+          case "done":
+            done.innerHTML += getNoteRef(task, colorCategory);
+            renderContactAssignedTo(task.assignedTo);
+            break;
+        }
       }
-      switch (task.area) {
-        case "toDo":
-          todo.innerHTML += getNoteRef(task, colorCategory);
-          renderContactAssignedTo(task.assignedTo);
-          break;
-        case "progress":
-          progress.innerHTML += getNoteRef(task, colorCategory);
-          renderContactAssignedTo(task.assignedTo);
-          break;
-        case "feedback":
-          feedback.innerHTML += getNoteRef(task, colorCategory);
-          renderContactAssignedTo(task.assignedTo);
-          break;
-        case "done":
-          done.innerHTML += getNoteRef(task, colorCategory);
-          renderContactAssignedTo(task.assignedTo);
-          break;
-      }
-    }
     }
   }
 }
