@@ -412,7 +412,7 @@ const updateProgressBar = async (index) => {
     });
   }
   const task = taskArray[index];
-  const completedSubtasks = task.subtasks.filter(subtask => subtask.isChecked).length;
+  const completedSubtasks = task.subtasks.filter(subtask => subtask.checked).length;
   const totalSubtasks = task.subtasks.length;
 
   const progressPercentage = totalSubtasks > 0 ? (completedSubtasks / totalSubtasks) * 100 : 0;
@@ -432,7 +432,7 @@ const updateProgressBar = async (index) => {
 const toggleSubtask = (taskId, subtaskIndex) => {
   const task = taskArray.find(task => task.id == taskId);
   if (task) {
-    task.subtasks[subtaskIndex].isChecked = !task.subtasks[subtaskIndex].isChecked;
+    task.subtasks[subtaskIndex].checked = !task.subtasks[subtaskIndex].checked;
 
     savetasksToLocalStorage();
     updateProgressBar(taskArray.indexOf(task));
@@ -449,6 +449,7 @@ const renderAssignedToContacts = async (task) => {
    }
 }
 
+// TODO Toggle funktion für die checkbox
 const renderSubtask = () => {
   const subTaskContent = document.getElementById("subtasksContentId");
   subTaskContent.innerHTML = "";
@@ -471,19 +472,22 @@ const saveEditSubtask = (i) => {
   renderSubtask();
 };
 
+// TODO Toggle funktion für die checkbox
 const renderSubtasks = (task) => {
   let subtaskDestination = document.getElementById('subTaskDivToRenderId');
   subtaskDestination.innerHTML = "";
   for (let index = 0; index < task.subtasks.length; index++) {
     const subtask = task.subtasks[index];
-    subtaskDestination.innerHTML += getSubtaskForOverlay(subtask, task.id, index);
+    subtaskDestination.innerHTML += getSubtaskForOverlay(subtask, task, index);
   }
 }
 
 const deleteTask = (i) => {
   deleteData(`/tasks/${taskArray[i].id}`)
   toggleTaskNoteOverlay();
-  renderNotesIntoTaskArray();
+  setTimeout(() => {
+    renderNotesIntoTaskArray();
+}, 100);
 }
 
 function renderTaskOverlay(i) {
@@ -634,18 +638,22 @@ const searchTask = async () => {
           case "toDo":
             todo.innerHTML += getNoteRef(task, colorCategory);
             renderContactAssignedTo(task.assignedTo);
+            updateProgressBar(index);
             break;
           case "progress":
             progress.innerHTML += getNoteRef(task, colorCategory);
             renderContactAssignedTo(task.assignedTo);
+            updateProgressBar(index);
             break;
           case "feedback":
             feedback.innerHTML += getNoteRef(task, colorCategory);
             renderContactAssignedTo(task.assignedTo);
+            updateProgressBar(index);
             break;
           case "done":
             done.innerHTML += getNoteRef(task, colorCategory);
             renderContactAssignedTo(task.assignedTo);
+            updateProgressBar(index);
             break;
         }
       }

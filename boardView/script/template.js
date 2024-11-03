@@ -1,4 +1,4 @@
-//TODO Delete und edit funktion schreiben
+//TODO edit funktion schreiben
 function getTaskOverlay(task, i) {
     return /*html*/ `
   <div class="taskOverlayContent"> 
@@ -65,18 +65,19 @@ function getTaskOverlay(task, i) {
   </div>`;
 }
 
-const getSubtaskForOverlay = (subtask, taskId, index) => {
+// TODO Toggle funktion für die checkbox
+const getSubtaskForOverlay = (subtask, task, index) => {
   return /*html*/`
-    <div class="subtaskDiv" onclick="toggleSubtask(${taskId}, ${index})">
+    <div class="subtaskDiv" onclick="toggleSubtask(${task.id}, ${index})">
       <div class="checkbox-wrapper-52">
         <label for="todo-${index}" class="item">
-          <input type="checkbox" id="todo-${index}" class="hidden"/>
+          <input type="checkbox" id="todo-${index}" class="hidden" onclick="toggleSubtask(${task.id}, ${index})"/>
             <label for="todo-${index}" class="cbx">      
               <svg width="14px" height="12px" viewBox="0 0 14 12">
                 <polyline points="1 7.6 5 11 13 1"></polyline>
               </svg>
             </label>
-          <label for="todo-${index}" class="cbx-lbl">${subtask}</label>
+          <label for="todo-${index}" class="cbx-lbl">${subtask.subtask}</label>
         </label>
       </div>
     </div>
