@@ -2,9 +2,7 @@
   .logo {
     width: 120px;
   }
-  p {
-    font-size: 16px;
-  }
+
   .nav-icon {
     width: 24px;
     height: 24px;
@@ -22,6 +20,9 @@
 @media (max-width: 1300px) {
   .logo {
     width: 100px;
+  }
+  p {
+    text-wrap: nowrap;
   }
 }
 
@@ -57,9 +58,7 @@
     width: 80px;
   }
 
-  p {
-    font-size: 14px;
-  }
+  
   .nav-icon {
     width: 20px;
     height: 20px;
@@ -144,10 +143,11 @@ font-size:14px;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    background-color: rgb(42, 54, 71);
+    background-color:rgb(42, 54, 71);
     margin: 0;
     padding-top:6px;
     padding-bottom:6px;
+    
   }
   .join-logo {
     display: none;
@@ -190,12 +190,7 @@ font-size:14px;
     height:auto;
     margin: 0;
   }
-  p {
-    font-size: 16px;
-    color: white;
-    margin: 0;
-    white-space: nowrap;
-  }
+
   .nav-links {
     display: none;
   }
@@ -206,18 +201,14 @@ font-size:14px;
     width: 28px;
 
   }
-  p {
-    font-size: 16px;
-  }
+
 }
 @media (max-width: 620px) {
   .nav-icon {
     width: 28px;
 
   }
-  p {
-    font-size: 16px;
-  }
+
 }
 @media (max-width: 580px) {
   .summery-button, .add-tast-button, .board-button, .contacts-button {
@@ -227,9 +218,7 @@ font-size:14px;
   .nav-icon {
     width: 28px;
   }
-  p {
-    font-size: 16px;
-  }
+
 }
 
 @media(max-width:480px){
@@ -241,9 +230,7 @@ font-size:14px;
     width: 28px;
 
   }
-  p {
-    font-size: 16px;
-  }
+
   }
   @media(max-width:420px){
     .summery-button, .add-tast-button, .board-button, .contacts-button {
@@ -254,9 +241,7 @@ font-size:14px;
       width: 28px;
   
     }
-    p {
-      font-size: 16px;
-    }
+ 
     }
     @media(max-width:360px){
       .summery-button, .add-tast-button, .board-button, .contacts-button {
@@ -267,7 +252,5 @@ font-size:14px;
         width: 26px;
     
       }
-      p {
-        font-size: 14px;
-      }
+    
       }

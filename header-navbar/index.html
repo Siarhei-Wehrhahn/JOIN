@@ -11,6 +11,8 @@
   <link rel="stylesheet" href="styles/responsive-navbar.css" />
   <link rel="stylesheet" href="../contactsView/style/overlay.css" />
   <link rel="stylesheet" href="../summaryView/styles/standart.css" />
+  <link rel="stylesheet" href="../summaryView/styles/sumarryResponsive.css"/>
+  <link rel="stylesheet" href="../boardView/styles/boardNoteResponsive.css" />
   <script src="../contactsView/script/script.js"></script>
   <script src="./script/script.js" defer></script>
   <script src="./script/template.js" defer></script>
@@ -66,9 +68,24 @@
         </a>
         <img class="mobile-logo" src="../assets/img/logo-black.svg" alt="" />
 
-        <div class="account" onclick="">
+        <div class="account" onclick="userDropDown()">
           <p>SM</p>
         </div>
+
+        <div id="userDropDown" class="userDropDown d_none">
+          <a href="../legalNotice/index.html" class="userButton">
+            <p>Legal notice</p>
+          </a>
+
+          <a href="../privacyPolicy/index.html" class="userButton">
+            <p>Privacy Policy</p>
+          </a>
+
+          <a class="userButton" href="../loginIndex.html">
+            <p>Log out</p>
+          </a>
+        </div>
+        
       </div>
     </header>
 
