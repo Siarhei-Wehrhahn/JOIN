@@ -251,7 +251,8 @@ const deleteInput = () => {
 
 const addSubtaskToArray = () => {
   const inputField = document.getElementById("subtaskInputId").value;
-  subtasksArray.push(inputField);
+  const subtask = {subtask: inputField, checked: false}
+  subtasksArray.push(subtask);
   deleteInput();
   renderSubtask();
 };
@@ -286,7 +287,6 @@ const renderNotesIntoTaskArray = async () => {
           prio: databaseJson[key].prio,
           category: databaseJson[key].category,
           subtasks: databaseJson[key].subtasks,
-          checkedSubtasks: databaseJson[key].checkedSubtasks,
           area: databaseJson[key].area,
         });
       });
@@ -377,7 +377,6 @@ const getTaskData = async () => {
         prio: databaseJson[key].prio,
         category: databaseJson[key].category,
         subtasks: databaseJson[key].subtasks,
-        checkedSubtasks: databaseJson[key].checkedSubtasks,
         area: databaseJson[key].area,
       });
     });
@@ -394,19 +393,9 @@ const loadTasksFromLocalStorage = () => {
   taskArray.forEach(updateProgressBar);  
 }
 
-const toggleSubtask = (taskId, subtaskIndex) => {
-  const task = taskArray.find ( task => task.id == taskId );
-  if(task) {
-    task.subtask[subtaskIndex].checked = !task.subtask[subtaskIndex].checked;
-    savetasksToLocalStorage();
-    updateProgressBar(task);
-  }
-}
-
 const updateProgressBar = async (index) => {
   const databaseJson = await loadData("/tasks");
   if (databaseJson) {
-
     taskArray = [];
     Object.keys(databaseJson).forEach((key) => {
       taskArray.push({
@@ -417,15 +406,14 @@ const updateProgressBar = async (index) => {
         dueDate: databaseJson[key].dueDate,
         prio: databaseJson[key].prio,
         category: databaseJson[key].category,
-        subtasks: databaseJson[key].subtasks || {},
-        checkedSubtasks: databaseJson[key].checkedSubtasks || {},
+        subtasks: databaseJson[key].subtasks || [],
         area: databaseJson[key].area,
       });
     });
   }
   const task = taskArray[index];
-  const completedSubtasks = Object.keys(task.checkedSubtasks || {}).length;
-  const totalSubtasks = Object.keys(task.subtasks || {}).length;
+  const completedSubtasks = task.subtasks.filter(subtask => subtask.isChecked).length;
+  const totalSubtasks = task.subtasks.length;
 
   const progressPercentage = totalSubtasks > 0 ? (completedSubtasks / totalSubtasks) * 100 : 0;
 
@@ -438,6 +426,16 @@ const updateProgressBar = async (index) => {
   } else {
     progressBar.value = progressPercentage;
     subtaskAmount.innerText = `0/0 Subtasks`;
+  }
+};
+
+const toggleSubtask = (taskId, subtaskIndex) => {
+  const task = taskArray.find(task => task.id == taskId);
+  if (task) {
+    task.subtasks[subtaskIndex].isChecked = !task.subtasks[subtaskIndex].isChecked;
+
+    savetasksToLocalStorage();
+    updateProgressBar(taskArray.indexOf(task));
   }
 };
 
@@ -456,7 +454,7 @@ const renderSubtask = () => {
   subTaskContent.innerHTML = "";
   for (let index = 0; index < subtasksArray.length; index++) {
     const task = subtasksArray[index];
-    subTaskContent.innerHTML += getSubtask(task, index);
+    subTaskContent.innerHTML += getSubtask(task.subtask, index);
   }
 };
 
@@ -473,12 +471,27 @@ const saveEditSubtask = (i) => {
   renderSubtask();
 };
 
-// TODO ASSIGNEDTO contacte rendern lassen
+const renderSubtasks = (task) => {
+  let subtaskDestination = document.getElementById('subTaskDivToRenderId');
+  subtaskDestination.innerHTML = "";
+  for (let index = 0; index < task.subtasks.length; index++) {
+    const subtask = task.subtasks[index];
+    subtaskDestination.innerHTML += getSubtaskForOverlay(subtask, task.id, index);
+  }
+}
+
+const deleteTask = (i) => {
+  deleteData(`/tasks/${taskArray[i].id}`)
+  toggleTaskNoteOverlay();
+  renderNotesIntoTaskArray();
+}
+
 function renderTaskOverlay(i) {
   const taskOverlay = document.getElementById('taskOverlay')
   toggleTaskNoteOverlay();
-  taskOverlay.innerHTML = getTaskOverlay(taskArray[i]);
+  taskOverlay.innerHTML = getTaskOverlay(taskArray[i], i);
   renderAssignedToContacts(taskArray[i]);
+  renderSubtasks(taskArray[i]);
 }
 
 const addTaskViewToFirebase = () => {
@@ -493,7 +506,6 @@ const addTaskViewToFirebase = () => {
     prio: selectedPriority,
     category: selectedCategory,
     subtasks: subtasksArray,
-    checkedSubtasks: [],
     area: "toDo",
   };
   postData("/tasks", taskObject);
@@ -514,7 +526,6 @@ const addTaskToFirebase = () => {
     prio: selectedPriority,
     category: selectedCategory,
     subtasks: subtasksArray,
-    checkedSubtasks: [],
     area: "toDo",
   };
   postData("/tasks", taskObject);
@@ -557,7 +568,7 @@ function toggleTaskNoteOverlay() {
     setTimeout(() => {
       overlay.classList.add("d_none");
       overlay.classList.remove("slide-out");
-    }, 1000);
+    }, 500);
   }
 }
 
@@ -576,7 +587,7 @@ function toggleEditOverlay() {
   }
 }
 
-// TODO beim löschen soll gerendert werden 
+
 const searchTask = async () => {
   const inputValue = document.getElementById('inputSearchBar').value.toLowerCase();
   const todo = document.getElementById("contentTodo");

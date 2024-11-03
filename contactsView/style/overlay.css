@@ -23,7 +23,7 @@
 }
 
 .slide-in {
-    animation: slide-in 1.0s forwards;
+    animation: slide-in 0.5s forwards;
 
 }
 
@@ -37,7 +37,7 @@
 }
 
 .slide-out {
-    animation: slide-out 1.0s forwards;
+    animation: slide-out 0.5s forwards;
 }
 
 @keyframes slide-out {
@@ -50,7 +50,7 @@
 }
 
 .contact-slide-in {
-    animation: slide-in 1.0s forwards;
+    animation: slide-in 0.5s forwards;
 
 }
 
@@ -64,7 +64,7 @@
 }
 
 .contact-slide-out {
-    animation: slide-out 1.0s forwards;
+    animation: slide-out 0.5s forwards;
 }
 
 @keyframes contact-slide-out {

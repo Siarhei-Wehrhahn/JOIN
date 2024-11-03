@@ -1,5 +1,5 @@
 //TODO Delete und edit funktion schreiben
-function getTaskOverlay(task) {
+function getTaskOverlay(task, i) {
     return /*html*/ `
   <div class="taskOverlayContent"> 
   
@@ -29,12 +29,12 @@ function getTaskOverlay(task) {
   
     <div class="subtasks-div">
       <div class="taskOverlaysubtasks">Subtasks:</div>
-      <div class="taskOverlaysubtasksContent">${task.subtasks}</div>
+      <div class="taskOverlaysubtasksContent" id="subTaskDivToRenderId"></div>
     </div>
   
     
     <div class="taskOverlay-edit-delete">
-      <div class="taskOverlayDelete">
+      <div class="taskOverlayDelete" onclick="deleteTask(${i})">
         <svg class="delete-button" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <mask id="mask0_379_4227" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
           <rect width="24" height="24" fill="#D9D9D9"/>
@@ -63,6 +63,24 @@ function getTaskOverlay(task) {
     </div>
   
   </div>`;
+}
+
+const getSubtaskForOverlay = (subtask, taskId, index) => {
+  return /*html*/`
+    <div class="subtaskDiv" onclick="toggleSubtask(${taskId}, ${index})">
+      <div class="checkbox-wrapper-52">
+        <label for="todo-${index}" class="item">
+          <input type="checkbox" id="todo-${index}" class="hidden"/>
+            <label for="todo-${index}" class="cbx">      
+              <svg width="14px" height="12px" viewBox="0 0 14 12">
+                <polyline points="1 7.6 5 11 13 1"></polyline>
+              </svg>
+            </label>
+          <label for="todo-${index}" class="cbx-lbl">${subtask}</label>
+        </label>
+      </div>
+    </div>
+  `
 }
 
 const getAssignedToContacts = (color, initials, contact) => {
