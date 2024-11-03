@@ -13,69 +13,45 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(0, -50%); 
     border-radius: 25px;
     box-shadow: 10px 5px 10px 0px rgba(0, 0, 0, 0.3);
     z-index: 100;
     background-color: white;
     transition: transform 1.0s ease-in-out;
     filter: none!important;
+    position:fixed;
+    right:0;
 }
 
-.slide-in {
-    animation: slide-in 0.5s forwards;
 
-}
+
 
 @keyframes slide-in {
     from {
-        transform: translate(100%, -50%);
+        transform: translate(100%, -50%); /* Start außerhalb des Bildschirms (rechts) */
     }
     to {
-        transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%); /* Endposition in der Mitte */
     }
-}
-
-.slide-out {
-    animation: slide-out 0.5s forwards;
 }
 
 @keyframes slide-out {
     from {
-        transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%); /* Startposition in der Mitte */
     }
     to {
-        transform: translate(100%, -50%);
+        transform: translate(100%, -50%); /* Endposition außerhalb des Bildschirms (rechts) */
     }
 }
 
-.contact-slide-in {
-    animation: slide-in 0.5s forwards;
-
+.slide-in {
+    animation: slide-in 0.5s forwards; /* Animation für das Hereinfliegen */
 }
 
-@keyframes contact-slide-in {
-    from {
-        transform: translateX(100%);
-    }
-    to {
-        transform: translateX(0%);
-    }
+.slide-out {
+    animation: slide-out 0.5s forwards; /* Animation für das Hinausfliegen */
 }
-
-.contact-slide-out {
-    animation: slide-out 0.5s forwards;
-}
-
-@keyframes contact-slide-out {
-    from {
-        transform: translateX(0%);
-    }
-    to {
-        transform: translateX(100%);
-    }
-}
-
 .overlayBody {
 height: 100%;
 width: 100%;

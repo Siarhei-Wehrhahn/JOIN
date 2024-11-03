@@ -1,9 +1,8 @@
 .leftSide {
   width: 16%;
   height: 100vh;
-  position:fixed;
-  left:0;
 }
+
 nav {
   height: 100%;
   width: 100%;
@@ -12,72 +11,103 @@ nav {
   align-items: center;
   background-color: rgb(42, 54, 71);
 }
-.logo {
-  width:140px;
-  margin-top:60px;
-}
-.menu{
-  display:flex;
+.menu {
+  display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  height:100vh;
-  width:100%;
-  margin-top:100px;
-  margin-bottom:60px;
+  height: 100vh;
+  width: 100%;
+  margin-top: 100px;
+  margin-bottom: 60px;
 }
 .menu-buttons {
-  width:100%;
-  display:flex;
+  width: 100%;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.summery-button, .add-tast-button, .board-button, .contacts-button {
-  display:flex;
+.join-logo {
+  width:140px;
+  margin-top: 60px;
+}
+
+.summery-button,
+.add-tast-button,
+.board-button,
+.contacts-button {
+  display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content:start;
-  margin-left:50%;      
-  /* we have to change the margin to something else,
-   otherwise the position of the button is incorrect */
-  width:100%;
+  justify-content: start;
+  padding-left:25%;
+  width: 75%;
   cursor: pointer;
-  gap:8px;
+  gap: 8px;
+  height:68px;
 }
-.summery-button:active, .add-tast-button:active, .board-button:active, .contacts-button:active {
-  background-color:#091931;
-} 
-.nav-icon{
-  width:32px;
-  height:32px;
+.summery-button p,
+.add-tast-button p,
+.board-button p,
+.contacts-button p{
+  font-size: 22px;
+  font-weight: 300;
+  color: white;
+  white-space: nowrap;
 }
-p{
-  font-size:20px;
-  color:white;
+
+.summery-button:hover,
+.add-tast-button:hover,
+.board-button:hover,
+.contacts-button:hover {
+  background-color: #0919317a;
 }
+
+.summery-button:active,
+.add-tast-button:active,
+.board-button:active,
+.contacts-button:active {
+  background-color: #091931;
+}
+
+.nav-icon {
+  width: 28px;
+  height: 28px;
+}
+
+
+
 .nav-links {
-  display:flex;
-  flex-direction:column;
-  gap:20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height:60px;
+  width:120px;
 }
-.privacy-policy{
-  color:rgb(113, 120, 129);
+
+.privacy-policy {
+  color: rgb(113, 120, 129);
   text-decoration: none;
-  font-size:20px;
+  font-size: 16px;
 }
-.legal-notice{
-  color:rgb(113, 120, 129);
+
+.legal-notice {
+  color: rgb(113, 120, 129);
   text-decoration: none;
-  font-size:20px;
+  font-size: 16px;
 }
-.privacy-policy:hover{
-color:rgb(41, 171, 226);
-font-weight: bold;
+
+.privacy-policy:hover {
+  color: rgb(41, 171, 226);
+  font-weight: bold;
+  font-size: 16px;
 }
-.legal-notice:hover{
-  color:rgb(41, 171, 226);
-font-weight: bold;
+
+.legal-notice:hover {
+  color: rgb(41, 171, 226);
+  font-weight: bold;
+  font-size: 16px;
 }
 

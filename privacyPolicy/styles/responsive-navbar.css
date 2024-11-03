@@ -2,12 +2,7 @@
   .logo {
     width: 120px;
   }
-  .menu {
-    margin-top: 120px;
-  }
-  p {
-    font-size: 16px;
-  }
+
   .nav-icon {
     width: 24px;
     height: 24px;
@@ -19,29 +14,51 @@
     font-size: 16px;
   }
 }
+
+
+
 @media (max-width: 1300px) {
   .logo {
     width: 100px;
   }
-  .menu {
-    margin-top: 140px;
+  p {
+    text-wrap: nowrap;
   }
 }
+
+
+
 @media (max-width: 1250px) {
   .logo {
     width: 90px;
   }
+  .summery-button p,
+  .add-tast-button p,
+  .board-button p,
+  .contacts-button p {
+  font-size:20px;
+  }
+  .summery-button,
+  .add-tast-button,
+  .board-button,
+  .contacts-button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    padding-left:20%;
+    width: 80%;
+  }
 }
+
+
+
 @media (max-width: 1150px) {
   .logo {
     width: 80px;
   }
-  .menu {
-    margin-top: 160px;
-  }
-  p {
-    font-size: 14px;
-  }
+
+  
   .nav-icon {
     width: 20px;
     height: 20px;
@@ -52,32 +69,71 @@
   .legal-notice {
     font-size: 14px;
   }
+  .summery-button p,
+  .add-tast-button p,
+  .board-button p,
+  .contacts-button p {
+  font-size:18px;
+  }
+  .summery-button,
+.add-tast-button,
+.board-button,
+.contacts-button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  padding-left:20%;
+  width: 80%;
 }
+}
+
+
+
+
+
 
 @media (max-width: 950px) {
   .summery-button,
-  .add-tast-button,
-  .board-button,
-  .contacts-button {
-    margin-left: 40%;
-  }
+.add-tast-button,
+.board-button,
+.contacts-button {
+  padding-left:15%;
+  width: 85%;
 }
+.summery-button p,
+.add-tast-button p,
+.board-button p,
+.contacts-button p {
+font-size:16px;
+}
+}
+
+
+
 @media (max-width: 850px) {
-  .summery-button,
-  .add-tast-button,
-  .board-button,
-  .contacts-button {
-    margin-left: 30%;
-  }
   .logo {
     width: 68px;
     margin-top: 68px;
   }
+  .summery-button p,
+.add-tast-button p,
+.board-button p,
+.contacts-button p {
+font-size:14px;
 }
+}
+
+
 
 /* Mobile ab 768px */
 
 @media (max-width: 768px) {
+  .leftSide {
+    width: 100%;
+    height: 10%;
+    position:fixed;
+  }
   nav {
     height: 10%;
     width: 100%;
@@ -87,12 +143,13 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    background-color: rgb(42, 54, 71);
+    background-color:rgb(42, 54, 71);
     margin: 0;
     padding-top:6px;
     padding-bottom:6px;
+  
   }
-  .logo {
+  .join-logo {
     display: none;
   }
   .menu {
@@ -124,7 +181,7 @@
     height: 72%;
     width: 12%;
     margin: 0%;
-    border: solid 2px black;
+
     border-radius: 20px;
     padding: 8px;
   }
@@ -133,12 +190,7 @@
     height:auto;
     margin: 0;
   }
-  p {
-    font-size: 16px;
-    color: white;
-    margin: 0;
-    white-space: nowrap;
-  }
+
   .nav-links {
     display: none;
   }
@@ -149,18 +201,14 @@
     width: 28px;
 
   }
-  p {
-    font-size: 16px;
-  }
+
 }
 @media (max-width: 620px) {
   .nav-icon {
     width: 28px;
 
   }
-  p {
-    font-size: 16px;
-  }
+
 }
 @media (max-width: 580px) {
   .summery-button, .add-tast-button, .board-button, .contacts-button {
@@ -170,9 +218,7 @@
   .nav-icon {
     width: 28px;
   }
-  p {
-    font-size: 16px;
-  }
+
 }
 
 @media(max-width:480px){
@@ -184,9 +230,7 @@
     width: 28px;
 
   }
-  p {
-    font-size: 16px;
-  }
+
   }
   @media(max-width:420px){
     .summery-button, .add-tast-button, .board-button, .contacts-button {
@@ -197,9 +241,7 @@
       width: 28px;
   
     }
-    p {
-      font-size: 16px;
-    }
+ 
     }
     @media(max-width:360px){
       .summery-button, .add-tast-button, .board-button, .contacts-button {
@@ -210,7 +252,5 @@
         width: 26px;
     
       }
-      p {
-        font-size: 14px;
-      }
+    
       }
