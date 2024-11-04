@@ -60,6 +60,9 @@
   font-weight: 700;
   margin: 24px 0 24px 0;
 }
+.taskOverlayContent {
+  height:100%;
+}
 
 .taskOverlayDescription {
   font-size: 20px;

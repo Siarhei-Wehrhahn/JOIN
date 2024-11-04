@@ -4,82 +4,6 @@ let selectedPriority = null;
 let selectedCategory = "";
 let taskArray = [];
 
-let currentDraggedElement;
-
-function updateTaskList() {
-const contentTodo = taskArray.filter(t => t['area'] === 'contentTodo');
-document.getElementById('contentTodo').innerHTML = '';
-
-for (let index = 0; index < contentTodo.length; index++) {
-  const element = contentTodo[index];
-  document.getElementById('contentTodo').innerHTML += generateTodoHTML(element);
-}
-
-
-const contentProgress = taskArray.filter(t => t['area'] === 'contentProgress');
-document.getElementById('contentProgress').innerHTML = '';
-
-for (let index = 0; index < contentProgress.length; index++) {
-  const element = contentProgress[index];
-  document.getElementById('contentProgress').innerHTML += generateTodoHTML(element);
-}
-
-
-const contentFeedback = taskArray.filter(t => t['area'] === 'contentFeedback');
-document.getElementById('contentFeedback').innerHTML = '';
-
-for (let index = 0; index < contentFeedback.length; index++) {
-  const element = contentFeedback[index];
-  document.getElementById('contentFeedback').innerHTML += generateTodoHTML(element);
-}
-
-
-const contentDone = taskArray.filter(t => t['area'] === 'contentDone');
-document.getElementById('contentDone').innerHTML = '';
-
-for (let index = 0; index < contentDone.length; index++) {
-  const element = contentDone[index];
-  document.getElementById('contentDone').innerHTML += getNoteRef(element, task);
-}
-}
-
-function startDragging() {
-  currentDraggedElement = id;
-}
-
-function moveTo(area) {
-  taskArray[currentDraggedElement]['area'] = area;
-}
-
-function dragAndDropHighlight(id) {
-  document.getElementById(id).classList.add('contentdragAndDrop');
-}
-
-function getNoteRef(element,task) {
-  return /*html*/ `
-            <div draggable="true" ondragstart="startDragging(${element['id']})" class="boardNotes" onclick="renderTaskOverlay()">
-              <div class="boardNotesContent">
-                <div class="boardNotesCategory">
-                  <p>${task.category}</p>
-                </div>
-                <div class="boardTitle">${task.title}</div>
-                <div class="boardDescription">${task.description}</div>
-
-                <div id="subtask-div" >
-                  <progress id="progressBar" class="subtaskLoadingBar" value="0" max="100"></progress>
-                  <div id="subtaskAmount" class="subtaskList">${task.subtask}</div>
-                </div>
-
-                <div class="boardNotesFooter">
-                  <div class="boardNotesContacts">
-                  ${task.description}
-                  </div>
-                  <div class="boardNotesPrio">${task.prio}</div>
-                </div>
-              </div>
-            </div>`;
-}
-
 function allowDrop(ev) {
   ev.preventDefault();
 }
@@ -660,4 +584,3 @@ const searchTask = async () => {
     }
   }
 }
-

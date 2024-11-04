@@ -63,21 +63,32 @@
   </section>
 
     <section class="rightSide">
-      <header>
+      <header id="headerId">
         <h4>Kanban Project Management Tool</h4>
         <div class="header-div">
-          <!-- <a href="">
-            <img
-              class="question-icon"
-              src="..//assets/icon/default-icon.svg"
-              alt=""
-            />
+          <!-- <a href="/helpView/index.html">
+            <img class="question-icon" src="../assets/icon/default-icon.svg" alt="" />
           </a> -->
-          <img class="mobile-logo" src="/assets/img/logo-black.svg" alt="" />
-
-          <div class="account" onclick="">
+          <img class="mobile-logo" src="../assets/img/logo-black.svg" alt="" />
+  
+          <div class="account" onclick="userDropDown()">
             <p>SM</p>
           </div>
+  
+          <div id="userDropDown" class="userDropDown d_none">
+            <a href="../legalNotice/index.html" class="userButton">
+              <p>Legal notice</p>
+            </a>
+  
+            <a href="../privacyPolicy/index.html" class="userButton">
+              <p>Privacy Policy</p>
+            </a>
+  
+            <a class="userButton" href="../loginIndex.html">
+              <p>Log out</p>
+            </a>
+          </div>
+          
         </div>
       </header>
 

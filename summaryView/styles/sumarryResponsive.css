@@ -1,3 +1,18 @@
+@media(max-width:1320px) {
+  .content {
+    align-items: center;
+    width:86%;
+  }
+}
+
+@media(max-width:1200px) {
+  .content {
+    align-items: center;
+    width:82%;
+  }
+}
+
+
 @media(max-width:1075px) {
   .greeting-container {
     display:none;
@@ -7,7 +22,7 @@
   }
   .content {
     align-items: center;
-    width:90%;
+    width:82%;
   }
   .cardBottom {
   height:140px;
@@ -28,6 +43,7 @@
     .middleDivider {
       left: 44%;
     }
+  
 }
 @media (max-width: 768px) {
 

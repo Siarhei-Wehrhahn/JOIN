@@ -13,8 +13,9 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-left: 16%;
-  margin-top: 100px;
+  margin-left: 6%;
+  margin-right:6%;
+  margin-top: 0;
   width: 80%;
 }
 
@@ -46,11 +47,11 @@ h3 {
   margin:0;
 }
 main p {
-  color:black;
-  font-size:20px;
-  font-weight:500;
-  margin:0px 0px 20px 0px;
-  
+  color: black;
+  font-size: 14px;
+  font-weight: 400;
+  margin: 0px 0px 20px 0px;
+  text-wrap:wrap;
 }
 
 .how-to-use-div {

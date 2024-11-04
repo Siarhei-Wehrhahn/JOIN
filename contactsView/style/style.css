@@ -1,14 +1,15 @@
 .contacts {
     width: 30%;
     background-color: white;
-    box-shadow:0px 4px 6px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
     display: flex;
     justify-content: start;
     align-items: center;
     flex-direction: column;
-   height:calc(100vh - 100px);
+    height: 93vh;
+    z-index: 2;
+    margin-top: 30px;
 }
-
 .contactsInfo {
     width: 70%;
     height: 100%;
@@ -26,8 +27,8 @@
     justify-content: start;
     align-items: center;
     flex-direction: row;
-    margin-top: 40px;
-    margin-left: 80px;
+    margin-top: 100px;
+    margin-left: 60px;
     gap: 30px;
     font-size:48px;
 }

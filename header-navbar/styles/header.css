@@ -81,9 +81,9 @@ h4 {
 }
 
 #userDropDown {
-  display: none; /* Initially hidden */
+  display: none; 
 }
 
 #userDropDown.active {
-  display: flex; /* Show when active */
+  display: flex; 
 }
