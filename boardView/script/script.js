@@ -282,11 +282,11 @@ const renderNotesIntoTaskArray = async () => {
           id: key,
           title: databaseJson[key].title,
           description: databaseJson[key].description,
-          assignedTo: databaseJson[key].assignedTo,
+          assignedTo: databaseJson[key].assignedTo || [],
           dueDate: databaseJson[key].dueDate,
           prio: databaseJson[key].prio,
           category: databaseJson[key].category,
-          subtasks: databaseJson[key].subtasks,
+          subtasks: databaseJson[key].subtasks || [],
           area: databaseJson[key].area,
         });
       });
