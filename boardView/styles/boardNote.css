@@ -45,6 +45,7 @@
   color: white;
   padding: 6px;
   padding-inline: 16px;
+  
 }
 
 .taskOverlayCategory p {
@@ -54,13 +55,13 @@
 }
 
 .boardTitle {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 700;
   margin: 20px 0 8px 0;
 }
 
 .boardDescription {
-  font-size: 12px;
+  font-size: 14px;
   color: rgb(179, 179, 179);
   font-weight: 400;
   margin: 8px 0 16px 0;
@@ -71,18 +72,18 @@
 
 #subtask-div {
   width: 100%;
-  margin: 8px 0 16px 0;
+  margin: 20px 0 16px 0;
   display: flex;
   align-items: center;
   gap: 16px;
 }
 
 .subtaskList {
-  width:40%;
-  font-size: 12px;
+  font-size: 13px;
   color: black;
   font-weight: 500;
 }
+
 
 progress {
   width: 60%;
@@ -113,7 +114,7 @@ progress::-moz-progress-bar {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  margin: 8px 0 8px 0;
+  margin: 24px 0 8px 0;
 }
 
 .boardNotesContacts {

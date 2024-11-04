@@ -25,8 +25,9 @@ main {
 
 .search-div {
   display: flex;
-  align-items: center;
+  align-items: start;
 }
+
 
 .search-div button {
   border: none;
@@ -34,21 +35,23 @@ main {
   border-left: solid 0.5px rgb(197, 197, 197);
   height: 24px;
   width: 32px;
+  margin-top:12px;
   padding-left: 16px;
-  background-color: white;;
+  background-color: white;
+  z-index: 0;
 }
 
 h1 {
   font-size: 60px;
 }
-
 input {
   width: 320px;
   height: 44px;
   border: solid 0.5px rgb(141, 141, 141);
   border-radius: 10px;
   cursor: pointer;
-
+  z-index: 1;
+  background-color:transparent;
 }
 
 input::placeholder {
@@ -106,7 +109,7 @@ input::placeholder {
 .upper-column p {
   font-size: 22px;
   font-weight: 700;
-  color: rgb(66, 82, 110);
+  color:rgb(42, 54, 71);
   white-space: nowrap;
 }
 
@@ -148,6 +151,33 @@ input::placeholder {
   flex-direction: column;
   gap: 16px;
 }
+.contentdragAndDrop {
+  background-color: rgb(231, 231, 231);
+  border: dashed 1px rgb(163, 163, 163);
+}
 .add-task-mobile{
   display:none;
+}
+.input-div {
+  display:flex;
+  flex-direction: column;
+}
+.search-div .tooltip {
+  color:rgb(0, 0, 0);
+  font-size: 24px;
+  font-weight:500;
+  background-color:rgb(231, 229, 229);
+  border: dashed 1px rgb(163, 163, 163);
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 9px;
+  padding-right: 9px;
+  margin-top:8px;
+  border-radius: 8px;
+  opacity: 1;
+  transition: opacity 0.30s;
+  pointer-events: none;
+  white-space: nowrap;
+  justify-content: center;
+  align-items: center;
 }

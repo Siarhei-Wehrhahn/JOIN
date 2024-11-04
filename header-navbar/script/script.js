@@ -325,3 +325,16 @@ function toggleEditOverlay(name, initials, color) {
         }, 1000);
     }
 };
+
+function userDropDown() {
+    // const contentRef = document.getElementById('userDropDown');
+
+    // if(contentRef.style.display === 'none' || contentRef.style.display === '') {
+    //     contentRef.style.display = 'flex';
+    // } else {
+    //     contentRef.style.display = 'none';
+    // }
+
+    const contentRef = document.getElementById('userDropDown');
+    contentRef.classList.toggle('active');
+}

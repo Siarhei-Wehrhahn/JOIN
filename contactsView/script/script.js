@@ -53,3 +53,25 @@ function getEditOverlay(person, initials, color) {
   </div>
 `;
 };
+function toggleEditOverlay() {
+  const editOverlay = document.getElementById("overlayEditContact");
+  if (editOverlay.classList.contains("d_none")) {
+      editOverlay.classList.remove("slide-out");
+      editOverlay.classList.add("slide-in");
+      editOverlay.classList.remove("d_none"); // Overlay sichtbar machen
+  } else {
+      editOverlay.classList.add("slide-out");
+      editOverlay.classList.remove("slide-in");
+      setTimeout(() => {
+          editOverlay.classList.add("d_none");
+          editOverlay.classList.remove("slide-out");
+      }, 500); // Zeit muss mit der Animationsdauer übereinstimmen
+  }
+}
+
+document.getElementById("toggleOverlay").addEventListener("click", toggleEditOverlay);
+document.getElementById("closeOverlay").addEventListener("click", toggleEditOverlay);
+
+// function slideIn() {
+//   document.getElementById("contactsInfo").classList.add("active");
+// }

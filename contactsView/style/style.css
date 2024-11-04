@@ -12,7 +12,14 @@
 .contactsInfo {
     width: 70%;
     height: 100%;
+    /* transform: translateX(100%);
+    transition: transform 1s ease-out, opacity 1s ease-out;
+} */
 }
+
+/* .contactsInfo.active {
+    transform: translateX(0);
+} */
 
 .contactsHeader {
     display: flex;
@@ -53,4 +60,37 @@ h3 {
 .contactInformation {
     width: 92%;
     margin-left: 8%;
+}
+
+
+
+.slide-in {
+    animation: slide-in 1.0s forwards;
+    transform: translateX(100%);
+}
+
+@keyframes slide-in {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    to {
+        opacity: 1;
+      transform: translateX(0);
+    }
+}
+
+.slide-out {
+    animation: slide-out 1.0s forwards;
+}
+
+@keyframes slide-out {
+    from {
+        opacity: 1;
+      transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(100%);
+    }
 }
