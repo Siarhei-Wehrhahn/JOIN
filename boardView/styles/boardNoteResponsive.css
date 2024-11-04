@@ -1,0 +1,32 @@
+@media(max-width:360px){
+  categoryText {
+   font-size:8px ;
+  }
+  boardTitle {
+    font-size:12px;
+  }
+  }
+
+@media(max-width:440px){
+  categoryText {
+   font-size:9px ;
+  }
+}
+@media(max-width:660px){
+  categoryText {
+   font-size:10px ;
+  }
+  .pofileInitials {
+    width: 12px;
+    height: 12px;
+  }
+}
+@media(max-width:880px){
+  categoryText {
+   font-size:13px ;
+  }
+  .pofileInitials {
+    width: 14px;
+    height: 14px;
+  }
+}
