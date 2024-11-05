@@ -21,7 +21,7 @@
 
       <div class="menu">
         <div class="menu-buttons">
-          <div class="summery-button">
+          <div class="summery-button" onclick="navigateToNavHeader('../summaryView/index.html')">
             <img
               class="nav-icon"
               src="../assets/icon/summary-icon.svg"
@@ -30,7 +30,7 @@
             <p>Summary</p>
           </div>
 
-          <div class="add-tast-button">
+          <div class="add-tast-button" onclick="navigateToNavHeader('../addTask/index.html')">
             <img
               class="nav-icon"
               src="../assets/icon/add-task-icon.svg"
@@ -39,12 +39,12 @@
             <p>Add task</p>
           </div>
 
-          <div class="board-button">
+          <div class="board-button" onclick="navigateToNavHeader('../boardView/index.html')">
             <img class="nav-icon" src="../assets/icon/board-icon.svg" alt="" />
             <p>Board</p>
           </div>
 
-          <div class="contacts-button">
+          <div class="contacts-button" onclick="navigateToNavHeader('../contactsView/index.html')">
             <img
               class="nav-icon"
               src="../assets/icon/contacts-icon.svg"
@@ -210,5 +210,11 @@
         <h3 class="enjoy-h3">Enjoy using <span class="blue">Join</span>!</h3>
       </main>
     </section>
+    <script>
+      const navigateToNavHeader = (link) => {
+    sessionStorage.setItem("navigateTo", link);
+    window.location.href = "../header-navbar/index.html";
+};
+    </script>
   </body>
 </html>

@@ -47,7 +47,7 @@
       <div class="columns" id="columns">
         <div class="upper-column">
           <p>To do</p>
-          <svg class="column-add-button" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          <svg onclick="toggleAddTaskOverlay()" class="column-add-button" width="24" height="24" viewBox="0 0 24 24" fill="none"
             xmlns="http://www.w3.org/2000/svg">
             <rect x="1" y="1" width="22" height="22" rx="7" stroke="#2A3647" stroke-width="2" />
             <path d="M12 8V16" stroke="#2A3647" stroke-width="2" stroke-linecap="round" />
@@ -62,7 +62,7 @@
       <div class="columns" id="columns">
         <div class="upper-column">
           <p>In progress</p>
-          <img class="column-add-button" src="/assets/icon/add-button.svg" alt="" />
+          <img onclick="toggleAddTaskOverlay()" class="column-add-button" src="/assets/icon/add-button.svg" alt="" />
         </div>
         <div class="lower-column">
           <div ondrop="drop(event)" ondragover="allowDrop(event)" class="content" id="contentProgress"></div>
@@ -72,7 +72,7 @@
       <div class="columns" id="columns">
         <div class="upper-column">
           <p>Await feedback</p>
-          <img class="column-add-button" src="/assets/icon/add-button.svg" alt="" />
+          <img onclick="toggleAddTaskOverlay()" class="column-add-button" src="/assets/icon/add-button.svg" alt="" />
         </div>
         <div class="lower-column">
           <div ondrop="drop(event)" ondragover="allowDrop(event)" class="content" id="contentFeedback"></div>
@@ -82,7 +82,7 @@
       <div class="columns" id="columns">
         <div class="upper-column">
           <p>Done</p>
-          <img class="column-add-button" src="/assets/icon/add-button.svg" alt="" />
+          <img onclick="toggleAddTaskOverlay()" class="column-add-button" src="/assets/icon/add-button.svg" alt="" />
         </div>
         <div class="lower-column">
           <div ondrop="drop(event)" ondragover="allowDrop(event)" class="content" id="contentDone">
