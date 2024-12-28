@@ -8,7 +8,7 @@ let policyAccepted = false;
  */
 function initLogin() {
     startAnimation();
-    joinStorage.rememberMe == true ? location.href = 'summary.html' : renderLogin();
+    joinStorage.rememberMe == true ? location.href = '../summary_view/summary.html' : renderLogin();
 }
 
 /**
@@ -139,7 +139,7 @@ async function checkLoginSucces() {
             if (contactResults[id].email == email && contactResults[id].password == password) {
                 loginSucces = true;
                 localStoreActiveUser(contactResults[id].name);
-                location.href = "summary.html"
+                location.href = "./summary_view/summary.html"
             }
         });
     }
@@ -184,7 +184,7 @@ function loginGuest() {
     joinStorage = {iconInitials: 'G', rememberMe: false};
     localStorage.setItem('joinStorage', JSON.stringify(joinStorage));
     sessionStorage.setItem('loggedIn', JSON.stringify(true));
-    location.href = 'summary.html'
+    location.href = './summary_view/summary.html'
 }
 
 /**
@@ -219,7 +219,7 @@ function signUpSuccessAnimationAndRedirect() {
     document.querySelector('.signUpSuccess').classList.remove('signupSuccessAnimationStartpoint');
     document.querySelector('.signUpSuccessBackground').classList.remove('hidden');
     document.querySelector('.signUpSuccessBackground').classList.remove('animationBackgroundColor');
-    setTimeout(()=>{location.href = 'summary.html'}, 1000)
+    setTimeout(()=>{location.href = '../summary_view/summary.html'}, 1000)
 }
 
 /**
