@@ -1,8 +1,0 @@
-.edit_task_overlay {
-    width: 70%;
-    height: 90%;
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    flex-direction: column;
-}
