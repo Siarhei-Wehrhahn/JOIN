@@ -295,7 +295,8 @@
         left: 0;
     }
 
-    .backgroundText H2 {
+    .backgroundText h2 {
+        width: fit-content;
         font-size: 33px;
     }
 
@@ -351,7 +352,6 @@
 .background {
     position: relative;
     background-color: #2f3e54;
-    padding: 20px;
     color: white;
     text-align: center;
 }
